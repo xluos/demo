@@ -1,0 +1,68 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+/* 头部信息 */
+header{
+    height: 100px;
+    background-color: #ff7b00;
+}
+.user{
+    float: left;
+}
+.touxiang{
+    padding: 10px;
+    height: 80px;
+    width: 80px;
+    border-radius: 50px;
+    float: left; 
+}
+.user-name{
+    padding-left: 20px;
+    float: left;
+    line-height: 100px;
+    font-size: 30px;
+    color:#fff;
+}
+.button{
+    border: 1px solid #fff;
+    border-radius: 10px;
+    /* box-shadow: 2px 2px 2px #888888; */
+    float: right;
+    margin: 20px;
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    line-height: 60px;
+    color: #fff;
+    font-size: 25px;
+    background-color: #ff7d12
+}
+.button:hover{
+    background-color: #ffa358
+}
+/* 中间部分 */
+.chart1{
+    float: left;
+    border: 1px solid rgb(153, 153, 153);
+    border-radius: 5px;
+    margin: 20px;
+    width: calc(100% - 40px);
+    height: 400px;
+}
+
+/* 页尾 */
+footer{
+    /* position: absolute;
+    bottom: 0px; */
+    overflow: auto;
+    background-color: #ff7b00;
+    height: 50px;
+    width: 100%;
+}
+footer span{
+    display: block;
+    color: white;
+    text-align:center;
+    line-height: 50px;
+}

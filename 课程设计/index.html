@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>云测 | 智慧医疗微信应用小程序</title>
+    <link rel="stylesheet" href="style/yunce.css">
+</head>
+<body>
+    <header>
+        <div class="user">
+            <img src="image/touxiang.jpg" alt="头像" class="touxiang">
+            <span class="user-name">管理员</span>
+        </div>
+        <div class="button">菜单</div>
+    </header>
+    <div class="main">
+        <div id = "Chart1" class="chart1"></div>
+        <div id = "Chart2" class="chart1"></div>
+        <div id = "Chart3" class="chart1"></div>
+        <div id = "Chart4" class="chart1"></div>
+    </div>
+    <footer>
+        <span>版权所属&copy;2017 CodeDeer</span>
+    </footer>
+    <script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
+    <script type="text/javascript">
+        // 路径配置
+        require.config({
+            paths: {
+                echarts: 'http://echarts.baidu.com/build/dist'
+            }
+        });
+        require(
+            [
+                'echarts',
+                'echarts/chart/line', // 使用柱状图就加载bar模块，按需加载
+                'echarts/chart/bar'
+            ],
+            function (ec) {
+                // 基于准备好的dom，初始化echarts图表
+                var myChart1 = ec.init(document.getElementById('Chart1')); 
+                var myChart2 = ec.init(document.getElementById('Chart2'));
+                var myChart3 = ec.init(document.getElementById('Chart3'));
+                var myChart4 = ec.init(document.getElementById('Chart4'));
+                var option = {
+                    title : {
+                        text: '一周血压变化图',
+                        subtext: '纯属虚构'
+                    },
+                    tooltip : {
+                        trigger: 'axis'
+                    },
+                    legend: {
+                        data:['高压','低压']
+                    },
+                    toolbox: {
+                        show : true,
+                        feature : {
+                            //mark : {show: true},
+                            //dataView : {show: true, readOnly: false},
+                            magicType : {show: true, type: ['line', 'bar']},
+                           // restore : {show: true},
+                            saveAsImage : {show: true}
+                        }
+                    },
+                    calculable : true,
+                    xAxis : [
+                        {
+                            type : 'category',
+                            boundaryGap : false,
+                            data : ['周一','周二','周三','周四','周五','周六','周日']
+                        }
+                    ],
+                    yAxis : [
+                        {
+                            type : 'value',
+                            axisLabel : {
+                                formatter: '{value} mmhg'
+                            }
+                        }
+                    ],
+                    series : [
+                        {
+                            name:'高压',
+                            type:'line',
+                            data:[110, 110, 150, 130, 120, 130, 120],
+                            markPoint : {
+                                data : [
+                                    {type : 'max', name: '最大值'},
+                                    {type : 'min', name: '最小值'}
+                                ]
+                            },
+                            markLine : {
+                                data : [
+                                    {type : 'average', name: '平均值'}
+                                ]
+                            }
+                        },
+                        {
+                            name:'低压',
+                            type:'line',
+                            data:[60, 75, 82, 75, 63, 72, 77],
+                            markPoint : {
+                                data : [
+                                    {type : 'max', name: '最大值'},
+                                    {type : 'min', name: '最小值'}
+                                ]
+                            },
+                            markLine : {
+                                data : [
+                                    {type : 'average', name : '平均值'}
+                                ]
+                            }
+                        }
+                    ]
+                };
+
+                // 为echarts对象加载数据 
+                myChart1.setOption(option); 
+                myChart2.setOption(option); 
+                myChart3.setOption(option); 
+                myChart4.setOption(option); 
+            }
+        );
+    </script>
+</body>
+</html>

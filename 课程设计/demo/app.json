@@ -1,0 +1,31 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/logs/logs"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "云测",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "pages/image/yiliao.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/logs/logs",
+        "iconPath": "pages/image/jilu.png",
+        "text": "测量记录"
+      },
+      {
+        "pagePath": "pages/index/map",
+        "iconPath": "pages/image/ren.png",
+        "text": "我的"
+      }
+    ]
+  }
+}
