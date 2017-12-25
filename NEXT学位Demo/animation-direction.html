@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>animation-direction</title>
+    <style>
+    @keyframes qiuqiu{
+        25%{
+            top: 0px;
+            background-color: coral;
+            transform: translate(150px,0%);
+        }
+        50%{
+            top: 100px;
+            background-color: aquamarine;
+            transform: translate(300px,50%);
+        }
+        100%{
+            bottom: 50px;
+            background-color: cornflowerblue;
+            transform: translate(450px,50%);
+        }
+    }
+    .box {
+        position: relative;
+        width: 500px;
+        height: 200px;
+        background-color: aliceblue;
+        border: darkgrey solid 1px;
+        margin: 10px auto;
+        text-align: center;
+    }
+    .qiu {
+        position: absolute;
+        top: 50px;
+        transform: translate(0,50%);
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        background-color: aqua;
+        animation-name: qiuqiu;
+        animation-duration: 4s;
+        animation-iteration-count: infinite;
+        animation-delay: 5s;
+    }
+    .ad1 {
+        animation-direction: normal;
+    }
+    .ad2 {
+        animation-direction: alternate;
+    }
+    span {
+        color: red;
+    }
+    </style>
+</head>
+<body>
+    <div class="box">
+        animation-direction: <span>normal</span>;
+        <div class="qiu ad1"></div>
+    </div>
+    <div class="box">
+        animation-direction: <span>alternate</span>;
+        <div class="qiu ad2"></div>
+    </div>
+</body>
+</html>

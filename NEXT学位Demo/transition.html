@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>transition</title>
+    <style>
+    .window{
+        position: relative;
+        width: 500px;
+        height: 200px;
+        background-color: aliceblue;
+        border: darkgrey solid 1px;
+        margin: 0 auto;
+        /* transition: all 1s; */
+    }
+    .qiu {
+        position: absolute;
+        top: 50px;
+        transform: translate(0,50%);
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        background-color: aqua;
+        transition: all 1s;
+    }
+    .window:hover .qiu {
+        transform: translate(450px,50%);
+        background-color: aquamarine;
+    }
+    </style>
+</head>
+<body>
+    <div style="text-align: center">鼠标放到方框查看动画</div>
+    <div class="window">
+        <div class="qiu"></div>
+    </div>
+</body>
+</html>
+
