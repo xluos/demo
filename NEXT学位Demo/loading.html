@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>loading</title>
+    <style>
+    body {
+        background-color: #f4f4f4
+    }
+    /* 设置大盒子水平垂直居中 */
+    .box {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+    }
+    /* 设置球球动画 */
+    @keyframes qiuqiu {
+        100% {
+            top:25px;
+        }
+    }
+    /* 设置球的属性 */
+    .qiu {
+        position: relative;
+        top: -25px;
+        float: left;
+        margin: 10px;
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        background-color: #4285f4;
+        animation: qiuqiu .4s ease-in-out infinite alternate;
+    }
+    /* 分别为后面的小球设置颜色和延时 */
+    .qiu:nth-child(2) {
+        animation-delay: 0.1s;
+        background-color: #0f9d58;
+    }
+    .qiu:nth-child(3) {
+        animation-delay: 0.2s;
+        background-color: #f4b400;
+    }
+    .qiu:nth-child(4) {
+        animation-delay: 0.3s;
+        background-color: #db4437;
+    }
+
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="qiu"></div>
+        <div class="qiu"></div>
+        <div class="qiu"></div>
+        <div class="qiu"></div>
+    </div>
+</body>
+</html>

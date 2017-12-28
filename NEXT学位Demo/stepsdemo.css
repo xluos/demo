@@ -1,0 +1,229 @@
+body {
+    background-color: #8fd5d5;
+}
+
+.contain-clock {
+    position: relative;
+    margin: 0px auto;
+    top: 50%;
+    width: 155px;
+    height: 550px;
+  }
+  
+  .face-1 {
+    position: absolute;
+    top: 23px;
+    left: 23px;
+    background: white;
+    border-radius: 50%;
+    width: 109px;
+    height: 109px;
+    z-index: 3;
+  }
+  
+  .face-2 {
+    position: relative;
+    margin: 200px auto;
+    background: white;
+    border: 15px solid #ed6e46;
+    border-radius: 50%;
+    width: 125px;
+    height: 125px;
+    z-index: 2;
+  }
+  
+  .line {
+    position: absolute;
+    left: 50%;
+    margin-left: -3px;
+    background: gray;
+    width: 6px;
+    height: 126px;
+  }
+  
+  .line-2 {
+    left: 63px;
+    transform: rotate(90deg);
+    -webkit-transform: rotate(90deg) translate3d(0, 0, 0);
+  }
+  
+  .line-3 {
+    transform: rotate(30deg);
+    -webkit-transform: rotate(30deg) translate3d(0, 0, 0);
+    margin-left: -1px;
+    width: 2px;
+  }
+  
+  .line-4 {
+    transform: rotate(-30deg);
+    -webkit-transform: rotate(-30deg) translate3d(0, 0, 0);
+    margin-left: -1px;
+    width: 2px;
+  }
+  
+  .line-5 {
+    transform: rotate(60deg);
+    -webkit-transform: rotate(60deg) translate3d(0, 0, 0);
+    margin-left: -1px;
+    width: 2px;
+  }
+  
+  .line-6 {
+    transform: rotate(-60deg);
+    -webkit-transform: rotate(-60deg);
+    margin-left: -1px;
+    width: 2px;
+  }
+  
+  .hour {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -4px;
+    background: #f8b65b;
+    transform-origin: top;
+    -webkit-transform-origin: top;
+    transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    border-radius: 50px;
+    width: 8px;
+    height: 35px;
+    z-index: 5;
+  }
+  
+  .minute {
+    position: absolute;
+    top: 5px;
+    left: 55px;
+    margin-left: -4px;
+    background: #f8b65b;
+    border-radius: 50px;
+    transform-origin: bottom;
+    -webkit-transform-origin: bottom;
+    width: 8px;
+    height: 50px;
+    z-index: 3;
+    animation: tick-tock 3600s steps(60, end) infinite;
+    -webkit-animation: tick-tock 3600s steps(60, end) infinite;
+  }
+  
+  .second {
+    position: absolute;
+    top: 5px;
+    left: 56px;
+    margin-left: -2px;
+    background: #333333;
+    border-radius: 50px;
+    transform-origin: bottom;
+    -webkit-transform-origin: bottom;
+    width: 2px;
+    height: 50px;
+    z-index: 5;
+    animation: tick-tock 60s steps(60, end) infinite;
+    /* -webkit-animation: tick-tock 60s steps(60 ,end) infinite; */
+  }
+  
+  .center {
+    position: absolute;
+    top: 62px;
+    margin-top: -15px;
+    left: 55px;
+    margin-left: -8px;
+    border-radius: 50%;
+    background: #ed6e46;
+    width: 16px;
+    height: 16px;
+    z-index: 20;
+  }
+  
+  .arm {
+    position: absolute;
+    top: -50px;
+    left: 73px;
+    background: gray;
+    transform: rotate(-30deg);
+    -webkit-transform: rotate(-30deg);
+    border-radius: 50px;
+    width: 10px;
+    height: 230px;
+    z-index: 1;
+  }
+  
+  .arm-2 {
+    left: 71px;
+    transform: rotate(30deg);
+    -webkit-transform: rotate(30deg);
+  }
+  
+  .bell {
+    position: absolute;
+    top: -30px;
+    background: #ed6e46;
+    border-radius: 50% 50% 10% 10%;
+    transform: rotate(-30deg);
+    -webkit-transform: rotate(-30deg);
+    width: 65px;
+    height: 35px;
+    z-index: 2;
+  }
+  
+  .bell-2 {
+    left: 90px;
+    transform: rotate(30deg);
+    -webkit-transform: rotate(30deg);
+  }
+  
+  .hammer {
+    position: absolute;
+    top: -25px;
+    left: 76px;
+    background: gray;
+    width: 3px;
+    height: 30px;
+    z-index: 1;
+  }
+  
+  .hammer:before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: -6px;
+    background: gray;
+    border-radius: 50px;
+    width: 15px;
+    height: 5px;
+  }
+  
+  .handle {
+    position: absolute;
+    top: -68px;
+    left: 32px;
+    border: 8px solid gray;
+    border-radius: 50px 50px 0 0;
+    width: 75px;
+    height: 30px;
+  }
+  
+  .handle:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 26px;
+    background: #8fd5d5;
+    width: 75px;
+    height: 15px;
+  }
+  
+  @keyframes tick-tock {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  @-webkit-keyframes tick-tock {
+    to {
+      -webkit-transform: rotate(360deg) translate3d(0, 0, 0);
+    }
+  }
+  
+  

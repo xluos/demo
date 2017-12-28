@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Fragment加速实验</title>
+    <style>
+    div {
+        margin: 10px;
+        float: left;
+        border: 3px solid #f4f4f4;
+        width: 45%;
+        height: 100%;
+    }
+    </style>
+</head>
+<body>
+    <div>
+        插入20000个节点
+        <button onclick="fragment(0)" >无fragment</button>
+        <ul>
+
+        </ul>
+    </div>
+    <div>
+        插入20000个节点
+        <button onclick="fragment(1)" >无fragment</button>
+        <ul>
+            
+        </ul>
+    </div>
+    <script>
+    function fragment(n) {
+        var u = document.getElementsByTagName("ul");
+        var fra = document.createDocumentFragment();
+        var li;
+        var text;
+        var max = 20000;
+        for(var i = 0 ; i < max; i++)
+        {
+            li = document.createElement("li");
+            text = document.createTextNode("第" + i + "个");
+            li.appendChild(text);
+            console.log(li);
+            if(n === 0)
+            {
+                u[n].appendChild(li);
+            }
+            else
+            {
+                fra.appendChild(li);
+                console.log("aa");
+            }
+        }
+        if(n === 1)
+        {
+            u[n].appendChild(fra);
+        }
+    }
+    </script>
+</body>
+</html>

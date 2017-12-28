@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DOM操作</title>
+</head>
+<body>
+    <h1>DOM操作实验</h1>
+    <button onclick="qian(1)">前面添加</button>
+    <button onclick="qian(2)">后面添加</button>
+    <button onclick="del()">删除节点</button>
+    <button onclick="sty(1)">添加样式</button>
+    <button onclick="sty(2)">移除样式</button>
+    <ul id = "list">
+        <li>111</li>
+        <li>222</li>
+    </ul>
+    <script>
+    function del() {
+        var u = document.getElementById("list");
+        u.removeChild(u.children[0]);
+    }
+    count = 0;
+    function qian(n){
+        var li = document.createElement("li");
+        var litext = document.createTextNode("第"+ count++ +"新节点");
+        li.appendChild(litext);
+        var u = document.getElementById("list");
+        if(n === 1)
+            u.insertBefore(li,u.childNodes[1]);
+        else if(n === 2)
+            u.appendChild(li);  
+    }
+    function sty(n) {
+        var red = document.createAttribute("style");
+        red.value = "color:red";
+        var h1 = document.getElementsByTagName("h1");
+        if(n === 1)
+            h1[0].setAttributeNode(red);
+        else if(n === 2)
+            h1[0].attributes.removeNamedItem("style");
+    }
+    </script>
+</body>
+</html>
