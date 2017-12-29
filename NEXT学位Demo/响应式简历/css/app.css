@@ -1,0 +1,185 @@
+/* 清楚默认效果 */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* 定义loading样式 */
+.loading {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: aqua;
+    background: url(../image/lyBG7.png);
+    background-size: cover; 
+    background-attachment: fixed; 
+}
+
+.loading-img {
+    height: 90px;
+    width: 90px;
+    background: url(../image/hero_head_1_cat.png);
+}
+/* 设置大盒子水平垂直居中 */
+@keyframes box_float {
+    100% {
+        transform: translate(-50%,-30%);
+    }
+}
+.box {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-70%);
+    animation-name: box_float;
+    animation-timing-function: ease-in-out;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+.qiu {
+    /* position: absolute; */
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background-color: aliceblue;
+    margin: 0 auto;
+}
+.minibox{
+    height: 90px;
+    width: 90px;
+}
+/* 小球旋转动画 */
+@keyframes rotating {
+    50% {
+        transform: rotate(180deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+    
+}
+.box2 {
+    position: absolute;
+    top: -20px;
+    animation: rotating 1s ease-in-out infinite;
+}
+/* 文字动画 */
+@keyframes texteffect{
+    100%{
+        color: aliceblue;
+    }
+}
+.text {
+    margin: 0 auto;
+    position: absolute;
+    left: 50%;
+    top: 70%;
+    font-size: 20px;
+    transform: translate(-50%,-70%);
+    color: rgba(240, 248, 255, 0.5);
+    animation: texteffect 1s ease infinite alternate;
+}
+/* 撑开背景 */
+.page {
+    height: 20000px;
+}
+/* 背景样式 */
+body {
+    overflow-x: hidden;
+}
+.content {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    /* overflow: hidden; */
+}
+.BackGround {
+    position: absolute;
+    width: 20000px;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: linear-gradient(#ffd7c5,#00adf1);
+}
+
+.cloud {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    background: url('../image/cloud.png');
+}
+
+.mountain1 {
+    position: absolute;
+    bottom: 70px;
+    left: 0;
+    width: 100%;
+    height: 300px;
+    background: url('../image/mountain_1.png');
+}
+.mountain2 {
+    position: absolute;
+    bottom: 20px;
+    left: -300px;
+    width: 100%;
+    height: 200px;
+    background: url('../image/mountain_2.png');
+}
+
+.trees {
+    position: absolute;
+    bottom: 70px;
+    left: -200px;
+    width: 100%;
+    height: 150px;
+    background: url('../image/tree.png');
+    background-size: auto 150px; 
+    
+}
+.ground {
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background: url('../image/ground.png');
+    background-size: auto 70px;
+}
+/* 开始界面 */
+.me {
+    position: absolute;
+    left: 50%;
+    top: 30%;
+    width: 300px;
+    height: 200px;
+    border: #00adf1 solid 2px;
+    transform: translate(-50%,-50%);
+}
+/* 人物 */
+
+#people-content {
+    position: fixed;
+    width: 70px;
+    height: 105px;
+    left: 50px;
+    bottom: 60px;
+    overflow: hidden;
+}
+
+.people {
+    position: absolute;
+    width: 280px;
+    height: 210px;
+    left: 0;
+    top: 0;
+    background: url('../image/cat.png') no-repeat;
+    background-size: auto 210px;
+}
