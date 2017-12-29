@@ -6,12 +6,13 @@
 
 /* 定义loading样式 */
 .loading {
-    display: none;
+    /* display: none; */
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    z-index: 1;
     background-color: aqua;
     background: url(../image/lyBG7.png);
     background-size: cover; 
@@ -155,6 +156,7 @@ body {
 }
 /* 开始界面 */
 .me {
+    display: none;
     position: absolute;
     left: 50%;
     top: 30%;
