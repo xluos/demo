@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    body {
+        background: url(image/lyBG7.png);
+        background-size: cover;
+        background-attachment: fixed; 
+    }
+    .loading {
+        height: 90px;
+        width: 90px;
+        background: url(image/hero_head_1_cat.png);
+    }
+    /* 设置大盒子水平垂直居中 */
+    @keyframes box_float {
+        100% {
+            transform: translate(-50%,-30%);
+        }
+    }
+    .box {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-70%);
+        animation-name: box_float;
+        animation-timing-function: ease-in-out;
+        animation-duration: 1s;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+    }
+    .qiu {
+        /* position: absolute; */
+        height: 20px;
+        width: 20px;
+        border-radius: 50%;
+        background-color: aliceblue;
+        margin: 0 auto;
+    }
+    .minibox{
+        height: 90px;
+        width: 90px;
+    }
+    /* 小球旋转动画 */
+    @keyframes rotating {
+        50% {
+            transform: rotate(180deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+        
+    }
+    .box2 {
+        position: absolute;
+        top: -20px;
+        animation: rotating 1s ease-in-out infinite;
+    }
+    /* 文字动画 */
+    @keyframes texteffect{
+        100%{
+            color: aliceblue;
+        }
+    }
+    .text {
+        margin: 0 auto;
+        position: absolute;
+        left: 50%;
+        top: 70%;
+        font-size: 20px;
+        transform: translate(-50%,-70%);
+        color: rgba(240, 248, 255, 0.5);
+        animation: texteffect 1s ease infinite alternate;
+    }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="loading"></div>
+        <div class="box2">
+                <div class="qiu"></div>
+                <div class="minibox"></div>
+                <div class="qiu"></div>
+        </div>
+    </div>
+    <div class="text">正在加载请稍候 . . . .</div>
+</body>
+</html>

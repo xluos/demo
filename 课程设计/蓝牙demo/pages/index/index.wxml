@@ -1,0 +1,37 @@
+<!--index.wxml-->  
+<view class="content">  
+  <text class="status">适配器状态：{{ status }}</text>  
+  <text class="sousuo">是否搜索：{{ sousuo }}</text>  
+  <text class="msg">消息：{{ msg }} </text>  
+  <text class="msg1">消息：{{ msg1 }}</text>  
+  <button type="primary" class="button" bindtap="lanya1">1初始化蓝牙适配器</button>  
+  <button type="primary" class="button" bindtap="lanya2">2本机蓝牙适配状态</button>  
+  <button type="primary" class="button" bindtap="lanya3">3搜索周边设备</button>  
+  <button type="primary" class="button" bindtap="lanya4">4获取设备后在列表中连接</button>  
+  <button type="primary" class="button" bindtap="lanya5">5停止搜索周边设备</button>  
+  <button type="primary" class="button" bindtap="lanya6">6获取连接设备所有service</button>  
+  <button type="primary" class="button" bindtap="lanya7">7获取连接设备所有特征值</button>  
+  <button type="primary" class="button" bindtap="lanya8">8发送指定消息</button>  
+  <button type="primary" class="button" bindtap="lanya9">9启用设备特征值变化时的notify</button>  
+  <button type="primary" class="button" bindtap="lanya10">10接收消息</button>  
+  <view class="section">  
+    <text class="status">接收到消息：{{ jieshou }}</text>  
+  
+  </view>  
+  
+  <button type="primary" class="button" bindtap="lanya0">0断开蓝牙连接</button>  
+</view>  
+<view class="venues_list">  
+  <block wx:for="{{devices}}" wx:key="{{test}}">  
+    <view class="venues_item">  
+      <text class="status">设备名称:{{item.name}}</text>  
+      <text class="status">设备ID:{{item.deviceId}}</text>  
+      <text class="status">连接状态:{{connectedDeviceId == item.deviceId?"已连接":"未连接"}}</text>  
+      <view class="section">  
+      </view>  
+      <view class="section">  
+        <button type="warn" class="button" id="{{item.deviceId}}" bindtap="connectTO">连接</button>  
+      </view>  
+    </view>  
+  </block>  
+</view> 

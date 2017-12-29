@@ -1,0 +1,19 @@
+.content {  
+  margin: 0 10px;  
+}  
+  
+.status, .sousuo, .msg, .msg1 {  
+  display: block;  
+  line-height: 35px;  
+  margin: 0 10px;  
+}  
+  
+.button {  
+  margin: 10px;  
+}  
+  
+.sendto {  
+  line-height: 30px;  
+  display: block;  
+  margin: 10px;  
+}
