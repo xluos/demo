@@ -21,7 +21,6 @@ var Resume = {
     // 事件绑定
 
     bindEvent: function () {
-        var self = this;
         var curPosition = 0; // 当前位置
         var prePosition = 0; // 之前位置
 
