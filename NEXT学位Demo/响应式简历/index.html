@@ -10,7 +10,7 @@
 </head>
 <body>
     <!-- 撑开背景用 -->
-    <div class="page"></div>
+    <div id="page"></div>
     <!-- loading -->
     <div class="loading">
         <div class="box">
@@ -23,6 +23,13 @@
         </div>
         <div class="text">正在加载请稍候 . . . .</div>
     </div>
+    <!-- 自我介绍 -->
+    <div class="me">
+        <div class="name">大家好，我叫<b>徐小武</b></div>
+        <div class="sketch">在计算机方面我非常能<b>“折腾”</b></div>
+        <div class="btn">start</div>
+        <div class="text">点击按钮了解我</div>
+    </div>
     <!-- 所有的内容 -->
     <div class="content">
         <!-- 用来定义背景的长度 -->
@@ -33,21 +40,20 @@
             <div class="mountain1"></div>
             <div class="trees"></div>
             <div class="ground"></div>
+            <!-- 怪物（障碍物） -->
+            <div class="block block1"></div>
+            <div class="block block2"></div>
+            <div class="block block3"></div>
+            <div class="block block4"></div>
         </div>
         <!-- 人物 -->
         <div id="people-content">
             <div class="people"></div>
         </div>
-        <div class="me">
-            <div class="name"></div>
-            <div class="sketch"></div>
-            <div class="btn">现在开始</div>
-            <div class="text">点击按钮了解我</div>
-        </div>
     </div>
     <script src="js/jQuery.js"></script>
-    <script src="js/me.js"></script>
-    <script src="js/resume.js"></script>
     <script src="js/scense.js"></script>
+    <script src="js/me.js"></script>
+    <script src="js/resume.js"></script>   
 </body>
 </html>

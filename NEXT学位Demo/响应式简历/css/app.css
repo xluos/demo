@@ -86,8 +86,7 @@
     animation: texteffect 1s ease infinite alternate;
 }
 /* 撑开背景 */
-.page {
-    height: 20000px;
+#page {
 }
 /* 背景样式 */
 body {
@@ -157,22 +156,87 @@ body {
 }
 /* 开始界面 */
 .me {
-    display: none;
+    /* display: none; */
     position: absolute;
     left: 50%;
-    top: 30%;
-    width: 300px;
-    height: 200px;
-    border: #00adf1 solid 2px;
+    top: 50%;
     transform: translate(-50%,-50%);
+    z-index: 3;
 }
+.name {
+    width: 500px;
+    font-size: 50px;
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 3px solid #333;
+    background: #fff;
+}
+
+.sketch {
+    width: 420px;
+    font-size: 30px;
+    text-align: center;
+    padding: 20px;
+    border: 3px solid #333;
+    background: #fff;
+    margin: 20px auto;
+}
+
+.btn {
+    border: none;
+    width: 130px;
+    height: 60px;
+    font-size: 24px;
+    line-height: 60px;
+    text-align: center;
+    border: 2px solid #333;
+    background: #fff;
+    color: #333;
+    margin: 20px auto;
+}
+
+.me .text {
+    top: 105%;
+}
+
+/* 怪物（障碍物） */
+
+.block {
+    position: absolute;
+    bottom: 80px;
+    /* border: #00adf1 solid 2px; */
+    width: 200px;
+    height: 120px;
+    background: url(../image/Bee2.png) no-repeat;
+    background-size: cover;
+  }
+  
+.block1 {
+    left: 2000px;
+    
+  }
+.block2 {
+    left: 6000px;
+    width: 160px;
+    height: 80px;
+    background: url(../image/Bee.png) no-repeat;
+  }
+.block3 {
+    left: 10000px;
+  }
+.block4 {
+    left: 13000px;
+    width: 160px;
+    background: url(../image/Bee.png) no-repeat;
+  }
 /* 人物 */
 
 #people-content {
     position: fixed;
     width: 70px;
     height: 105px;
-    left: 50px;
+    left: 200px;
     bottom: 60px;
     overflow: hidden;
 }
