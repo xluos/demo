@@ -13,10 +13,6 @@ var images = [
     './image/Bee2.png',
     './image/Bee.png',
     './image/cat.png',
-    'http://photocdn.sohu.com/20090422/Img263555552.jpg',
-    'http://img.mp.itc.cn/upload/20160608/85baa9de898249a49dd4a59b5a233334_th.jpg',
-    'https://jiuye-res.jikexueyuan.com/zhiye/showcase/attach-b2be786c-0fe2-44a9-9dc5-e3cdb7ce06a9.jpg',
-    'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1515066093478&di=316d92d087f2fe9f88227e8b8738d5db&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dshijue1%252C0%252C0%252C294%252C40%2Fsign%3D4724b248b919ebc4d4757edaea4fa589%2Fb64543a98226cffc2002329fb3014a90f603eaf7.jpg',
 ];
 
 var Resume = {
