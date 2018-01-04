@@ -13,6 +13,10 @@ var images = [
     './image/Bee2.png',
     './image/Bee.png',
     './image/cat.png',
+    './image/university1.jpg',
+    './image/university2.jpg',
+    './image/university3.jpg',
+    './image/university4.jpg',
 ];
 
 var Resume = {
