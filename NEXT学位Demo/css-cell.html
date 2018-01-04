@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CSS气泡</title>
+    <style>
+        /*bubbly*/
+
+        .bubbly {
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #00ccbb;
+            border-radius: 8px;
+            width: 200px;
+            padding: 40px 10px;
+            text-align: center;
+            color: white;
+            font-size: 20px;
+        }
+
+        .bubbly:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            border: 34px solid transparent;
+            border-top-color: #00ccbb;
+            border-bottom: 0;
+            border-left: 0;
+            margin: 0 0 -34px -17px;
+        }
+
+        .colorful-stripe {
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 200px;
+            text-align: center;
+            color: #fff;
+            font-size: 200%;
+            border-radius: .5em;
+            background: linear-gradient(limegreen, transparent), linear-gradient(90deg, skyblue, transparent), linear-gradient(-90deg, coral, transparent);
+            background-blend-mode: screen;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="css-cell">
+        <div class="bubbly">纯CSS气泡</div>
+        <div class="colorful-stripe"></div>
+    </div>
+</body>
+
+</html>

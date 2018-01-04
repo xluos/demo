@@ -3,20 +3,37 @@ var loading = $('.loading');
 var me = $('.me');
 var containerPage = $('#page');
 
-var images = [];
+var images = [
+    './image/hero_head_1_cat.png',
+    './image/cloud.png',
+    './image/mountain_1.png',
+    './image/mountain_2.png',
+    './image/tree.png',
+    './image/ground.png',
+    './image/Bee2.png',
+    './image/Bee.png',
+    './image/cat.png',
+    'http://photocdn.sohu.com/20090422/Img263555552.jpg',
+    'http://img.mp.itc.cn/upload/20160608/85baa9de898249a49dd4a59b5a233334_th.jpg',
+    'https://jiuye-res.jikexueyuan.com/zhiye/showcase/attach-b2be786c-0fe2-44a9-9dc5-e3cdb7ce06a9.jpg',
+    'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1515066093478&di=316d92d087f2fe9f88227e8b8738d5db&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dshijue1%252C0%252C0%252C294%252C40%2Fsign%3D4724b248b919ebc4d4757edaea4fa589%2Fb64543a98226cffc2002329fb3014a90f603eaf7.jpg',
+];
 
 var Resume = {
     // 初始化函数
     init: function () {
+        var self = this;
         // 初始化其他组件
         Me.init();
         // 页面滚动到最开始
         $('window').scrollTop(0);
-        // console.log($('window').scrollTop(0));
+        // 加载资源
+        resourceHelper.load(images, function(result) {
         // 去除loading
         loading.fadeOut();
         // 绑定事件
-        this.bindEvent();
+        self.bindEvent();
+      });
     },
 
     // 事件绑定
