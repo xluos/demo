@@ -88,13 +88,18 @@ var Me = {
     // console.log(' this.isMoving ',  this.isMoving);
     
     if (this.isJumping || this.isMoving) {
+      // console.log('retuan');
+      
       return;
     }
     this.isMoving = true;
     // 设置一帧动作
+    // console.log('zhen');
+    
     var nextFrames = ['walk', 'stand'];
     this.switchFrames(nextFrames, function() {
       self.isMoving = false;
+      // console.log('huidiao');
       $people.css('left', 0);
     });
   },
@@ -119,7 +124,7 @@ var Me = {
     $peopleContainer.stop().animate({
       bottom: bottom
     }, 200, function() {
-      self.downBlock(item);
+      downBlock && self.downBlock(item);
     });
     
   },
