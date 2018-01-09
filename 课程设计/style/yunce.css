@@ -5,7 +5,7 @@
 /* 头部信息 */
 header{
     height: 100px;
-    background-color: #ff7b00;
+    background-color: #007bff;
 }
 .user{
     float: left;
@@ -25,21 +25,20 @@ header{
     color:#fff;
 }
 .button{
-    border: 1px solid #fff;
+    /* border: 1px solid #fff; */
     border-radius: 10px;
     /* box-shadow: 2px 2px 2px #888888; */
     float: right;
     margin: 20px;
-    width: 60px;
+    /* width: 60px; */
     height: 60px;
     text-align: center;
     line-height: 60px;
     color: #fff;
-    font-size: 25px;
-    background-color: #ff7d12
+    font-size: 40px;
 }
-.button:hover{
-    background-color: #ffa358
+h1 {
+    text-align: center;
 }
 /* 中间部分 */
 .chart1{

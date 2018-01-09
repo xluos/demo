@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- 新 Bootstrap4 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- popper.min.js 用于弹窗、提示、下拉菜单 -->
+    <script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"></script>
+
+    <!-- 最新的 Bootstrap4 核心 JavaScript 文件 -->
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+    <title>Document</title>
+    <style>
+        header {
+            position: relative;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            font-size: 20px;
+        }
+
+        header span {
+            position: absolute;
+            left: 0;
+            padding-left: 10px;
+            line-height: 50px;
+        }
+        .mod {
+            position: relative;
+            margin: 10px 0;
+            height: 100px;
+            line-height: 100px;
+            font-size: 30px;
+            text-align: center;
+            color: rgb(87, 87, 87);
+            border: #d4d4d4 solid 1px;
+        }
+        .mod img {
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            width: 50px;
+            height: 50px;
+            opacity:0.6;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="bg-primary text-white">
+        <span>返回</span>
+        测量
+    </header>
+    <div class="mod">
+        <img src="./image/血压.png" alt="">
+        血压
+    </div>
+    <div class="mod"><img src="./image/体温.png" alt="">体温</div>
+    <div class="mod"><img src="./image/心率.png" alt="">心率</div>
+    <div class="mod"><img src="./image/血氧.png" alt="">血氧</div>
+</body>
+
+</html>
