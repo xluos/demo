@@ -16,8 +16,9 @@
     </style>
 </head>
 <body>
+    <h1 style="text-align: center">console中查看时间</h1>
     <div>
-        插入20000个节点
+        插入20000个节点(时间较长耐心等待)
         <button onclick="fragment(0)" >无fragment</button>
         <ul>
 
@@ -25,7 +26,7 @@
     </div>
     <div>
         插入20000个节点
-        <button onclick="fragment(1)" >无fragment</button>
+        <button onclick="fragment(1)" >有fragment</button>
         <ul>
             
         </ul>
@@ -37,6 +38,7 @@
         var li;
         var text;
         var max = 20000;
+        console.time("Time");
         for(var i = 0 ; i < max; i++)
         {
             li = document.createElement("li");
@@ -50,13 +52,15 @@
             else
             {
                 fra.appendChild(li);
-                console.log("aa");
             }
         }
         if(n === 1)
         {
+            console.time("Fragment插入时间");
             u[n].appendChild(fra);
+            console.timeEnd("Fragment插入时间");
         }
+        console.timeEnd("Time");
     }
     </script>
 </body>
