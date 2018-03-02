@@ -1,0 +1,125 @@
+.index-banner {
+    position: relative;
+    height: 570px;
+    overflow: hidden;
+    background: #3b3b3b;
+}
+.index-banner-bg {
+    width: 100%;
+    opacity: 0.4;
+}
+
+.index-banner-text  {
+    position: absolute;
+    top: 210px;
+    left: 50%;
+    margin-left: -388px;
+}
+.index-banner-text  .text-logo {
+    width: 776px;
+    height: 117px;
+    background: url(../image/index-banner-textlogo.png);
+}
+.index-banner-text  .text-info {
+    margin-top: 18px;
+    text-align: center;
+    color: #fff;
+}
+.index-banner-text  .text-info .line {
+    display: inline-block;
+    width: 40px;
+    margin: 0 10px;
+    border-bottom: #fff 1px solid;
+    vertical-align: middle;
+}
+
+.index-menu {
+    position: relative;
+    border-top: #f34949 4px solid;
+}
+.index-menu .menu-tips {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    margin-left: -78px;
+    width: 156px;
+    height: 75px;
+    font-size: 20px;
+    line-height: 60px;
+    text-align: center;
+    color: #fff;
+	background-color: #f34949;
+}
+.index-menu .menu-tips::after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-bottom: 15px solid #fff;
+    border-left: 78px solid transparent;
+    border-right: 78px solid transparent;
+    content: "";
+}
+
+.index-menu .menu-list {
+    margin-top: 150px;
+    color: #555;
+    overflow: hidden;
+}
+
+.index-menu .menu-list ul {
+    width: 1160px;
+}
+
+.index-menu .menu-item {
+    float: left;
+    width: 520px;
+    margin-right: 60px;
+    margin-bottom: 56px;
+}
+
+.index-menu .menu-item .title {
+    float: left;
+    width: 230px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.index-menu .menu-item .comment {
+    margin-top: 4px;
+    color: #b7b7b7;
+    font-size: 12px;
+}
+.index-menu .menu-item .line {
+    float: left;
+    margin-top: 8px;
+    margin-left: 30px;
+    width: 192px;
+    border-bottom: 1px solid #e3e1e1;
+}
+.index-menu .menu-item .price {
+    float: right;
+}
+
+.index-menu .menu-more-btn {
+    display: block;
+    margin: 0 auto;
+    width: 114px;
+    height: 32px;
+    border: 1px solid #d7d5d5;
+    font-size: 14px;
+    color: #b7b7b7;
+    background: #fff;
+}
+.index-menu .menu-more-btn .icon {
+    position: relative;
+    left: 7px;
+    top: -1px;
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-left: 2px solid #b7b7b7;
+    border-bottom: 2px solid #b7b7b7;
+    transform: rotate(-45deg)
+}
