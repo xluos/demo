@@ -30,3 +30,13 @@
 + 圣杯布局[Demo](https://xluos.github.io/demo/%E5%9C%A3%E6%9D%AF%E5%92%8C%E5%8F%8C%E9%A3%9E%E7%BF%BC%E5%B8%83%E5%B1%80/%E5%9C%A3%E6%9D%AF.html)、[代码](https://github.com/xluos/demo/blob/gh-pages/%E5%9C%A3%E6%9D%AF%E5%92%8C%E5%8F%8C%E9%A3%9E%E7%BF%BC%E5%B8%83%E5%B1%80/%E5%9C%A3%E6%9D%AF.html)
 
 + 双飞翼布局[Demo](https://xluos.github.io/demo/%E5%9C%A3%E6%9D%AF%E5%92%8C%E5%8F%8C%E9%A3%9E%E7%BF%BC%E5%B8%83%E5%B1%80/%E5%8F%8C%E9%A3%9E%E7%BF%BC.html)、[代码](https://github.com/xluos/demo/blob/gh-pages/%E5%9C%A3%E6%9D%AF%E5%92%8C%E5%8F%8C%E9%A3%9E%E7%BF%BC%E5%B8%83%E5%B1%80/%E5%8F%8C%E9%A3%9E%E7%BF%BC.html)
+
+# PSD到HTML切图练习
+本来看到这个课是想自己直接切的，因为之前也切过几个。后来想想还是跟着视频的思路走吧，果然还是学到了不少，自己之前毕竟是摸索的野路子，很不正规。不过跟着视频来切的真心累，现在想来还是应该先看一遍然后自己照着思路实现可能会更好。总结一下学到的东西吧：
++ reset重置样式单独放，不要用通配符
++ 要考虑一个页面的公共样式，单独写出来方便以后维护
++ 清除浮动和固定块居中这样常用的单独写一个类出来，用的时候直接添加会更方便，减少代码冗余
++ 先搭好页面框架再填样式
+
++ [Demo](https://xluos.github.io/demo/PSD%E5%88%B0HTML%E5%88%87%E5%9B%BE%E7%BB%83%E4%B9%A0/)
++ [代码地址](https://github.com/xluos/demo/tree/gh-pages/PSD%E5%88%B0HTML%E5%88%87%E5%9B%BE%E7%BB%83%E4%B9%A0)
