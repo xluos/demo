@@ -128,9 +128,6 @@
     margin-top: 200px;
 }
 
-.index-panel-header {
-
-}
 
 .index-panel-header h3 {
     font-size: 22px;
@@ -191,9 +188,6 @@
 }
 .index-food-list .food-item .price {
     float: right;
-}
-.index-food-list .food-item .star-bar {
-
 }
 .index-food-list .food-item .star {
     display: block;
