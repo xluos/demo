@@ -40,3 +40,11 @@
 
 + [Demo](https://xluos.github.io/demo/PSD%E5%88%B0HTML%E5%88%87%E5%9B%BE%E7%BB%83%E4%B9%A0/)
 + [代码地址](https://github.com/xluos/demo/tree/gh-pages/PSD%E5%88%B0HTML%E5%88%87%E5%9B%BE%E7%BB%83%E4%B9%A0)
+
+# CSS实现Tab页切换
+切图的时候碰到的，想着切图就尽量先不谢js试试能不能实现效果，搜了一些办法之后选择了**利用`label和radio`的绑定关系和`radio选中时的:checked`来实现效果**
+
+
+# 2018进度条
+
+突发奇想想要做的一个东西，有空看看也能给自己来点儿紧迫感，实现起来还是很容易的获取当前时间和今年开始的时间算出百分比设置width就好了。
