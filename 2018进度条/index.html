@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>2018进度条</title>
+    <style>
+        html,body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+        body {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            justify-content:center;
+            align-items: center;
+            align-content: center;
+            flex-wrap: wrap;
+            background: #c3dfe0;
+        }
+        h1 {
+            width: 100%;
+            text-align: center;
+            font-size: 50px;
+            margin: 50px;
+            color: #fff;
+        }
+        #progress {
+            width: 80%;
+            height: 100px;
+            border: 10px solid #fff;
+            border-radius: 60px;
+            overflow: hidden;
+        }
+        #bar {
+            width: 0;
+            height: 100%;
+            background: #7ca9c8;
+            border-radius: 50px;
+            text-align: center;
+            line-height: 100px;
+            color: #fff;
+            font-size: 30px;
+            transition: all 1s ease;
+        }
+    </style>
+    <script>
+        var now = new Date();
+        var Year = now.getFullYear();
+        var start = new Date(Year,0);
+        var end = new Date(Year+1,0);
+        // document.title = Year + "进度条";
+        window.onload = function (){
+            // var text = document.createTextNode(Year + "进度条");
+            // document.getElementsByTagName("h1")[0].appendChild(text);
+            var bar = document.getElementById("bar");
+            var barWidth = (now.getTime() - start.getTime()) / (end.getTime() - start.getTime()) * 100;
+            bar.style.width = barWidth + "%";
+            bar.innerHTML = barWidth.toFixed(0) + "%"
+        }
+    </script>
+</head>
+<body>
+    <h1>2018已经过了.... </h1>
+    <div id="progress">
+        <div id="bar"></div>
+    </div>
+</body>
+</html>
