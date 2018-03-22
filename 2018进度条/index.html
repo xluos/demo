@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>2018进度条</title>
+    <title>年度进度条</title>
     <style>
         html,body {
             margin: 0;
@@ -13,39 +13,62 @@
             height: 100%;
         }
         body {
-            display: flex;
-            width: 100%;
-            height: 100%;
-            justify-content:center;
-            align-items: center;
-            align-content: center;
-            flex-wrap: wrap;
+            /* display: flex; */
+            position: relative;
             background: #c3dfe0;
         }
         h1 {
-            width: 100%;
             text-align: center;
-            font-size: 50px;
-            margin: 50px;
+            font-size: 3rem;
+            margin-top: 0;
+            padding-top: 12rem;
             color: #fff;
         }
         #progress {
             width: 80%;
-            height: 100px;
-            border: 10px solid #fff;
-            border-radius: 60px;
+            margin: 0 auto;;
+            height: 6.25rem;
+            border: 0.625rem solid #fff;
+            border-radius: 3.75rem;
             overflow: hidden;
         }
         #bar {
             width: 0;
             height: 100%;
             background: #7ca9c8;
-            border-radius: 50px;
+            border-radius: 3.125rem;
             text-align: center;
-            line-height: 100px;
+            line-height: 6.25rem;
             color: #fff;
-            font-size: 30px;
+            font-size: 2rem;
             transition: all 1s ease;
+        }
+        footer {
+            position: absolute;
+            width: 100%;
+            bottom: 1rem;
+            text-align: center;
+        }
+        footer a {
+            text-decoration: none;
+            color: #fff;
+        }
+        @media screen and (max-width: 400px) {
+            h1 {
+                font-size: 2rem;
+                padding-top: 45%;
+                padding-bottom: 5%;
+            }
+            #progress {
+            height: 3.25rem;
+            border: 0.325rem solid #fff;
+            border-radius: 3.75rem;
+            }
+            #bar {
+                border-radius: 3.125rem;
+                line-height: 3.25rem;
+                font-size: 1.5rem;
+            }
         }
     </style>
     <script>
@@ -53,7 +76,7 @@
         var Year = now.getFullYear();
         var start = new Date(Year,0);
         var end = new Date(Year+1,0);
-        // document.title = Year + "进度条";
+        document.title = Year + "进度条";
         window.onload = function (){
             // var text = document.createTextNode(Year + "进度条");
             // document.getElementsByTagName("h1")[0].appendChild(text);
@@ -65,9 +88,10 @@
     </script>
 </head>
 <body>
-    <h1>2018已经过了.... </h1>
+    <h1>2018 已经过了.... </h1>
     <div id="progress">
         <div id="bar"></div>
     </div>
+    <footer><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1360505570&site=qq&menu=yes">意见建议 | bug反馈</a></footer>
 </body>
 </html>
