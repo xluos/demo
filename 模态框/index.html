@@ -1,0 +1,66 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <title>模态框实现</title>  
+    <link rel="stylesheet" href="./modal.css" type="text/css">
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>  
+<body>  
+<button class="btn" id="showModel">模态框展示</button>  
+<div id="modal" class="modal">  
+    <div class="modal-content">  
+        <header class="modal-header">  
+            <h4>模态框标题</h4>  
+            <span class="close">×</span>  
+        </header>  
+        <div class="modal-body">
+            <form id = "myform">
+                <label for="email">邮箱：</label>
+                <input type="email" name="email" id="email">
+                <input type="button" value="提交" onclick="submit()">
+            </form>
+        </div>  
+        <footer class="modal-footer">  
+            <button id="cancel">取消</button>  
+            <button id="sure">确定</button>  
+        </footer>  
+    </div>  
+</div>
+
+<script>
+    var btn = document.getElementById('showModel');
+    var close = document.getElementsByClassName('close')[0];
+    var cancel = document.getElementById('cancel');
+    var modal = document.getElementById('modal');
+    btn.addEventListener('click', function(){
+        modal.style.display = "block";
+    });
+    close.addEventListener('click', function(){
+        modal.style.display = "none";
+    });
+    cancel.addEventListener('click', function(){
+        modal.style.display = "none";
+    });
+    function submit() {
+        $.ajax({
+            //几个参数需要注意一下
+            type: "GET",//方法类型
+            dataType: "json",//预期服务器返回的数据类型
+            url: "/",//url
+            data: $('#form1').serialize(),
+            success: function (result) {
+                console.log(result);//打印服务端返回的数据(调试用)
+                if (result.resultCode == 200) {
+                    alert("SUCCESS");
+                }
+                ;
+            },
+            error: function () {
+                alert("异常！");
+            }
+        });
+    }
+</script>
+</body>  
+</html>

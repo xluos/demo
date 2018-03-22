@@ -17,6 +17,49 @@
             position: relative;
             background: #c3dfe0;
         }
+        /* loading样式 */
+        #bg {
+            display: flex;
+            position: relative;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            background: #c3dfe0;
+            z-index: 2;
+        }
+        /* 设置球球动画 */
+        @keyframes qiuqiu {
+            100% {
+                top:25px;
+            }
+        }
+        /* 设置球的属性 */
+        .qiu {
+            position: relative;
+            top: -25px;
+            margin: 10px;
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            /* background-color: #4285f4; */
+            background-color: #fff;
+            opacity: 0.8;
+            animation: qiuqiu .4s ease-in-out infinite alternate;
+        }
+        /* 分别为后面的小球设置颜色和延时 */
+        .qiu:nth-child(2) {
+            animation-delay: 0.1s;
+            /* background-color: #0f9d58; */
+        }
+        .qiu:nth-child(3) {
+            animation-delay: 0.2s;
+            /* background-color: #f4b400; */
+        }
+        .qiu:nth-child(4) {
+            animation-delay: 0.3s;
+            /* background-color: #db4437; */
+        }
         h1 {
             text-align: center;
             font-size: 3rem;
@@ -36,7 +79,7 @@
             width: 0;
             height: 100%;
             background: #7ca9c8;
-            border-radius: 3.125rem;
+            /* border-radius: 3.125rem; */
             text-align: center;
             line-height: 6.25rem;
             color: #fff;
@@ -65,7 +108,7 @@
             border-radius: 3.75rem;
             }
             #bar {
-                border-radius: 3.125rem;
+                /* border-radius: 3.125rem; */
                 line-height: 3.25rem;
                 font-size: 1.5rem;
             }
@@ -82,16 +125,25 @@
             // document.getElementsByTagName("h1")[0].appendChild(text);
             var bar = document.getElementById("bar");
             var barWidth = (now.getTime() - start.getTime()) / (end.getTime() - start.getTime()) * 100;
-            bar.style.width = barWidth + "%";
             bar.innerHTML = barWidth.toFixed(0) + "%"
+            bar.style.width = barWidth + "%";
+            document.getElementById("bg").style.display = "none";
         }
     </script>
 </head>
 <body>
+    <div id="bg">
+        <div class="qiu"></div>
+        <div class="qiu"></div>
+        <div class="qiu"></div>
+        <div class="qiu"></div>
+    </div>
+
     <h1>2018 已经过了.... </h1>
     <div id="progress">
         <div id="bar"></div>
     </div>
+    
     <footer><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1360505570&site=qq&menu=yes">意见建议 | bug反馈</a></footer>
 </body>
 </html>
