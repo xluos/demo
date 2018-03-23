@@ -1,0 +1,111 @@
+html,body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+body {
+    /* display: flex; */
+    position: relative;
+    background: #c3dfe0;
+}
+/* loading样式 */
+#bg {
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background: #c3dfe0;
+    z-index: 2;
+}
+/* 设置球球动画 */
+@keyframes qiuqiu {
+    100% {
+        top:25px;
+    }
+}
+/* 设置球的属性 */
+.qiu {
+    position: relative;
+    top: -25px;
+    margin: 10px;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    /* background-color: #4285f4; */
+    background-color: #fff;
+    opacity: 0.8;
+    animation: qiuqiu .4s ease-in-out infinite alternate;
+}
+/* 分别为后面的小球设置颜色和延时 */
+.qiu:nth-child(2) {
+    animation-delay: 0.1s;
+    /* background-color: #0f9d58; */
+}
+.qiu:nth-child(3) {
+    animation-delay: 0.2s;
+    /* background-color: #f4b400; */
+}
+.qiu:nth-child(4) {
+    animation-delay: 0.3s;
+    /* background-color: #db4437; */
+}
+h1 {
+    text-align: center;
+    font-size: 3rem;
+    margin-top: 0;
+    padding-top: 12rem;
+    color: #fff;
+}
+#progress {
+    width: 80%;
+    margin: 0 auto;;
+    height: 6.25rem;
+    border: 0.625rem solid #fff;
+    border-radius: 3.75rem;
+    overflow: hidden;
+}
+#bar {
+    width: 0;
+    height: 100%;
+    background: #7ca9c8;
+    /* border-radius: 3.125rem; */
+    text-align: center;
+    line-height: 6.25rem;
+    color: #fff;
+    font-size: 2rem;
+    transition: all 1s ease;
+}
+footer {
+    position: absolute;
+    width: 100%;
+    bottom: 1rem;
+    text-align: center;
+}
+footer a {
+    text-decoration: none;
+    color: #fff;
+}
+@media screen and (max-width: 400px) {
+    h1 {
+        font-size: 2rem;
+        padding-top: 45%;
+        padding-bottom: 5%;
+    }
+    #progress {
+    height: 3.25rem;
+    border: 0.325rem solid #fff;
+    border-radius: 3.75rem;
+    }
+    #bar {
+        /* border-radius: 3.125rem; */
+        line-height: 3.25rem;
+        font-size: 1.5rem;
+    }
+    .btn{
+        width: 5rem;
+        height: 2.5rem;
+    }
+}

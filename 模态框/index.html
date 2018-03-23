@@ -18,7 +18,7 @@
             <form id = "myform">
                 <label for="email">邮箱：</label>
                 <input type="email" name="email" id="email">
-                <input type="button" value="提交" onclick="submit()">
+                <input id = "subbtn" type="button" value="提交">
             </form>
         </div>  
         <footer class="modal-footer">  
@@ -33,8 +33,10 @@
     var close = document.getElementsByClassName('close')[0];
     var cancel = document.getElementById('cancel');
     var modal = document.getElementById('modal');
+    var sbtn = document.getElementById('subbtn');
     btn.addEventListener('click', function(){
         modal.style.display = "block";
+        alert("aa");
     });
     close.addEventListener('click', function(){
         modal.style.display = "none";
@@ -42,19 +44,20 @@
     cancel.addEventListener('click', function(){
         modal.style.display = "none";
     });
+    sbtn.addEventListener('click',submit());
     function submit() {
+        alert("aaa");
         $.ajax({
             //几个参数需要注意一下
-            type: "GET",//方法类型
+            type: "POST",//方法类型
             dataType: "json",//预期服务器返回的数据类型
-            url: "/",//url
-            data: $('#form1').serialize(),
+            url: "http://127.0.0.1:3000/submit",//url
+            data: $('#myform').serialize(),
             success: function (result) {
                 console.log(result);//打印服务端返回的数据(调试用)
                 if (result.resultCode == 200) {
                     alert("SUCCESS");
                 }
-                ;
             },
             error: function () {
                 alert("异常！");

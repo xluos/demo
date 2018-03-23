@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="email" name="mail" id="mail">
+    <input type="button" value="提交" onclick="submit()">
+</body>
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+    function submit() {
+        var obj = new Object();
+        obj.email = $("#mail").val();
+        $.ajax({
+            //几个参数需要注意一下
+            type: "GET",//方法类型
+            dataType: "HTML",//预期服务器返回的数据类型
+            url: "/submit",//url
+            data: obj,
+            success: function (result, resultCode) {
+                console.log(result);    
+                alert("成功！");
+            },
+            error: function () {
+                alert("异常！");
+            }
+        });
+    }
+</script>
+</html>

@@ -1,136 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./modal.css" type="text/css">
+    <link rel="stylesheet" href="./index.css" type="text/css">
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
     <title>年度进度条</title>
-    <style>
-        html,body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-        }
-        body {
-            /* display: flex; */
-            position: relative;
-            background: #c3dfe0;
-        }
-        /* loading样式 */
-        #bg {
-            display: flex;
-            position: relative;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            height: 100%;
-            background: #c3dfe0;
-            z-index: 2;
-        }
-        /* 设置球球动画 */
-        @keyframes qiuqiu {
-            100% {
-                top:25px;
-            }
-        }
-        /* 设置球的属性 */
-        .qiu {
-            position: relative;
-            top: -25px;
-            margin: 10px;
-            height: 40px;
-            width: 40px;
-            border-radius: 50%;
-            /* background-color: #4285f4; */
-            background-color: #fff;
-            opacity: 0.8;
-            animation: qiuqiu .4s ease-in-out infinite alternate;
-        }
-        /* 分别为后面的小球设置颜色和延时 */
-        .qiu:nth-child(2) {
-            animation-delay: 0.1s;
-            /* background-color: #0f9d58; */
-        }
-        .qiu:nth-child(3) {
-            animation-delay: 0.2s;
-            /* background-color: #f4b400; */
-        }
-        .qiu:nth-child(4) {
-            animation-delay: 0.3s;
-            /* background-color: #db4437; */
-        }
-        h1 {
-            text-align: center;
-            font-size: 3rem;
-            margin-top: 0;
-            padding-top: 12rem;
-            color: #fff;
-        }
-        #progress {
-            width: 80%;
-            margin: 0 auto;;
-            height: 6.25rem;
-            border: 0.625rem solid #fff;
-            border-radius: 3.75rem;
-            overflow: hidden;
-        }
-        #bar {
-            width: 0;
-            height: 100%;
-            background: #7ca9c8;
-            /* border-radius: 3.125rem; */
-            text-align: center;
-            line-height: 6.25rem;
-            color: #fff;
-            font-size: 2rem;
-            transition: all 1s ease;
-        }
-        footer {
-            position: absolute;
-            width: 100%;
-            bottom: 1rem;
-            text-align: center;
-        }
-        footer a {
-            text-decoration: none;
-            color: #fff;
-        }
-        @media screen and (max-width: 400px) {
-            h1 {
-                font-size: 2rem;
-                padding-top: 45%;
-                padding-bottom: 5%;
-            }
-            #progress {
-            height: 3.25rem;
-            border: 0.325rem solid #fff;
-            border-radius: 3.75rem;
-            }
-            #bar {
-                /* border-radius: 3.125rem; */
-                line-height: 3.25rem;
-                font-size: 1.5rem;
-            }
-        }
-    </style>
-    <script>
-        var now = new Date();
-        var Year = now.getFullYear();
-        var start = new Date(Year,0);
-        var end = new Date(Year+1,0);
-        document.title = Year + "进度条";
-        window.onload = function (){
-            // var text = document.createTextNode(Year + "进度条");
-            // document.getElementsByTagName("h1")[0].appendChild(text);
-            var bar = document.getElementById("bar");
-            var barWidth = (now.getTime() - start.getTime()) / (end.getTime() - start.getTime()) * 100;
-            bar.innerHTML = barWidth.toFixed(0) + "%"
-            bar.style.width = barWidth + "%";
-            document.getElementById("bg").style.display = "none";
-        }
-    </script>
 </head>
+
 <body>
     <div id="bg">
         <div class="qiu"></div>
@@ -138,12 +18,28 @@
         <div class="qiu"></div>
         <div class="qiu"></div>
     </div>
-
+    <button class="btn" id="showModel">邮件订阅</button>
     <h1>2018 已经过了.... </h1>
     <div id="progress">
         <div id="bar"></div>
     </div>
-    
-    <footer><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1360505570&site=qq&menu=yes">意见建议 | bug反馈</a></footer>
+    <footer>
+        <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1360505570&site=qq&menu=yes">意见建议 | bug反馈</a>
+    </footer>
+    <div id="modal" class="modal">
+        <div id="modal-content" class="modal-content">
+            <h4>邮件订阅</h4>
+            <div class="modal-body">
+                <label for="email">邮箱：</label>
+                <input type="email" name="email" id="email">
+            </div>
+            <footer class="modal-footer">
+                <button id="cancel">取  消</button>
+                <button id="sure">确  定</button>
+            </footer>
+        </div>
+    </div>
+    <script src="./modal.js"></script>
+    <script src="./index.js"></script>
 </body>
 </html>
