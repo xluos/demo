@@ -12,25 +12,25 @@ const params = {
     pass: config.psw
   }
 }
-
-var neir = fs.readFileSync("./email_template.html",'utf-8');
-// 邮件信息
+function send(title,content,tolist) {
+  // 邮件信息
 const mailOptions = {
-    from: "2018进度条 <progress_bar@xluos.com>", // 发送邮箱
-    //to: "email@xluos.com", // 接受邮箱
-    to: "1360505570@qq.com", // 接受邮箱
-    subject: "Hello World", // 标题
-    html: neir // 内容
+  from: "2018进度条 <progress_bar@xluos.com>", // 发送邮箱
+  //to: "email@xluos.com", // 接受邮箱
+  to: tolist, // 接受邮箱
+  subject: title, // 标题
+  html: content  // 内容
 }
 
 //发送邮件
 const transporter = nodemailer.createTransport(params);
 
 transporter.sendMail(mailOptions, (error, info) => {
-  if (error) {
-    return console.log(error);
-  }
-  console.log('Message %s sent: %s', info.messageId, info.response);
-  // success
-  // ...
+if (error) {
+  return console.log(error);
+}
+console.log('Message %s sent: %s', info.messageId, info.response);
+// success
+// ...
 })
+}
