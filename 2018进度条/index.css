@@ -78,6 +78,13 @@ h1 {
     font-size: 2rem;
     transition: all 1s ease;
 }
+#one {
+    padding: 30px 13%;
+    font-size: 1.3rem;
+    color: #c3dfe0;
+    transition: color 1s ease;
+
+}
 footer {
     position: absolute;
     width: 100%;
@@ -107,5 +114,8 @@ footer a {
     .btn{
         width: 5rem;
         height: 2.5rem;
+    }
+    #one {
+        font-size: 1rem;
     }
 }

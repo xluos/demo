@@ -10,5 +10,15 @@ window.onload = function () {
     var barWidth = (now.getTime() - start.getTime()) / (end.getTime() - start.getTime()) * 100;
     bar.innerHTML = barWidth.toFixed(1) + "%";
     document.getElementById("bg").style.display = "none";
+    $.ajax({
+        type: "POST",
+        url: 'https://api.hibai.cn/api/index/index',
+        dataType: 'json',
+        data: {"TransCode":"030111","OpenId":"123456789","Body":""},
+        success: function(result){
+            $("#one").text(result.Body.word + '   ————' + result.Body.word_from);
+            $("#one").css("color","#fff");
+        }
+    });
     bar.style.width = barWidth + "%";
 }

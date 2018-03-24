@@ -5,15 +5,23 @@
     <meta charset="UTF-8">
     <title>年度进度条</title>
     <style>
+        .abstract {
+            display: none;
+            font-size: 0;
+            line-height: 0;
+        }
         .box {
             width: 100%;
             height: 100%;
-            padding: 20% 0;
+            max-width: 800px;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 50px 0;
             background: #c3dfe0;
         }
         h1 {
             text-align: center;
-            font-size: 3rem;
+            font-size: 30px;
             margin-top: 0;
             /* padding-top: 12rem; */
             color: #fff;
@@ -21,10 +29,10 @@
 
         #progress {
             width: 80%;
-            margin: 0 auto;
-            height: 6.25rem;
-            border: 0.625rem solid #fff;
-            border-radius: 3.75rem;
+            margin: 30px auto;
+            height: 40px;
+            border: 5px solid #fff;
+            border-radius: 25px;
             overflow: hidden;
         }
 
@@ -34,19 +42,27 @@
             height: 100%;
             background: #7ca9c8;
             text-align: center;
-            line-height: 6.25rem;
+            line-height: 40px;
             color: #fff;
-            font-size: 2rem;
+            font-size: 20px;
         }
+        p {
+            padding: 0px 13%;
+            font-size: 0.9rem;
+            color: #fff;
+        }
+        
     </style>
 </head>
 
 <body>
+    <div class="abstract"><%= one %></div>
     <div class="box">
         <h1>2018 已经过了.... </h1>
         <div id="progress">
             <div id="bar"><%= width %></div>
         </div>
+        <p><%= one %></p>
     </div>
 </body>
 

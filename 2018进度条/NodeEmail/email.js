@@ -12,7 +12,7 @@ const params = {
     pass: config.psw
   }
 }
-function send(title,content,tolist) {
+exports.send = function(title,content,tolist) {
   // 邮件信息
 const mailOptions = {
   from: "2018进度条 <progress_bar@xluos.com>", // 发送邮箱
