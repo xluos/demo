@@ -13,15 +13,17 @@ const params = {
   }
 }
 
+var neir = fs.readFileSync("./email_template.html",'utf-8');
 // 邮件信息
 const mailOptions = {
     from: "2018进度条 <progress_bar@xluos.com>", // 发送邮箱
-    to: "email@xluos.com", // 接受邮箱
+    //to: "email@xluos.com", // 接受邮箱
+    to: "1360505570@qq.com", // 接受邮箱
     subject: "Hello World", // 标题
-    html: "<h1>Hello World</h1><h2>这是用Node.js发送的一封邮件</h2>" // 内容
+    html: neir // 内容
 }
 
-发送邮件
+//发送邮件
 const transporter = nodemailer.createTransport(params);
 
 transporter.sendMail(mailOptions, (error, info) => {

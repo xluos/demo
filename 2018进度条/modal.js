@@ -28,8 +28,9 @@ sure.addEventListener('click', function(){
             url: "/submit",//url
             data: obj,
             success: function (result, resultCode) {
-                console.log(result);    
+                console.log(result);
                 alert(result);
+                modal.style.display = "none";
             },
             error: function () {
                 alert("异常！");
