@@ -38,16 +38,20 @@
     margin: 3rem auto;
     border-radius:10px;
     background-color:#fff;
-    -webkit-animation: zoom 0.6s;
-    animation: zoom 0.6s;
+    -webkit-animation: zoom 0.3s;
+    animation: zoom 0.3s;
 }
 @-webkit-keyframes zoom{
-    from {-webkit-transform: scale(0)}
-    to {-webkit-transform: scale(1)}
+    0% {-webkit-transform: scale(0.7); }
+      45% {-webkit-transform: scale(1.05); }
+      80% {-webkit-transform: scale(0.95); }
+      100% {-webkit-transform: scale(1); }
 }
 @keyframes zoom{
-    from {transform: scale(0)}
-    to {transform: scale(1)}
+    0% {transform: scale(0.7);}
+      45% {transform: scale(1.05);}
+      80% {transform: scale(0.95);}
+      100% {transform: scale(1);}
 }
 
 .modal-body{
