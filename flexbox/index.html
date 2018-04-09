@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>flexbox演示站</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="reset.css">
+</head>
+
+<body>
+    <div class="box">
+        <div id="options">
+            <div class="option-item">
+                <h2>flex-direction</h2>
+                <input type="radio" name="flex-direction" id="fd1" checked="checked">
+                <label for="fd1">row</label>
+                <input type="radio" name="flex-direction" id="fd2">
+                <label for="fd2">row-reverse</label>
+                <input type="radio" name="flex-direction" id="fd3">
+                <label for="fd3">column</label>
+                <input type="radio" name="flex-direction" id="fd4">
+                <label for="fd4">column-reverse</label>
+            </div>
+            <div class="option-item" id='aaa'>
+                <h2>flex-wrap</h2>
+                <input type="radio" name="flex-wrap" id="fw1" checked="checked">
+                <label for="fw1">nowrap</label>
+                <input type="radio" name="flex-wrap" id="fw2">
+                <label for="fw2">wrap</label>
+                <input type="radio" name="flex-wrap" id="fw3">
+                <label for="fw3">wrap-reverse</label>
+            </div>
+            <div class="option-item">
+                <h2>justify-content</h2>
+                <input type="radio" name="justify-content" id="jc1" checked="checked">
+                <label for="jc1">flex-start</label>
+                <input type="radio" name="justify-content" id="jc2">
+                <label for="jc2">flex-end</label>
+                <input type="radio" name="justify-content" id="jc3">
+                <label for="jc3">center</label>
+                <input type="radio" name="justify-content" id="jc4">
+                <label for="jc4">space-between</label>
+                <input type="radio" name="justify-content" id="jc5">
+                <label for="jc5">space-around</label>
+            </div>
+            <div class="option-item">
+                <h2>align-items</h2>
+                <input type="radio" name="align-items" id="ai1">
+                <label for="ai1">flex-start</label>
+                <input type="radio" name="align-items" id="ai2">
+                <label for="ai2">flex-end</label>
+                <input type="radio" name="align-items" id="ai3">
+                <label for="ai3">center</label>
+                <input type="radio" name="align-items" id="ai4">
+                <label for="ai4">baseline</label>
+                <input type="radio" name="align-items" id="ai5" checked="checked">
+                <label for="ai5">stretch</label>
+            </div>
+            <div class="option-item">
+                <h2>align-content</h2>
+                <input type="radio" name="align-content" id="ac1">
+                <label for="ac1">flex-start</label>
+                <input type="radio" name="align-content" id="ac2">
+                <label for="ac2">flex-end</label>
+                <input type="radio" name="align-content" id="ac3">
+                <label for="ac3">center</label>
+                <input type="radio" name="align-content" id="ac4">
+                <label for="ac4">space-between</label>
+                <input type="radio" name="align-content" id="ac5">
+                <label for="ac5">space-around</label>
+                <input type="radio" name="align-content" id="ac6" checked="checked">
+                <label for="ac6">stretch</label>
+            </div>
+        </div>
+        <div id="items">
+            <div id="item-head">
+                <span>项目数量：<span id='count'>4</span></span>
+                <button onclick="addItem()">+</button>
+                <button onclick="subItem()">-</button>
+                <input type="range" name="points" min="1" max="10" />
+            </div>
+            <div id="item-body">
+                <div class="item">1</div>
+                <div class="item">2</div>
+                <div class="item">3</div>
+                <div class="item">4</div>
+            </div>
+        </div>
+    </div>
+    <script src="./index.js"></script>
+</body>
+
+</html>
