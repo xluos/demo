@@ -4,16 +4,16 @@
     border-radius: 10px;
     padding: 10px;
     display: flex;
-    height: 300px;
+    /* height: 300px; */
 }
 .option-item h2{
     font-size: 16px;
 }
 #options {
-    width: 60%; 
+    width: 50%; 
     display: flex;
     justify-content: space-around;
-    background: aqua;
+    /* background: aqua; */
     font-size: 12px;
     /* flex-grow: 3; */
 }
@@ -23,23 +23,29 @@
     margin: 5px;
 }
 .option-item input {
-    position: absolute;
-    opacity: 0;
+    display: none;
+    /* position: absolute; */
+    /* opacity: 0; */
 }
 .option-item label {
     margin: 5px 0;
     padding: 5px;
     border: slateblue solid 1px;
     border-radius: 5px;
+    color: slateblue;
 }
 input[type="radio"]:checked + label {
     background: slateblue;
     color: #fff
 }
 #items {
-    width: 40%;
-    background: aquamarine;
+    width: 50%;
+    /* background: aquamarine; */
     /* flex-grow: 3; */
+}
+#item-head {
+    /* display: flex;
+    align-items: center; */
 }
 #item-head button {
     width: 25px;
@@ -54,15 +60,51 @@ input[type="radio"]:checked + label {
 }
 #item-body {
     display: flex;
-    height: 250px;
+    /* height: 250px; */
+}
+#itemWidth {
+    margin-right: 30px;
 }
 .item {
     margin: 2px;
+    padding: 5px;
     border:  #aaa solid 1px;
     border-radius: 5px;
-    width: 50px;
+    width: 85px;
+    font-size: 12px;
     height: auto;
     /* min-height: 50px; */
-    background: rgb(255, 255, 0);
-    transition: all 0.5s;
+    /* background: rgb(255, 255, 0); */
+    /* transition: all 0.5s; */
+}
+.item input {
+    outline: none;
+    background: none;
+    border: none;
+    margin: 5px 0;
+    width: 100%;
+    border-bottom: #ddd solid 2px;
+}
+.item select {
+    outline: none;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 5px 0;
+    width: 100%;
+    appearance:none;
+    -moz-appearance:none;
+    -webkit-appearance:none;
+    border-bottom: #ddd solid 2px;
+}
+.number {
+    width: 20px;
+    height: 20px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    border-radius: 50%;
+    border: #ddd solid 1px;
+    background: #fff;
+    padding-top: 1px;
+    text-align: center;
 }

@@ -80,13 +80,66 @@
                 <span>项目数量：<span id='count'>4</span></span>
                 <button onclick="addItem()">+</button>
                 <button onclick="subItem()">-</button>
-                <input type="range" name="points" min="1" max="10" />
+                <span>项目宽度：<span id='itemWidth'>85</span>px</span>
+                <input id='widthRange' type="range" name="points" min="85" max="250" value='85' >
             </div>
             <div id="item-body">
-                <div class="item">1</div>
-                <div class="item">2</div>
-                <div class="item">3</div>
-                <div class="item">4</div>
+                <div class="item">
+                    <div class="number">1</div>
+                    <input placeholder="order" type="text">
+                    <input placeholder="flex-grow" type="text">
+                    <input placeholder="flex-shrink" type="text">
+                    <input placeholder="flex-basis" type="text">
+                    <select title="align-self" name="" id="">
+                        <option value="flex-start">flex-start</option>
+                        <option value="flex-end">flex-end</option>
+                        <option value="center">center</option>
+                        <option value="space-between">space-around</option>
+                        <option selected="selected" value="stretch">auto</option>
+                    </select>
+                </div>
+                <div class="item">
+                        <div class="number">2</div>
+                        <input placeholder="order" type="text">
+                        <input placeholder="flex-grow" type="text">
+                        <input placeholder="flex-shrink" type="text">
+                        <input placeholder="flex-basis" type="text">
+                        <select title="align-self" name="" id="">
+                            <option value="flex-start">flex-start</option>
+                            <option value="flex-end">flex-end</option>
+                            <option value="center">center</option>
+                            <option value="space-between">space-around</option>
+                            <option selected="selected" value="stretch">auto</option>
+                        </select>
+                </div>
+                <div class="item">
+                        <div class="number">3</div>
+                        <input placeholder="order" type="text">
+                        <input placeholder="flex-grow" type="text">
+                        <input placeholder="flex-shrink" type="text">
+                        <input placeholder="flex-basis" type="text">
+                        <select title="align-self" name="" id="">
+                            <option value="flex-start">flex-start</option>
+                            <option value="flex-end">flex-end</option>
+                            <option value="center">center</option>
+                            <option value="space-between">space-around</option>
+                            <option selected="selected" value="stretch">auto</option>
+                        </select>
+                </div>
+                <div class="item">
+                        <div class="number">4</div>
+                        <input placeholder="order" type="text">
+                        <input placeholder="flex-grow" type="text">
+                        <input placeholder="flex-shrink" type="text">
+                        <input placeholder="flex-basis" type="text">
+                        <select title="align-self" name="" id="">
+                            <option value="flex-start">flex-start</option>
+                            <option value="flex-end">flex-end</option>
+                            <option value="center">center</option>
+                            <option value="space-between">space-around</option>
+                            <option selected="selected" value="stretch">auto</option>
+                        </select>
+                </div>
             </div>
         </div>
     </div>

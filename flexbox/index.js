@@ -1,5 +1,5 @@
 const item_body = document.getElementById('item-body');
-
+//设置容器属性的点击事件
 document.getElementById('options').addEventListener('click', function(e){
     var event = e || window.event;
     var target = event.target || event.srcElement;
@@ -10,13 +10,15 @@ document.getElementById('options').addEventListener('click', function(e){
         // console.log(val);
         let attributeName = document.getElementById(rid).getAttribute('name');
         // item_body.setAttribute('style', `${attributeName}: ${val}`);
-        console.log(attributeName + ':' + val);
+        // console.log(attributeName + ':' + val);
         item_body.style[attributeName] = val;
       }
 })
+//添加和减少项目的点击事件
 var count = 4;
 const countNode = document.getElementById('count');
 
+var item_template = `<div class="number">${count}</div><input placeholder="order" type="text"><input placeholder="flex-grow" type="text"><input placeholder="flex-shrink" type="text"><input placeholder="flex-basis" type="text"><select title="align-self" name="" id="">    <option value="flex-start">flex-start</option>    <option value="flex-end">flex-end</option>    <option value="center">center</option>    <option value="space-between">space-around</option>    <option selected="selected" value="stretch">auto</option></select>`
 function addItem(){
     if(count >= 20){
         alert("不能再加了！再加挤爆了了");
@@ -24,19 +26,51 @@ function addItem(){
     }
     var node = document.createElement('div');
     node.setAttribute('class', 'item');
+    node.style.width = rval + 'px';
     count++;
-    node.innerText = count;
+    node.innerHTML = item_template;
+    node.getElementsByClassName('number')[0].innerText = count;
     item_body.appendChild(node);
     countNode.innerText = count;
 }
 function subItem(){
-    if(count <= 0){
+    if(count <= 1){
         alert("不能再删了！再删玩儿坏了");
         return ;
     }
     var rmitem = document.getElementsByClassName('item');
-    console.log(rmitem);
+    // console.log(rmitem);
     item_body.removeChild(rmitem[rmitem.length-1]);
     count--;
     countNode.innerText = count;
 }
+//拖动更改项目宽度的事件
+var rval = 85;
+const widthRange = document.getElementById('widthRange');
+const itemWidth = document.getElementById('itemWidth');
+widthRange.addEventListener('input', setWidth);
+// widthRange.addEventListener('click', setWidth);
+function setWidth() {
+    // console.log("aaa");
+    // console.log(widthRange.value);
+    if(widthRange.value !== rval)
+    { 
+        rval = widthRange.value;
+        itemWidth.innerText = widthRange.value;;
+        let items = document.getElementsByClassName('item');
+        // console.log(items);
+        
+        for(let i = 0; i < items.length; i++)
+        {
+            // console.log(items[i]);
+            items[i].style.width = rval + 'px';
+        }
+    }
+}
+
+// 项目属性设置绑定事件
+
+document.getElementById('options').addEventListener('click', function(e){
+
+}
+)
