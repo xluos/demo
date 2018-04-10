@@ -142,7 +142,7 @@ input[type="radio"]:checked + label {
     padding: 5px;
     background: #33cccc;
     border-radius: 5px;
-    min-height: 350px;
+    min-height: 400px;
 }
 
 /* 项目效果部分 */
@@ -186,4 +186,14 @@ input[type="radio"]:checked + label {
     -moz-appearance:none;
     -webkit-appearance:none;
     border-bottom: #ddd solid 2px;
+}
+
+footer {
+    position: absolute;
+    width: 100%;
+    bottom: 1rem;
+    text-align: center;
+}
+footer a {
+    text-decoration: none;
 }

@@ -1,3 +1,6 @@
+console.log('%c既然按了F12，为何不去GitHub顺便给个start', 'color: #fff; background: #f40; font-size: 24px;');
+console.log('%chttps://github.com/xluos/demo/tree/gh-pages/flexbox','font-size: 16px;');
+
 const item_body = document.getElementById('item-body');
 //设置容器属性的点击事件
 document.getElementById('options').addEventListener('click', function(e){
