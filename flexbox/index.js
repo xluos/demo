@@ -18,7 +18,7 @@ document.getElementById('options').addEventListener('click', function(e){
 var count = 4;
 const countNode = document.getElementById('count');
 
-var item_template = `<div class="number">${count}</div><input placeholder="order" type="text"><input placeholder="flex-grow" type="text"><input placeholder="flex-shrink" type="text"><input placeholder="flex-basis" type="text"><select title="align-self" name="" id="">    <option value="flex-start">flex-start</option>    <option value="flex-end">flex-end</option>    <option value="center">center</option>    <option value="space-between">space-around</option>    <option selected="selected" value="stretch">auto</option></select>`
+var item_template = `<div class="number">${count}</div><input title=“定义项目的排列顺序。数值越小，排列越靠前，默认为0” placeholder="order" type="text"><input title=“属性定义项目的放大比例，默认为0” placeholder="flex-grow" type="text"><input title=“属性定义了项目的缩小比例，默认为1” placeholder="flex-shrink" type="text"><input title=“属性定义了在分配多余空间之前，项目占据的主轴空间。” placeholder="flex-basis" type="text"><select name="align-self" title="align-self 允许不一样的对齐方式，可覆盖\`align-items\`属性" ><option value="flex-start">flex-start</option><option value="flex-end">flex-end</option><option value="center">center</option><option value="space-between">space-around</option><option value="stretch">stretch</option><option selected="selected" value="auto">auto</option></select>`
 function addItem(){
     if(count >= 20){
         alert("不能再加了！再加挤爆了了");
@@ -70,13 +70,11 @@ function setWidth() {
 
 // 项目属性设置绑定事件
 
-document.getElementById('item-body').addEventListener('change', function(e){
+document.getElementById('item-body').addEventListener('input', function(e){
     var event = e || window.event;
     var target = event.target || event.srcElement;
     if (target.matches('input') || target.matches('select')) {
-        console.log(target);
-        
-        target.parentNode.style[target.placeholder || target.title] = target.value;
+        target.parentNode.style[target.placeholder || target.name] = target.value;
     }
 }
 )

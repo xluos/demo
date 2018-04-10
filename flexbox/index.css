@@ -1,27 +1,105 @@
+
+
+@media only screen and (max-width:576px) {
+    #options {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+    .option-item {
+        flex-grow: 1;
+    }
+    .box {
+        flex-direction: column;
+    }
+    .option-item h2{
+        height: 35px;   
+        font-size: 16px;
+    }
+    .option-item label {
+        font-size: 14px;
+    }
+}
+
+@media only screen and (max-width:768px) and (min-width:576px) {
+    .box {
+        flex-direction: column;
+    }
+    .option-item h2{
+        height: 35px;   
+        font-size: 16px;
+    }
+    .option-item label {
+        font-size: 14px;
+    }
+}
+@media only screen and (max-width:992px) and (min-width:768px) {
+    #options {
+        width: 47.5%;
+        /* font-size: 12px; */
+        flex-wrap: wrap;
+    }
+    #items {
+        width: 47.5%;
+    }
+    .option-item {
+        flex-grow: 1;
+    }
+    .option-item h2{
+        height: 30px;
+        font-size: 14px;
+    }
+    .option-item label {
+        font-size: 12px;
+    }
+}
+@media only screen and (min-width:992px) {
+    #options {
+        width: 47.5%;
+        font-size: 12px;
+    }
+    #items {
+        width: 47.5%;
+    }
+    .option-item h2 {
+        font-size: 16px;
+        height: 40px;
+    }
+    .option-item label {
+        font-size: 14px;
+    }
+}
+/* 整体效果部分 */
+body {
+    width: 100%;
+    min-width: 320px;
+    color: #2C3E50;
+    background: #ECF0F1;
+}
+h1 {
+    text-align: center;
+}
 .box {
     margin: 10px;
     border: #aaa solid 1px;
     border-radius: 10px;
     padding: 10px;
     display: flex;
-    /* height: 300px; */
+    justify-content: space-between;
+    background: #fdfdfd ;
 }
-.option-item h2{
-    font-size: 16px;
-}
+
+
+/* 左边选项部分 */
 #options {
-    width: 50%; 
     display: flex;
     justify-content: space-around;
-    /* background: aqua; */
-    font-size: 12px;
-    /* flex-grow: 3; */
 }
 .option-item {
     display: flex;
     flex-direction: column;
     margin: 5px;
 }
+
 .option-item input {
     display: none;
     /* position: absolute; */
@@ -30,22 +108,23 @@
 .option-item label {
     margin: 5px 0;
     padding: 5px;
-    border: slateblue solid 1px;
+    border:      solid 1px;
     border-radius: 5px;
-    color: slateblue;
+    color: #33cccc;
 }
 input[type="radio"]:checked + label {
-    background: slateblue;
+    background: #33cccc;
     color: #fff
 }
-#items {
-    width: 50%;
-    /* background: aquamarine; */
-    /* flex-grow: 3; */
-}
+/* 右边显示部分 */
 #item-head {
-    /* display: flex;
-    align-items: center; */
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 5px;
+}
+#item-head input{
+    vertical-align: text-bottom;
 }
 #item-head button {
     width: 25px;
@@ -60,11 +139,14 @@ input[type="radio"]:checked + label {
 }
 #item-body {
     display: flex;
+    padding: 5px;
+    background: #33cccc;
+    border-radius: 5px;
     min-height: 350px;
 }
-#itemWidth {
-    margin-right: 30px;
-}
+
+/* 项目效果部分 */
+
 .item {
     margin: 2px;
     padding: 5px;
@@ -73,9 +155,17 @@ input[type="radio"]:checked + label {
     width: 85px;
     font-size: 12px;
     height: auto;
-    /* min-height: 50px; */
-    /* background: rgb(255, 255, 0); */
-    /* transition: all 0.5s; */
+    background: #fff;
+}
+.item .number {
+    width: 20px;
+    height: 20px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background: #33cccc;
+    line-height: 20px;
+    color: #fff;
+    text-align: center;
 }
 .item input {
     outline: none;
@@ -96,15 +186,4 @@ input[type="radio"]:checked + label {
     -moz-appearance:none;
     -webkit-appearance:none;
     border-bottom: #ddd solid 2px;
-}
-.number {
-    width: 20px;
-    height: 20px;
-    margin: 0 auto;
-    box-sizing: border-box;
-    border-radius: 50%;
-    border: #ddd solid 1px;
-    background: #fff;
-    padding-top: 1px;
-    text-align: center;
 }
