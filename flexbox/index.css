@@ -60,7 +60,7 @@ input[type="radio"]:checked + label {
 }
 #item-body {
     display: flex;
-    /* height: 250px; */
+    min-height: 350px;
 }
 #itemWidth {
     margin-right: 30px;

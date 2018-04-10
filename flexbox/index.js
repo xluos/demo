@@ -70,7 +70,13 @@ function setWidth() {
 
 // 项目属性设置绑定事件
 
-document.getElementById('options').addEventListener('click', function(e){
-
+document.getElementById('item-body').addEventListener('change', function(e){
+    var event = e || window.event;
+    var target = event.target || event.srcElement;
+    if (target.matches('input') || target.matches('select')) {
+        console.log(target);
+        
+        target.parentNode.style[target.placeholder || target.title] = target.value;
+    }
 }
 )
