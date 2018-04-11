@@ -189,9 +189,9 @@ input[type="radio"]:checked + label {
 }
 
 footer {
-    position: absolute;
+    /* position: absolute; */
     width: 100%;
-    bottom: 1rem;
+    /* bottom: 1rem; */
     text-align: center;
 }
 footer a {
