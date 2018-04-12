@@ -7,13 +7,12 @@ document.getElementById('options').addEventListener('click', function(e){
     var event = e || window.event;
     var target = event.target || event.srcElement;
     if (target.matches('label')) {
-        let rid = target.getAttribute('for');
+        let rid = document.getElementById(target.getAttribute('for'));
+        // 如果没有选中触发的点击改为选中状态
+        if(!rid.checked) rid.checked = 'checked';
+        
         let val = target.innerText;
-        // console.log(rid);
-        // console.log(val);
-        let attributeName = document.getElementById(rid).getAttribute('name');
-        // item_body.setAttribute('style', `${attributeName}: ${val}`);
-        // console.log(attributeName + ':' + val);
+        let attributeName = rid.getAttribute('name');
         item_body.style[attributeName] = val;
       }
 })
@@ -54,18 +53,14 @@ const itemWidth = document.getElementById('itemWidth');
 widthRange.addEventListener('input', setWidth);
 // widthRange.addEventListener('click', setWidth);
 function setWidth() {
-    // console.log("aaa");
-    // console.log(widthRange.value);
     if(widthRange.value !== rval)
     { 
         rval = widthRange.value;
         itemWidth.innerText = widthRange.value;;
         let items = document.getElementsByClassName('item');
-        // console.log(items);
         
         for(let i = 0; i < items.length; i++)
         {
-            // console.log(items[i]);
             items[i].style.width = rval + 'px';
         }
     }
