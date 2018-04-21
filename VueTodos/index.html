@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./index.css">
+    <title>Todos|Vue</title>
+</head>
+
+<body>
+    <h1 class="todos-head-title">Todos</h1>
+    <main id="todos">
+        <header class="todos-head">
+            <input type="checkbox" id='all'>
+            <label for="all" class="all"></label>
+            <input type="text" placeholder="来点儿什么">
+            <button>ADD</button>
+        </header>
+        <ul class="todos-list">
+            <li class="todos-item">
+                <div class="checkbox">
+                    <input type="checkbox" id="checkbox-1">
+                    <label for="checkbox-1"></label>
+                </div>
+                <div class="todos-item-text">
+                    <div class="text" style="display: none"></div>
+                    <input type="text">
+                </div>
+                <button class="shut">X</button>
+            </li>
+        </ul>
+        <footer class="todos-footer">
+            <div class="item-count">待办事项：<span>0</span></div>
+            <div class="btn-list">
+                <button>全部</button>
+                <button>未完成</button>
+                <button>已完成</button>
+            </div>
+            <button>清除已完成</button>
+        </footer>
+    </main>
+</body>
+
+</html>

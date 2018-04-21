@@ -1,0 +1,161 @@
+body {
+    background: #f5f5f5;
+}
+#todos {
+    /* background: antiquewhite; */
+    margin: 0 auto;
+    width: 500px;
+    /* min-height: 500px; */
+    background: #fff;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2)
+    , 0 25px 50px 0 rgba(0, 0, 0, 0.1);
+}
+.todos-head-title {
+    text-align: center;
+    margin: 20px;
+    font-size: 100px;
+    font-weight: 100;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #2c3e50;
+}
+
+.todos-head {
+    /* display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start; */
+    height: 50px;
+    background: #fff;
+}
+
+#all {
+    display: none;
+}
+.all {
+    position: relative;
+    display: block;
+    width: 50px;
+}
+.all::before {
+    position: absolute;
+    top: 13px;
+    left: 15px;
+    display: block;
+    cursor: pointer;
+    content: "";
+    width: 15px;
+    height: 15px;
+    border-radius: 3px;
+    border-right: 3px solid #2c3e50;
+    border-bottom: 3px solid #2c3e50;
+    transform: rotate(45deg);
+}
+.todos-head input {
+    padding-left: 20px;
+    margin-left: 30px;
+    font-size: 20px;
+    width: 60%;
+    height: 48px;
+    border: none;
+    outline: none;
+    color: #aaa;
+}
+.todos-head button {
+    float: right;
+    width: 80px;
+    height: 48px;
+    outline: none;
+    border: none;
+    font-size: 20px;
+    background: #fff;
+    cursor: pointer;
+    color: #aaa;
+}
+.todos-list {
+    margin: 0;
+    padding: 0;
+}
+.todos-item {
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+    height: 50px;
+    border-top: #f1f1f1 solid 1px;
+    border-bottom: #f1f1f1 solid 1px;
+}
+.todos-item input[type="checkbox"] {
+    display: none;
+}
+.todos-item label {
+    display: block;
+    margin: 11px;
+    width: 24px;
+    height: 24px;
+    border: #41B883 solid 1.5px;
+    border-radius: 50%;
+}
+.todos-item-text {
+    flex-grow: 1;
+}
+.todos-item-text .text, .todos-item-text input{
+    margin: 0;
+    padding: 0 0 0 20px;
+    height: 100%;
+    width: 100%;
+    border: none;
+    color: #555;
+    outline: none;
+    font-size: 30px;
+}
+.todos-item .shut {
+    display: block;
+    visibility: hidden;
+    margin: 11px;
+    width: 26px;
+    height: 26px;
+    color: #c1c1c1;
+    border: #c1c1c1 solid 1.5px;
+    background: #fff;
+    border-radius: 50%;
+}
+.todos-item:hover .shut {
+    visibility: visible;
+}
+.shut:hover {
+    color: #FF6666;
+    border: #FF6666 solid 1.5px;
+}
+
+
+.todos-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 10px;
+    position: relative;
+    /* width: 100%; */
+    /* background: #000; */
+}
+.todos-footer:before {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 20px;
+    overflow: hidden;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 8px 0 -3px #f6f6f6, 0 9px 1px -3px rgba(0, 0, 0, 0.2), 0 16px 0 -6px #f6f6f6, 0 17px 2px -6px rgba(0, 0, 0, 0.2);
+}
+
+.todos-footer .item-count {
+    color: #aaa;
+    font-size: 12px;
+}
+
+.todos-footer button {
+    border: none;
+    background: initial;
+    font-size: 12px;
+    color: #888;
+}
