@@ -11,18 +11,28 @@
 
 <body>
     <h1 class="todos-head-title">Todos</h1>
-    <main id="app">
+    <main id="todos">
         <header class="todos-head">
             <input type="checkbox" id='all'>
             <label for="all" class="all"></label>
-            <input v-model="message" @keyup.enter="add" type="text" placeholder="现在要做点儿什么？">
-            <button @click="add">ADD</button>
+            <input type="text" placeholder="来点儿什么">
+            <button>ADD</button>
         </header>
-        <ul class="todos-list" v-on:reitems="reitem">
-            <li is='todos-item' v-for="item in todos" v-bind:itemdata="item"></li>
+        <ul class="todos-list">
+            <li class="todos-item">
+                <div class="checkbox">
+                    <input type="checkbox" id="checkbox-1">
+                    <label for="checkbox-1" class="complete"></label>
+                </div>
+                <div class="todos-item-text">
+                    <div class="text" style="display: none"></div>
+                    <input type="text">
+                </div>
+                <button class="shut">X</button>
+            </li>
         </ul>
-        <footer class="todos-footer" v-show="count">
-            <div class="item-count">待办事项：<span>{{count}}</span></div>
+        <footer class="todos-footer">
+            <div class="item-count">待办事项：<span>0</span></div>
             <div class="btn-list">
                 <button>全部</button>
                 <button>未完成</button>
@@ -31,8 +41,6 @@
             <button>清除已完成任务</button>
         </footer>
     </main>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
-    <script src="./index.js"></script>
 </body>
 
 </html>

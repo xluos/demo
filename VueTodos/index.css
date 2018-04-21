@@ -1,11 +1,11 @@
 body {
     background: #f5f5f5;
+    min-width: 500px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
-#todos {
-    /* background: antiquewhite; */
+#app {
     margin: 0 auto;
     width: 500px;
-    /* min-height: 500px; */
     background: #fff;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2)
     , 0 25px 50px 0 rgba(0, 0, 0, 0.1);
@@ -15,16 +15,10 @@ body {
     margin: 20px;
     font-size: 100px;
     font-weight: 100;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: #2c3e50;
 }
 
 .todos-head {
-    /* display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start; */
     height: 50px;
     background: #fff;
 }
@@ -47,8 +41,8 @@ body {
     width: 15px;
     height: 15px;
     border-radius: 3px;
-    border-right: 3px solid #2c3e50;
-    border-bottom: 3px solid #2c3e50;
+    border-right: 2px solid #888;
+    border-bottom: 2px solid #888;
     transform: rotate(45deg);
 }
 .todos-head input {
@@ -59,7 +53,10 @@ body {
     height: 48px;
     border: none;
     outline: none;
-    color: #aaa;
+    color: #888;
+}
+.todos-head input::-webkit-input-placeholder{
+    color: #ddd;
 }
 .todos-head button {
     float: right;
@@ -89,12 +86,48 @@ body {
 }
 .todos-item label {
     display: block;
+    position: relative;
+    cursor: pointer;
     margin: 11px;
     width: 24px;
     height: 24px;
-    border: #41B883 solid 1.5px;
+    border: #aaa solid 1.5px;
     border-radius: 50%;
 }
+
+.todos-item .nocomplete:hover::before {
+    position: absolute;
+    top: 1px;
+    left: 7px;
+    display: block;
+    cursor: pointer;
+    content: "";
+    width: 8px;
+    height: 16px;
+    border-radius: 3px;
+    border-right: 2px solid #aaa;
+    border-bottom: 2px solid #aaa;
+    transform: rotate(45deg);
+}
+
+.todos-item .complete {
+    border: #41B883 solid 1.5px;
+}
+.todos-item .complete::before {
+    position: absolute;
+    top: 1px;
+    left: 7px;
+    display: block;
+    cursor: pointer;
+    content: "";
+    width: 8px;
+    height: 16px;
+    border-radius: 3px;
+    border-right: 2px solid #41B883;
+    border-bottom: 2px solid #41B883;
+    transform: rotate(45deg);
+}
+
 .todos-item-text {
     flex-grow: 1;
 }
@@ -102,15 +135,22 @@ body {
     margin: 0;
     padding: 0 0 0 20px;
     height: 100%;
+    line-height: 50px;
     width: 100%;
     border: none;
     color: #555;
     outline: none;
     font-size: 30px;
 }
+.todos-item-text .strickout {
+    color: #aaa;
+    text-decoration:line-through;
+}
+
 .todos-item .shut {
     display: block;
     visibility: hidden;
+    cursor: pointer;
     margin: 11px;
     width: 26px;
     height: 26px;
@@ -118,6 +158,7 @@ body {
     border: #c1c1c1 solid 1.5px;
     background: #fff;
     border-radius: 50%;
+    outline: none;
 }
 .todos-item:hover .shut {
     visibility: visible;
@@ -155,7 +196,9 @@ body {
 
 .todos-footer button {
     border: none;
+    cursor: pointer;
     background: initial;
     font-size: 12px;
     color: #888;
+    outline: none;
 }
