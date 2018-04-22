@@ -14,21 +14,21 @@
     <main id="app">
         <header class="todos-head">
             <input type="checkbox" id='all'>
-            <label for="all" class="all"></label>
-            <input v-model="message" @keyup.enter="add" type="text" placeholder="现在要做点儿什么？">
+            <label for="all" class="all" @click="allOk"></label>
+            <input v-model.trim="message" @keyup.enter="add" type="text" placeholder="现在要做点儿什么？">
             <button @click="add">ADD</button>
         </header>
         <ul class="todos-list" v-on:reitems="reitem">
-            <li is='todos-item' v-for="item in todos" v-bind:itemdata="item"></li>
+            <li is='todos-item' v-show="item.show" @updatasize="updatasize" @reitems="reitem" v-for="item in todos" v-bind:itemdata="item"></li>
         </ul>
-        <footer class="todos-footer" v-show="count">
+        <footer class="todos-footer" v-show="todos.length">
             <div class="item-count">待办事项：<span>{{count}}</span></div>
             <div class="btn-list">
-                <button>全部</button>
-                <button>未完成</button>
-                <button>已完成</button>
+                <button @click="allPage" v-bind:class="{ activation: activate === 'all' }">全部</button>
+                <button @click="unfinishedPage" v-bind:class="{ activation: activate === 'unfinished' }">未完成</button>
+                <button @click="completedPage" v-bind:class="{ activation: activate === 'completed' }">已完成</button>
             </div>
-            <button>清除已完成任务</button>
+            <button @click="clearOk">清除已完成任务</button>
         </footer>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>

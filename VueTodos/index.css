@@ -46,7 +46,7 @@ body {
     transform: rotate(45deg);
 }
 .todos-head input {
-    padding-left: 20px;
+    padding-left: 40px;
     margin-left: 30px;
     font-size: 20px;
     width: 60%;
@@ -132,6 +132,7 @@ body {
     flex-grow: 1;
 }
 .todos-item-text .text, .todos-item-text input{
+    user-select: none;
     margin: 0;
     padding: 0 0 0 20px;
     height: 100%;
@@ -147,6 +148,10 @@ body {
     text-decoration:line-through;
 }
 
+.todos-item-text input{
+    color: #888;
+    text-decoration:underline;
+}
 .todos-item .shut {
     display: block;
     visibility: hidden;
@@ -174,6 +179,7 @@ body {
     justify-content: space-between;
     align-items: flex-end;
     padding: 10px;
+    padding-bottom: 0;
     position: relative;
     /* width: 100%; */
     /* background: #000; */
@@ -182,9 +188,10 @@ body {
     content: '';
     position: absolute;
     right: 0;
-    bottom: 0;
+    bottom: -20px;
     left: 0;
     height: 20px;
+    background: #fff;
     overflow: hidden;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 8px 0 -3px #f6f6f6, 0 9px 1px -3px rgba(0, 0, 0, 0.2), 0 16px 0 -6px #f6f6f6, 0 17px 2px -6px rgba(0, 0, 0, 0.2);
 }
@@ -200,5 +207,14 @@ body {
     background: initial;
     font-size: 12px;
     color: #888;
+    border: transparent solid 1px;
     outline: none;
+}
+.todos-footer .activation {
+    border: #FF6666 solid 1px;
+    border-radius: 3px;
+    color: #FF6666;
+}
+.todos-footer button:hover {
+    color: #FF6666;
 }
