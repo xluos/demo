@@ -125,11 +125,18 @@ var todos = localStorage.getItem("TodosData-todos");
 var todoscomplete = localStorage.getItem("TodosData-todoscomplete");
 var activate = localStorage.getItem("TodosData-activate");
 var message = localStorage.getItem("TodosData-message");
-app.todos = JSON.parse(todos);
-app.todoscomplete = JSON.parse(todoscomplete);
-app.activate = JSON.parse(activate);
-app.message = JSON.parse(message);
-
+if(todos !== "undefined"&&todos !== "null"){
+    app.todos = JSON.parse(todos); 
+}
+if(todoscomplete !== "undefined"&&todoscomplete !== "null") {
+    app.todoscomplete = JSON.parse(todoscomplete);
+}
+if(activate !== "undefined"&&activate !== "null") {
+    app.activate = JSON.parse(activate);
+}
+if(message !== "undefined"&&message !== "null") {
+    app.message = JSON.parse(message);
+}
 var save = true;
 // 存储信息
 window.onbeforeunload = function() {
