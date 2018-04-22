@@ -119,3 +119,24 @@ var app = new Vue({
         'todos-item': item,
     }
 })
+
+//读取之前储存的信息
+var todos = localStorage.getItem("TodosData-todos");
+var todoscomplete = localStorage.getItem("TodosData-todoscomplete");
+var activate = localStorage.getItem("TodosData-activate");
+var message = localStorage.getItem("TodosData-message");
+app.todos = JSON.parse(todos);
+app.todoscomplete = JSON.parse(todoscomplete);
+app.activate = JSON.parse(activate);
+app.message = JSON.parse(message);
+
+var save = true;
+// 存储信息
+window.onbeforeunload = function() {
+    if(save) {
+        localStorage.setItem("TodosData-todos",JSON.stringify(app.todos));
+        localStorage.setItem("TodosData-todoscomplete",JSON.stringify(app.todoscomplete));
+        localStorage.setItem("TodosData-activate",JSON.stringify(app.activate));
+        localStorage.setItem("TodosData-message",JSON.stringify(app.message));
+    }
+}
