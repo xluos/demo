@@ -16,7 +16,7 @@ body {
     margin: 20px;
     font-size: 100px;
     font-weight: 100;
-    color: #ff8686b8;
+    color:rgba(255, 134, 134, 0.7); 
 }
 
 .todos-head {
