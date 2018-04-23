@@ -3,8 +3,9 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
     <link rel="stylesheet" href="./index.css">
     <title>Todos|Vue</title>
 </head>
@@ -22,7 +23,9 @@
             <li is='todos-item' v-show="item.show" @updatasize="updatasize" @reitems="reitem" v-for="item in todos" v-bind:itemdata="item"></li>
         </ul>
         <footer class="todos-footer" v-show="todos.length">
-            <div class="item-count">待办事项：<span>{{count}}</span></div>
+            <div class="item-count">待办事项：
+                <span>{{count}}</span>
+            </div>
             <div class="btn-list">
                 <button @click="allPage" v-bind:class="{ activation: activate === 'all' }">全部</button>
                 <button @click="unfinishedPage" v-bind:class="{ activation: activate === 'unfinished' }">未完成</button>
@@ -31,6 +34,20 @@
             <button @click="clearOk">清除已完成任务</button>
         </footer>
     </main>
+    <!-- x-template模版 -->
+    <script type="text/x-template" id="todos-item-template">
+        <li class="todos-item">
+            <div class="checkbox">
+                <input type="checkbox" v-bind:id="'item-' + itemdata.id">
+                <label v-bind:for="'item-' + itemdata.id" v-bind:class="{complete: itemdata.ok, nocomplete: !itemdata.ok}" @click="reOk()"></label>
+           </div>
+            <div class="todos-item-text">
+                <div class="text" @dblclick="itemdata.edit=!itemdata.edit" v-show="!itemdata.edit" v-bind:class="{strickout: itemdata.ok}">{{ itemdata.text }}</div>
+            <input type="text" @blur="itemBlur" v-show="itemdata.edit" v-model.trim="itemdata.text" >
+            </div >
+            <button class="shut" @click="remove" >X</button >
+        </li>
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
     <script src="./index.js"></script>
 </body>

@@ -2,18 +2,7 @@
 // 子组件
 var item = {
     props: ['itemdata'],
-    template: 
-            '<li class="todos-item">'
-            +    '<div class="checkbox">'
-            +        '<input type="checkbox" v-bind:id="\'item-\' + itemdata.id">'
-            +        '<label v-bind:for="\'item-\' + itemdata.id" v-bind:class="{ complete: itemdata.ok, nocomplete: !itemdata.ok}" @click="reOk()"></label>'
-            +    '</div>'
-            +    '<div class="todos-item-text">'
-            +        '<div class="text" @dblclick="itemdata.edit=!itemdata.edit" v-show="!itemdata.edit" v-bind:class="{ strickout: itemdata.ok}">{{itemdata.text}}</div>'
-            +        '<input type="text" @blur="itemBlur" v-show="itemdata.edit" v-model.trim="itemdata.text">'
-            +    '</div>'
-            +    '<button class="shut" @click="remove">X</button>'
-            +'</li>',
+    template: '#todos-item-template',
     methods: {
         // 设置为已完成
         reOk: function() {
@@ -77,6 +66,7 @@ var app = new Vue({
         // 删除传入的条目
         reitem: function(id) {
             let index = this.todos.indexOf(id);
+            if(id.ok) this.todoscomplete--;  //如果删除的条目是完成的就在完成数量上-1
             this.todos.splice(index,1);
         },
         // 全部选中
