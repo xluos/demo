@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>抛物线</title>
+    <style>
+        canvas {
+            border: #aaa solid 1px;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id='canvas' width="500" height="500">不支持canvas</canvas>
+    <button onclick="send()">发射</button>
+    <script>
+        var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext('2d');
+        const SH = 0.95;
+        function random(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+        function getRandomColor() {
+            return '#' +
+                (function (color) {
+                    return (color += '0123456789abcdef'[Math.floor(Math.random() * 16)])
+                        && (color.length == 6) ? color : arguments.callee(color);
+                })('');
+        }
+        function O() { }
+        O.prototype = {
+            init: function () {
+                this.x = 0;
+                this.y = 0;
+                this.r = 10;
+                this.color = getRandomColor();
+                this.vx = random(6, 9);
+                this.vy = 0;
+                this.v = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
+                this.g = random(0.3,0.5);
+                this.t = 0;
+            },
+            draw: function () {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+                this.updata();
+            },
+            updata: function () {
+                this.t++;
+                this.x += this.vx;
+                if ((this.x > canvas.width) && this.vx > 0 || (this.x < 0) && this.vx < 0) {
+                    this.vx = -this.vx * SH;
+                }
+                this.y += this.vy;
+                this.vy += this.g;
+                if ((this.y > canvas.height) && this.vy > 0 || (this.y < 0) && this.vy < 0) {
+                    this.vy = -this.vy * SH;
+                }
+            }
+        }
+        var aimnid;
+        var Olist = [];
+        function aimn() {
+            ctx.fillStyle = "#fffffff0";
+            ctx.fillRect(0, 0, 500, 500);
+            if (Olist.length) {
+                // console.log(o.vx,o.vy);
+                for (let i = 0; i < Olist.length; i++) {
+                    Olist[i].draw();
+                    Olist[i].v = Math.sqrt(Olist[i].vx * Olist[i].vx + Olist[i].vy * Olist[i].vy);
+                    if (Olist[i].v < 3) {
+                        Olist.splice(i, 1);
+                        i--;
+                    }
+                }
+                aimnid = requestAnimationFrame(aimn);
+            } else {
+                ctx.fillStyle = "#fff";
+                ctx.fillRect(0, 0, 500, 500);
+            }
+        }
+        const MAX = 100;
+        function send() {
+            var o = new O();
+            o.init();
+            Olist.push(o);
+            cancelAnimationFrame(aimnid);
+            aimn();
+
+        }
+    </script>
+</body>
+
+</html>
