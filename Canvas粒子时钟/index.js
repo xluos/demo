@@ -167,7 +167,7 @@ Numbertime.prototype = {
         for (let i = 0; i < this.balls.length; i++) {
             this.balls[i].draw();//调用下落小球的绘制方法
             // 移动出边界了就删除掉
-            if ((this.x > canvas.width) || (this.x < 0)) {
+            if ((this.balls[i].x > canvas.width) || (this.balls[i].x < 0)) {
                 this.balls.splice(i, 1);
                 i--;
             }
@@ -233,6 +233,7 @@ function aimn() {
     ctx.fillStyle = "#F5F5F5";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     nums.draw();
+    // console.clear();
     requestAnimationFrame(aimn);
 }
 
