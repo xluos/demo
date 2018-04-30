@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>抛物线</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+        }
+        canvas {
+            border: #aaa solid 1px;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id='canvas' width="1000" height="500">不支持canvas</canvas>
+    <script>
+        var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext('2d');
+        // 创建一个小球的构造函数
+        function O() { }
+        // 给构造函数添加继承属性
+        O.prototype = {
+            init: function () {
+                // X轴(正弦运动中心线的位置)
+                this.h = canvas.height/2;
+                // 在X轴所处的位置
+                this.x = 0;
+                // 在Y轴所处的位置
+                this.y = this.h;
+                // 小球半径
+                this.r = 20;
+                // 小球运动的速度
+                this.v = 10;
+                // 小球颜色
+                this.color = "rgb(255, 68, 68)";
+            },
+            draw: function () {
+                // 绘制小球
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+                this.updata();
+            },
+            // 更新小球位置
+            updata: function () {
+                // 如果横向超出Canvas宽度就回到起点
+                if(this.x > canvas.width) {
+                    this.x = 0;
+                }
+                // 横轴移动
+                this.x += this.v;
+                // 计算在纵轴的位置,中心位置加上偏移
+                // 计算弧度,因为Math.sin()的参数是弧度,将整个宽度看为一个周期,X处所占的弧度就为,起点到X距离与宽度之比乘以2π
+                let radian = this.x / canvas.width * Math.PI * 2;
+                // 计算偏移高度,因为Math.sin()返回值是-1~1的数字,所以要将这个值转化为真正移动的高度,就是容器的一班高度减去球直径
+                let height = (canvas.height - this.r * 2) / 2
+                this.y = this.h + Math.sin(radian) * height;
+            }
+        }
+        var aimnid;
+        // 创建小球并初始化
+        var o = new O();
+        o.init();
+        // 开始动画
+        function animation() {
+            // 刷新Canvas
+            ctx.fillStyle = "rgba(255,255,255)";
+            ctx.fillRect(0, 0, 1000, 500);
+            // 绘制小球
+            o.draw();
+            // 调用下一帧
+            aimnid = requestAnimationFrame(animation);
+        }
+        // 开启动画
+        animation();
+    </script>
+</body>
+
+</html>
