@@ -69,3 +69,5 @@
 + 可一键删除所有完成项目
 + 正常刷新和关闭页面时，将数据保存到loaclstorage中。
 + 打开时如果loaclstorage存有数据，则自动加载loaclstorage中的数据
+
+#
