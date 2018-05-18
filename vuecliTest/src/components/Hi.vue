@@ -1,7 +1,8 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <router-view></router-view>
+    <h4>传值：{{ $route.params.username }}</h4>
+    <router-view name="hi"></router-view>
   </div>
 </template>
 

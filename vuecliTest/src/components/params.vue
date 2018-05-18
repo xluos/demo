@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
     <h3>{{ msg }}</h3>
-    <h4>传值：{{ $route.params.username }}</h4>
+    <p>NEWID:{{ $route.params.newid }}---{{ $route.params.newtitle }}</p>
   </div>
 </template>
 
@@ -10,7 +10,7 @@ export default {
   name: 'HI',
   data () {
     return {
-      msg: 'I am HI Page!1'
+      msg: 'I am Params Page!'
     }
   }
 }
