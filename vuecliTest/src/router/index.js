@@ -6,6 +6,7 @@ import HI1 from '@/components/Hi.1'
 import HI2 from '@/components/Hi.2'
 import Params from '@/components/params'
 import _404 from '@/components/404'
+import count from '@/components/Count'
 
 Vue.use(Router)
 
@@ -16,6 +17,11 @@ export default new Router({
       path: '/',
       name: 'HelloWorld',
       component: HelloWorld
+    },
+    {
+      path: '/count',
+      name: 'count',
+      component: count
     },
     {
       path: '/params',

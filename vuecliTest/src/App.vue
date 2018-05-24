@@ -9,6 +9,7 @@
       <router-link to="/params">Params</router-link>|
       <router-link to="/params/llll/asdhakjsdhkjash">Paramsgo</router-link>|
       <router-link to="/gopage/22222/asdhakjsdhkjash">gopage</router-link>|
+      <router-link to="/count">COUNT</router-link>|
     </div>
     <!-- <p>{{ $route.name }}</p> -->
     <transition name="fade" mode="out-in">
