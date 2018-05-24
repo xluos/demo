@@ -1,0 +1,53 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background: #f4f4f4;
+    overflow: hidden;
+}
+.bg, .banner, .banner-img {
+    width: 100%;
+    height: 100%;
+}
+.bg {
+    perspective: 800px;
+    margin: 0  auto;
+}
+.banner {
+    transform-style: preserve-3d;
+}
+.banner-img {
+    position: absolute;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-size: 100px;
+    color: #fff;
+    text-align: center;
+    line-height: 600px;
+}
+.banner-img .title {
+    position: relative;
+    user-select: none;
+}
+.banner1 {
+    transform: translate3d(0px, 0px, 225px);
+    background-color: #4285f4;
+    background-image: url("./images/01_innovate.jpg");
+}
+.banner2 {
+    transform: translate3d(0px, 225px, 0px) rotateX(270deg);
+    background-color: #34a853;
+    background-image: url("./images/ah1b6289.jpg");
+}
+.banner3 {
+    transform: translate3d(0px, 0px, -225px) rotateX(180deg);
+    background-color: #fbbc05;
+    background-image: url("./images/create.jpg");
+}
+.banner4 {
+    transform: translate3d(0px, -225px, 0px) rotateX(90deg);
+    background-color: #ea4335;
+    background-image: url("./images/design.jpg");
+}
