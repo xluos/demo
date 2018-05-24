@@ -41,21 +41,27 @@
 + [Demo](https://xluos.github.io/demo/PSD%E5%88%B0HTML%E5%88%87%E5%9B%BE%E7%BB%83%E4%B9%A0/)
 + [代码地址](https://github.com/xluos/demo/tree/gh-pages/PSD%E5%88%B0HTML%E5%88%87%E5%9B%BE%E7%BB%83%E4%B9%A0)
 
-# CSS实现Tab页切换
+# CSS实现Tab页切换 [Demo地址](https://xluos.github.io/demo/CSS%E5%AE%9E%E7%8E%B0tab%E5%88%87%E6%8D%A2/)
 切图的时候碰到的，想着切图就尽量先不谢js试试能不能实现效果，搜了一些办法之后选择了**利用`label和radio`的绑定关系和`radio选中时的:checked`来实现效果**
 
 
-# 2018进度条 [地址](http://progress.xluos.com/)
+# 2018进度条 [Demo地址](http://progress.xluos.com/)
 
 突发奇想想要做的一个东西，有空看看也能给自己来点儿紧迫感，实现起来还是很容易的获取当前时间和今年开始的时间算出百分比设置width就好了。
 
-# Flexbox演示站 [地址](https://xluos.github.io/demo/flexbox/)
+# Flexbox演示站 [Demo地址](https://xluos.github.io/demo/flexbox/)
 
 可以通过动态的点击flexbox属性可以实时看到各个属性的效果，有助于理解各个属性。
 
 友好的提示，鼠标放在选项上面悬停显示各个属性效果。
 
-# Vue-Todos [地址](https://xluos.github.io/demo/VueTodos/)
+# Canvas系列
+学习Canvas的时候制作的一些小Demo，后续补上系列教程（先给自己挖个坑）
++ 一个简单的小球[Demo](https://xluos.github.io/demo/Canvas/1.html)
++ 一个小球做正弦运动的[Demo](https://xluos.github.io/demo/Canvas%E5%B0%8F%E7%90%83%E6%AD%A3%E5%BC%A6%E8%BF%90%E5%8A%A8/)
++ Canvas绘制的一个小球时钟 [Demo](https://xluos.github.io/demo/Canvas%E7%B2%92%E5%AD%90%E6%97%B6%E9%92%9F/)
+
+# Vue-Todos [Demo地址](https://xluos.github.io/demo/VueTodos/)
 
 初学Vue的产物，把IFE基础学院做完等待新学期的过程中就去看了Vue的文档，看完文档按照惯例做了这么一个Demo，好像学Vue的都推荐做这么一个东西。用上Vue确实很方便，甚至说写页面样式耗费的功夫要超过逻辑本身，最终利用loaclstorage把实现数组本地存取。实现的功能有：
 + 回车或点击按钮添加一条
@@ -70,4 +76,12 @@
 + 正常刷新和关闭页面时，将数据保存到loaclstorage中。
 + 打开时如果loaclstorage存有数据，则自动加载loaclstorage中的数据
 
-#
+# 3D banner视差滚动效果 [演示地址](https://xluos.github.io/demo/3D%E8%A7%86%E5%B7%AE%E6%BB%9A%E5%8A%A8banner/)
+
+这个是在学CSS 3D的时候看到的一个网站，感觉效果很有趣就简单模仿一下，原站地址[在这里](https://rdcm.com/en/)
+
+使用了`transform.js`方便的控制transform属性
+
+这里有制作思路[点这里](https://www.w3cplus.com/css3/front-end-challenge-accepted-css-3d-cube.html)
+
+没有做兼容，Chrome系列之外的可能没有效果
