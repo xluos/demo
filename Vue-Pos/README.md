@@ -1,6 +1,7 @@
-# y
+# Vue商店收银系统
 
-> A Vue.js project
+> 来源于技术胖的教程，后续完善其他没有在教程中出现的页面，在线[Demo](https://xluos.github.io/demo/Vue-Pos/dist)
+
 
 ## Build Setup
 
