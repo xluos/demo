@@ -85,3 +85,9 @@
 这里有制作思路[点这里](https://www.w3cplus.com/css3/front-end-challenge-accepted-css-3d-cube.html)
 
 没有做兼容，Chrome系列之外的可能没有效果
+
+# Canvas动画之霓虹雨 [演示地址](https://xluos.github.io/demo/CanvasRain/)
+
+在网上看到的一个Canvas动画，感觉比较炫酷就照着写了一个，原地址[codepan](https://codepen.io/anon/pen/KROodp?editors=0110)
+
+详细解析看[这里](./CanvasRain)
