@@ -4,7 +4,6 @@ import Add from '@/components/page/store/add'
 
 export default {
   path: '/store',
-  name: 'Store',
   component: Store,
   children: [
     {

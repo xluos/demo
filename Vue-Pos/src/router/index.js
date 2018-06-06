@@ -6,6 +6,8 @@ import Vip from './vip.js'
 import Statistical from './statistical.js'
 import Setting from './setting'
 import Login from '@/components/common/login'
+import Test from '@/components/common/test'
+
 
 Vue.use(Router)
 
@@ -21,5 +23,9 @@ export default new Router({
       name: 'Login',
       component: Login
     },
+    {
+        path: '/test',
+        component: Test
+    }
   ]
 })
