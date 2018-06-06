@@ -5,7 +5,7 @@
         <el-tabs type="card">
           <el-tab-pane label="点餐" >
             <el-table :data="tableData" size="small" max-height="400">
-              <el-table-column align="center" prop="goodsName" label="商品名称"></el-table-column> 
+              <el-table-column align="center" prop="goodsName" label="商品名称"></el-table-column>
               <el-table-column align="center" prop="oneprice" label="单价"></el-table-column>
               <el-table-column align="center" prop="count" label="数量" width="50"></el-table-column>
               <el-table-column align="center" prop="price" label="金额"></el-table-column>
@@ -57,36 +57,28 @@
             <el-tab-pane label="主食">
               <ul class='cookList'>
                 <li v-for="goods in type0Goods" @click="addOftenGoodsList(goods)">
-                    <span class="foodImg"><img :src="goods.goodsImg" width="100%"></span>
-                    <span class="foodName">{{goods.goodsName}}</span>
-                    <span class="foodPrice">￥{{goods.price}}元</span>
+                    <goods :goodsData=goods></goods>
                 </li>
               </ul>
             </el-tab-pane>
             <el-tab-pane label="小食">
               <ul class='cookList'>
                 <li v-for="goods in type1Goods" @click="addOftenGoodsList(goods)">
-                    <span class="foodImg"><img :src="goods.goodsImg" width="100%"></span>
-                    <span class="foodName">{{goods.goodsName}}</span>
-                    <span class="foodPrice">￥{{goods.price}}元</span>
+                    <goods :goodsData=goods></goods>
                 </li>
               </ul>
             </el-tab-pane>
             <el-tab-pane label="饮品">
               <ul class='cookList'>
                 <li v-for="goods in type2Goods" @click="addOftenGoodsList(goods)">
-                    <span class="foodImg"><img :src="goods.goodsImg" width="100%"></span>
-                    <span class="foodName">{{goods.goodsName}}</span>
-                    <span class="foodPrice">￥{{goods.price}}元</span>
+                    <goods :goodsData=goods></goods>
                 </li>
               </ul>
             </el-tab-pane>
             <el-tab-pane label="套餐">
               <ul class='cookList'>
                 <li v-for="goods in type3Goods" @click="addOftenGoodsList(goods)">
-                    <span class="foodImg"><img :src="goods.goodsImg" width="100%"></span>
-                    <span class="foodName">{{goods.goodsName}}</span>
-                    <span class="foodPrice">￥{{goods.price}}元</span>
+                    <goods :goodsData=goods></goods>
                 </li>
               </ul>
             </el-tab-pane>
@@ -99,6 +91,7 @@
 
 <script>
 import Axios from 'axios'
+import Goods from '@/components/common/goods'
 export default {
   name: 'Pos',
   data () {
@@ -143,7 +136,10 @@ export default {
   mounted: function () {
     let h = document.body.clientHeight;
     document.getElementsByClassName("pos-order")[0].style.height = h + 'px';
-    
+
+  },
+  components: {
+    'goods': Goods
   },
   computed: {
     // 计算总数
@@ -253,12 +249,8 @@ export default {
 
 
 <style scoped>
-.pos {
-  margin-left: 60px;
-}
 .pos-order {
   border-right: 1px solid #c0ccda;
-
 }
 .icon-btn {
   cursor: pointer;
@@ -296,33 +288,8 @@ export default {
 }
 .cookList li{
     list-style: none;
-    width:23%;
-    border:1px solid #E5E9F2;
-    height: auot;
-    overflow: hidden;
-    background-color:#fff;
-    padding: 2px;
     float:left;
-    margin: 2px;
     cursor: pointer;
 }
-.cookList li span{
-    
-    display: block;
-    float:left;
-}
-.foodImg{
-    width: 40%;
-}
-.foodName{
-    font-size: 14px;
-    padding-left: 10px;
-    color:brown;
 
-}
-.foodPrice{
-    font-size: 16px;
-    padding-left: 10px;
-    padding-top:10px;
-}
 </style>

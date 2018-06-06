@@ -24,5 +24,11 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  height: 100%;
+}
+main {
+  margin-left: 60px;
+  height: 100%;
+  overflow: hidden;
 }
 </style>

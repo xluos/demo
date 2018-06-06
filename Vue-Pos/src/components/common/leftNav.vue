@@ -1,17 +1,13 @@
 <template>
         <nav>
             <ul class="left-nav">
-                <router-link to="/" tag="li">
+                <router-link to="/pos" tag="li">
                     <i class="icon iconfont icon-goumai"></i>
                     <p>收银</p>
                 </router-link>
                 <router-link to="/store" tag="li">
                     <i class="icon iconfont icon-dianpu"></i>
                     <P>店铺</P>
-                </router-link>
-                <router-link to="/goods" tag="li">
-                    <i class="icon iconfont icon-hanbao"></i>
-                    <p>商品</p>
                 </router-link>
                 <router-link to="/vip" tag="li">
                     <i class="icon iconfont icon-huiyuanqia"></i>
@@ -31,7 +27,7 @@
 
 <script>
 export default {
-    
+
 }
 </script>
 
