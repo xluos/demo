@@ -3,7 +3,7 @@
     <div slot="header" class="header">
       <span>添加商品-基本信息</span>
     </div>
-    <div class="content">
+    <div class="add-page-content">
           <el-form ref="form" :model="form" label-width="80px">
             <el-form-item label="商品名称">
               <el-input v-model="form.name" placeholder="输入产品名称"></el-input>
@@ -49,7 +49,10 @@
                 <el-button>取消</el-button>
             </el-form-item>
           </el-form>
-          <goods :goodsData=form class="goods"></goods>
+          <div class="add-page-goods">
+            <h4>预览</h4>
+            <goods :goodsData=form></goods>
+          </div>
     </div>
   </el-card>
 </template>
@@ -89,23 +92,26 @@ export default {
 }
 </script>
 
-<style scoped>
-.header {
-  text-align: left;
-}
+<style>
 
+.add-page-content {
+    display: flex;
+    justify-content: space-between;
+}
 .el-form {
     width: 460px
 }
-
-.avatar-uploader{
+.add-page-goods {
+    margin: 0 160px 0 0;
+}
+.avatar-uploader .el-upload{
     border: 1px dashed #d9d9d9;
     border-radius: 6px;
     cursor: pointer;
     position: relative;
     overflow: hidden;
 }
-.avatar-uploader:hover {
+.avatar-uploader .el-upload:hover {
     border-color: #409eff;
 }
 .avatar-uploader-icon {
