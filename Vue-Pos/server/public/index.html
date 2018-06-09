@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TEST</title>
+</head>
+<body>
+    <h1>Test</h1>
+    <label for="name">账户</label>
+    <input name="name" id="name"><br>
+    <label for="pwd">密码</label>
+    <input type="password" name="pwd" id="pwd">
+    <div id="app"></div>
+    <button id='axiso-get'>Axios Get 登出</button>
+    <button id='axiso-post'>Axios POST 登录</button>
+    <button id='axiso-status'>Axios 获取状态</button>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        function $(id) {
+            return document.getElementById(id);
+        }
+        var app = $('app')
+        $('axiso-get').addEventListener('click', logout)
+        $('axiso-post').addEventListener('click', login)
+        $('axiso-status').addEventListener('click', getStatus)  
+        function login() {
+            
+            axios.post('/login', {id: $('name').value, pwd: $('pwd').value })
+                    .then(function(res){
+                        console.log(res);
+                        console.log(res.data.message);
+                        
+                        app.innerText = res.data.message;
+                    })
+                    .catch(function(error){
+                        console.log(error);
+                    })
+            
+        }
+        function logout() {
+            axios.get('/login')
+                .then(function (res) {
+                    console.log(res);
+                    app.innerText = res.data.message;
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        }
+        function getStatus() {
+            axios.get('/login/status').then(function(res) {
+                console.log(res);
+                app.innerText = res.data.message;
+            })
+        }
+    </script>
+</body>
+</html>
