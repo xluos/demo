@@ -7,7 +7,7 @@
     <title>TEST</title>
 </head>
 <body>
-    <h1>Test</h1>
+    <h1>login</h1>
     <label for="name">账户</label>
     <input name="name" id="name"><br>
     <label for="pwd">密码</label>
@@ -16,6 +16,7 @@
     <button id='axiso-get'>Axios Get 登出</button>
     <button id='axiso-post'>Axios POST 登录</button>
     <button id='axiso-status'>Axios 获取状态</button>
+    <button id='axiso-signup'>Axios POST 注册</button>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
         function $(id) {
@@ -24,7 +25,8 @@
         var app = $('app')
         $('axiso-get').addEventListener('click', logout)
         $('axiso-post').addEventListener('click', login)
-        $('axiso-status').addEventListener('click', getStatus)  
+        $('axiso-status').addEventListener('click', getStatus)
+        $('axiso-signup').addEventListener('click', signup)
         function login() {
             
             axios.post('/login', {id: $('name').value, pwd: $('pwd').value })
@@ -54,6 +56,20 @@
                 console.log(res);
                 app.innerText = res.data.message;
             })
+        }
+        function signup() {
+            console.log('aa');
+            
+            axios.post('/signup', {id: $('name').value, pwd: $('pwd').value })
+                    .then(function(res){
+                        console.log(res);
+                        console.log(res.data.message);
+                        
+                        app.innerText = res.data.message;
+                    })
+                    .catch(function(error){
+                        console.log(error);
+                    })
         }
     </script>
 </body>
