@@ -27,11 +27,6 @@ export default {
     return {
       fullscreenLoading: true
     }
-  },
-  beforeCreate: function () {
-    // setTimeout(() => {
-    //   this.$router.push('login');
-    // }, 1000);
   }
 }
 </script>

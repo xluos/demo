@@ -1,5 +1,5 @@
 <template>
-    <el-row>
+    <el-row v-loading="fullscreenLoading">
       <el-col class="menu" :span=4>
         <div class="title">商品操作</div>
         <el-menu
@@ -30,6 +30,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data() {
     return {
@@ -37,9 +38,13 @@ export default {
     }
   },
   beforeCreate: function () {
-    // setTimeout(() => {
-    //   this.$router.push('login');
-    // }, 1000);
+    axios.get('http://127.0.0.1:3000/login/status', {withCredentials:true}).then((res)=> {
+        if(res.data.status) {
+          this.fullscreenLoading = false;
+        } else {
+          this.$router.push('/login')
+        }
+    })
   }
 }
 </script>

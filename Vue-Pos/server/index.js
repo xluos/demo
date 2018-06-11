@@ -8,6 +8,18 @@ const config = require('config-lite')(__dirname)
 
 app.use(express.static(path.join(__dirname, '../dist')))
 
+app.use("*", function (req, res, next) {
+    res.header('Access-Control-Allow-Origin', 'http://localhost:8080');
+    res.header("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With");
+    res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
+    res.header("Access-Control-Allow-Credentials", "true");
+    if (req.method === 'OPTIONS') {
+      res.send(200)
+    } else {
+      next()
+    }
+});
+
 app.use(session({
     name: config.session.key, // 设置 cookie 中保存 session id 的字段名称
     secret: config.session.secret, // 通过设置 secret 来计算 hash 值并放在 cookie 中，使产生的 signedCookie 防篡改

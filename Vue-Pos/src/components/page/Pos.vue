@@ -17,7 +17,7 @@
                 </template>
               </el-table-column>
             </el-table>
-            <el-row>
+            <el-row class="count-box">
               <el-col :span='12'>
                 <p>总数：{{ totalCount }} 件</p>
               </el-col>
@@ -291,5 +291,8 @@ export default {
     float:left;
     cursor: pointer;
 }
-
+.count-box {
+  width: 90%;
+  margin: 0 auto;
+}
 </style>

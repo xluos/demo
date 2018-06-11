@@ -1,8 +1,9 @@
 <template>
     <div>
         <el-card class="box-card">
-            <div slot="header" class="clearfix">
+            <div slot="header" class="headerinfo">
                 <span>账户信息</span>
+                <el-button type="danger" size='medium' @click="signout">注销</el-button>
             </div>
             <div class="content">
                 还没想好这儿放啥
@@ -24,7 +25,6 @@
                 </el-form-item>
                 <el-form-item>
                     <el-button type="primary" @click="onSubmit">确定修改</el-button>
-                    <el-button>取消</el-button>
                 </el-form-item>
                 </el-form>
         </el-card>
@@ -32,6 +32,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 
 export default {
   data() {
@@ -47,7 +48,26 @@ export default {
       
   },
   methods: {
-      
+      onSubmit: function() {
+
+      },
+      signout: function() {
+          axios.get('http://127.0.0.1:3000/login', {withCredentials:true})
+                .then((res) => {
+                    if(res.data.status) {
+                        this.$message({
+                            message: res.data.message,
+                            type: 'success'
+                        });
+                        this.$router.push('/pos');
+                    } else {
+                        this.$message.error(res.data.message);
+                    }
+                })
+                .catch((error) => {
+                    this.$message.error('出现错误')
+                });
+      }
   }
 }
 </script>
@@ -58,5 +78,11 @@ export default {
 }
 .el-form {
     width: 30%;
+}
+.headerinfo {
+    margin: -10px;
+    display: flex;
+    justify-content: space-between;
+    line-height: 40px;
 }
 </style>

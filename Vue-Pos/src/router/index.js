@@ -11,15 +11,19 @@ import Test from '@/components/common/test'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   routes: [
+    {
+      path: '/',
+      component: Pos.component
+    },
     Pos,
     Store,
     Vip,
     Statistical,
     Setting,
     {
-      path: '/login',
+      path: '/login/:toPage',
       name: 'Login',
       component: Login
     },
@@ -29,3 +33,5 @@ export default new Router({
     }
   ]
 })
+
+export default router

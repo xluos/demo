@@ -1,10 +1,23 @@
 import Store from '@/components/page/Store'
 import GoodsTable from '@/components/page/store/goodsTable'
 import Add from '@/components/page/store/add'
+import axios from 'axios'
 
 export default {
   path: '/store',
   component: Store,
+  beforeEnter: (to, from, next) => {
+    axios.get('http://127.0.0.1:3000/login/status', { withCredentials: true }).then((res) => {  
+      if (!res.data.status) {
+        next('/login/store')
+      } else {
+        next();
+      }
+    }).catch((e)=>{
+      console.log(e);
+      
+    })
+  },
   children: [
     {
       path: '/',
