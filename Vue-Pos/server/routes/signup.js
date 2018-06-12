@@ -2,14 +2,14 @@ const express = require('express')
 const router = express.Router()
 const checkLogin = require('../middlewares/check.js').checkLogin
 const checkNotLogin = require('../middlewares/check.js').checkNotLogin
-const UserModel = require('../models/users')
+const AdminModel = require('../models/admin')
 
 router.post('/', checkNotLogin, function(req, res){
     var user = {
         name: req.fields.id,
         password: req.fields.pwd
     }
-    UserModel.create(user).then(function(result) {
+    AdminModel.create(user).then(function(result) {
         console.log(result);
         req.session.user = user;
         res.json({status: true, message: "注册成功"});

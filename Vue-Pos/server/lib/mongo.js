@@ -2,6 +2,7 @@ const config = require('config-lite')(__dirname)
 const Mongolass = require('mongolass')
 const mongolass = new Mongolass()
 
+
 const moment = require('moment')
 const objectIdToTimestamp = require('objectid-to-timestamp')
 
@@ -23,8 +24,34 @@ mongolass.plugin('addCreatedAt', {
 
 mongolass.connect(config.mongodb)
 
-exports.User = mongolass.model('User', {
+exports.Admin = mongolass.model('Admin', {
     name: { type: 'string', required: true },
     password: { type: 'string', required: true },
 })
-exports.User.index({ name: 1 }, { unique: true }).exec()// 根据用户名找到用户，用户名全局唯一
+exports.Admin.index({ name: 1 }, { unique: true }).exec()// 根据用户名找到用户，用户名全局唯一
+
+exports.User = mongolass.model('User', {
+  name: {type: 'string' , require: true}, //用户名
+  tel: {type: 'string' , require: true},  //电话号
+  wx: {type: 'string' , require: false ,default: '暂未录入'},  //微信号
+  integral: {type: 'number' , require: false , default: 0}, //现有积分
+  sumintegral: {type: 'number' , require: false , default: 0},  //总积分
+  grade: {type: 'number', require: false , range: [1, 3], default: 1}, //会员等级默认为1
+  balance: {type: 'number', require: false, default: 0},  //账户余额
+  lasttime: {type: Mongolass.Types.Date}  //最后交易时间
+})
+
+exports.Goods = mongolass.model('Goods', {
+  name: {type: 'string', require: true}, //商品名
+  imgurl: {type: 'string', require: false, default: ''},  //图片地址
+  cost: {type: 'number', require: true, default: 0}, //成本
+  price: {type: 'number', require: true, default: 0}, //售价
+  status: {type: 'boolean', require: false, default: true}, // 状态
+  count: {type: 'number', require: false, default: 0} // 数量
+})
+
+exports.Order = mongolass.model('Order', {
+  time: {type: Mongolass.Types.Date, require: true},
+  paytype: {type: 'string', require: false, enum:['cash', 'balance','online'], default: 'cash'},
+  goodsid:[{type: 'string', require: false }]
+})

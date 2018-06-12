@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const checkLogin = require('../middlewares/check.js').checkLogin
 const checkNotLogin = require('../middlewares/check.js').checkNotLogin
-const UserModel = require('../models/users.js')
+const AdminModel = require('../models/admin.js')
 
 router.get('/', checkLogin, function(req, res) {
     req.session.user = null;
@@ -15,7 +15,7 @@ router.post('/', checkNotLogin,function(req, res) {
     if(req.fields.id === '') {
         res.json({status: false, message: "不能为空"});
     }
-    UserModel.getUserByName(name).then((result) => {
+    AdminModel.getUserByName(name).then((result) => {
         if(!result) {
             res.json({status: false, message: "无此用户"});
         }
