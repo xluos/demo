@@ -29,7 +29,7 @@
             <el-form-item label="图片">
                 <el-upload
                     class="avatar-uploader"
-                    action="http://127.0.0.1:3000/goods"
+                    action="/goods"
                     :show-file-list="false"
                     :on-success="handleAvatarSuccess"
                     :before-upload="beforeAvatarUpload">
@@ -96,7 +96,7 @@ export default {
 
       },
       onSubmit: function() {
-        axios.post('http://127.0.0.1:3000/goods',this.form, {withCredentials:true})
+        axios.post('/goods',this.form)
                     .then((res)=>{
                         console.log(res);
                     })

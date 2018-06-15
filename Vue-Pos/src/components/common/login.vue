@@ -35,7 +35,7 @@ export default {
         id: this.form.accounts,
         pwd: this.form.password
       }
-      axios.post('http://127.0.0.1:3000/login', user, {withCredentials:true}).then((msg) => {
+      axios.post('/login', user).then((msg) => {
         if(msg.data.status) {
           this.$message({
             message: msg.data.message,
@@ -50,7 +50,7 @@ export default {
       })
     },
     onStatus: function() {
-      axios.get('http://127.0.0.1:3000/login', {withCredentials:true})
+      axios.get('/login')
                 .then((res) => {
                     if(res.data.status) {
                         this.$message({

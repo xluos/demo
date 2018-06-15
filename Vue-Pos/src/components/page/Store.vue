@@ -38,7 +38,7 @@ export default {
     }
   },
   beforeCreate: function () {
-    axios.get('http://127.0.0.1:3000/login/status', {withCredentials:true}).then((res)=> {
+    axios.get('/login/status').then((res)=> {
         if(res.data.status) {
           this.fullscreenLoading = false;
         } else {

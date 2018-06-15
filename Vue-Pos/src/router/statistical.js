@@ -6,7 +6,7 @@ export default {
   name: 'Statistical',
   component: Statistical,
   beforeEnter: (to, from, next) => {
-    axios.get('http://127.0.0.1:3000/login/status', { withCredentials: true }).then((res) => {  
+    axios.get('/login/status', { withCredentials: true }).then((res) => {  
       if (!res.data.status) {
         next('/login/statistical')
       } else {

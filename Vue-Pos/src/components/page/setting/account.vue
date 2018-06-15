@@ -50,7 +50,7 @@ export default {
   methods: {
       onSubmit: function() {
             var user = this.formPwd;
-            axios.put('http://127.0.0.1:3000/login',user, {withCredentials:true})
+            axios.put('/login',user)
                             .then((res) => {
                                 if(res.data.status) {
                                     this.$message({
@@ -67,7 +67,7 @@ export default {
                             });
       },
       signout: function() {
-          axios.get('http://127.0.0.1:3000/login', {withCredentials:true})
+          axios.get('/login')
                 .then((res) => {
                     if(res.data.status) {
                         this.$message({

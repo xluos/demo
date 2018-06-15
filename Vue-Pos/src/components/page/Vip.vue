@@ -157,7 +157,7 @@ export default {
         }
     },
     created: function() {
-        axios.get('http://127.0.0.1:3000/user', {withCredentials:true})
+        axios.get('/user')
                             .then((res)=>{
                                 console.log(res);
                                 this.vipTableData = res.data;
@@ -169,7 +169,7 @@ export default {
     methods: {
         onSubmit: function () {
             var user = this.formVip;
-            axios.post('http://127.0.0.1:3000/user',user, {withCredentials:true})
+            axios.post('/user',user)
                             .then((res)=>{
                                 console.log(res);
                             })
