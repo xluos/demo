@@ -1,10 +1,10 @@
 <template>
     <el-row>
-        <el-col :span=6 class="menu">
+        <el-col :span=6 class="menu" v-show='ismenu'>
             <div class="menu-title">商品操作</div>
             <el-form ref="form" :model="formVip" label-width="60px">
                 <el-form-item label="会员ID">
-                    <el-input v-model="formVip.id" :disabled="true"></el-input>
+                    <el-input v-model="formVip._id" :disabled="true"></el-input>
                 </el-form-item>
                 <el-form-item label="用户名">
                     <el-input v-model="formVip.name"></el-input>
@@ -19,7 +19,10 @@
                     <el-input v-model="formVip.integral"></el-input>
                 </el-form-item>
                 <el-form-item label="总积分">
-                    <el-input v-model="formVip.sumIntegral"></el-input>
+                    <el-input v-model="formVip.sumintegral"></el-input>
+                </el-form-item>
+                <el-form-item label="余额">
+                    <el-input v-model="formVip.balance"></el-input>
                 </el-form-item>
                 <el-form-item label="等级">
                     <el-select v-model="formVip.grade" placeholder="请选择">
@@ -52,7 +55,7 @@
                     <el-input class="search-input" v-model="searchText" placeholder="搜索" prefix-icon="el-icon-search"></el-input>
                     <el-button type="primary" plain>确定</el-button>
                 </div>
-                <el-button type="primary" icon="el-icon-plus" circle></el-button>
+                <el-button type="primary" icon="el-icon-plus" circle @click="addUser"></el-button>
             </div>
             <el-table
                 class="vip-table"
@@ -61,7 +64,7 @@
                 stripe
                 style="width: 100%">
                 <el-table-column
-                prop="id"
+                prop="_id"
                 label="会员ID">
                 </el-table-column>
                 <el-table-column
@@ -81,7 +84,7 @@
                 label="现有积分">
                 </el-table-column>
                 <el-table-column
-                prop="sumIntegral"
+                prop="sumintegral"
                 label="总积分">
                 </el-table-column>
                 <el-table-column
@@ -101,17 +104,20 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
     data() {
         return {
+            ismenu: false,
             formVip: {
-                id: '',
+                _id: '',
                 name: '',
                 tel: '',
                 wc: '',
                 integral: '',
-                sumIntegral: '',
-                grade: '0'
+                sumintegral: '',
+                balance: '',
+                grade: 0
             },
             searchText: '',
             searchType: 'name',
@@ -136,23 +142,45 @@ export default {
             gradeOptions: [
                 {
                     label: '大众会员',
-                    value: '0'
+                    value: 0
                 },
                 {
                     label: '黄金会员',
-                    value: '1'
+                    value: 1
                 },
                 {
                     label: '钻石会员',
-                    value: '2'
+                    value: 2
                 }
             ],
             vipTableData: []
         }
     },
+    created: function() {
+        axios.get('http://127.0.0.1:3000/user', {withCredentials:true})
+                            .then((res)=>{
+                                console.log(res);
+                                this.vipTableData = res.data;
+                            })
+                            .catch((e)=>{
+                                console.log(e);
+                            })
+    },
     methods: {
         onSubmit: function () {
-
+            var user = this.formVip;
+            axios.post('http://127.0.0.1:3000/user',user, {withCredentials:true})
+                            .then((res)=>{
+                                console.log(res);
+                            })
+                            .catch((e)=>{
+                                console.log(e);
+                            })
+        },
+        addUser: function() {
+            console.log(this);
+            
+            this.ismenu = !this.ismenu;
         }
     }
 }

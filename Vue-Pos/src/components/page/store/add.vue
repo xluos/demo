@@ -29,7 +29,7 @@
             <el-form-item label="图片">
                 <el-upload
                     class="avatar-uploader"
-                    action="https://jsonplaceholder.typicode.com/posts/"
+                    action="http://127.0.0.1:3000/user"
                     :show-file-list="false"
                     :on-success="handleAvatarSuccess"
                     :before-upload="beforeAvatarUpload">
@@ -78,8 +78,8 @@ export default {
       "goods": Goods
   },
   methods: {
-      handleAvatarSuccess: function() {
-
+      handleAvatarSuccess(res, file) {
+        this.imageUrl = URL.createObjectURL(file.raw);
       },
       beforeAvatarUpload: function() {
 

@@ -5,10 +5,25 @@ module.exports = {
     create: function (user) {
       return User.create(user).exec()
     },
+    find: function () {
+      return User
+          .find({})
+          .addCreatedAt()
+          .exec();
+    },
+    update: function (user) {
+
+    },
     getUserByName: function (name) {
         return User
           .findOne({ name: name })
           .addCreatedAt()
           .exec()
-      }
+    },
+    getUserByTel: function (tel) {
+        return User
+          .findOne({ tel: tel })
+          .addCreatedAt()
+          .exec()
+    }
 }

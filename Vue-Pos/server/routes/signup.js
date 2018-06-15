@@ -4,6 +4,7 @@ const checkLogin = require('../middlewares/check.js').checkLogin
 const checkNotLogin = require('../middlewares/check.js').checkNotLogin
 const AdminModel = require('../models/admin')
 
+// 注册帐号
 router.post('/', checkNotLogin, function(req, res){
     var user = {
         name: req.fields.id,

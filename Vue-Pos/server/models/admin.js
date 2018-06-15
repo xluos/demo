@@ -10,5 +10,8 @@ module.exports = {
           .findOne({ name: name })
           .addCreatedAt()
           .exec()
-      }
+    },
+    update: function (user, newpwd) {
+        return Admin.update({name: user},{ $set:{ password: newpwd}}).exec();
+    }
 }

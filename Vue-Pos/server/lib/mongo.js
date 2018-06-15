@@ -36,7 +36,7 @@ exports.User = mongolass.model('User', {
   wx: {type: 'string' , require: false ,default: '暂未录入'},  //微信号
   integral: {type: 'number' , require: false , default: 0}, //现有积分
   sumintegral: {type: 'number' , require: false , default: 0},  //总积分
-  grade: {type: 'number', require: false , range: [1, 3], default: 1}, //会员等级默认为1
+  grade: {type: 'number', require: false , range: [0, 2], default: 0}, //会员等级默认为1
   balance: {type: 'number', require: false, default: 0},  //账户余额
   lasttime: {type: Mongolass.Types.Date}  //最后交易时间
 })

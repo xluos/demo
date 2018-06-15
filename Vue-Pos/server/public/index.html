@@ -17,6 +17,7 @@
     <button id='axiso-post'>Axios POST 登录</button>
     <button id='axiso-status'>Axios 获取状态</button>
     <button id='axiso-signup'>Axios POST 注册</button>
+    <button id='axiso-xiugai'>Axios PUT 修改</button>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
         function $(id) {
@@ -27,6 +28,7 @@
         $('axiso-post').addEventListener('click', login)
         $('axiso-status').addEventListener('click', getStatus)
         $('axiso-signup').addEventListener('click', signup)
+        $('axiso-xiugai').addEventListener('click', xiugai)
         function login() {
             
             axios.post('/login', {id: $('name').value, pwd: $('pwd').value })
@@ -61,6 +63,18 @@
             console.log('aa');
             
             axios.post('/signup', {id: $('name').value, pwd: $('pwd').value })
+                    .then(function(res){
+                        console.log(res);
+                        console.log(res.data.message);
+                        
+                        app.innerText = res.data.message;
+                    })
+                    .catch(function(error){
+                        console.log(error);
+                    })
+        }
+        function xiugai() {
+            axios.put('/login', {old: $('name').value, new: $('pwd').value })
                     .then(function(res){
                         console.log(res);
                         console.log(res.data.message);

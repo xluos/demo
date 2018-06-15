@@ -49,7 +49,22 @@ export default {
   },
   methods: {
       onSubmit: function() {
-
+            var user = this.formPwd;
+            axios.put('http://127.0.0.1:3000/login',user, {withCredentials:true})
+                            .then((res) => {
+                                if(res.data.status) {
+                                    this.$message({
+                                        message: res.data.message,
+                                        type: 'success'
+                                    });
+                                    this.$router.push('/pos');
+                                } else {
+                                    this.$message.error(res.data.message);
+                                }
+                            })
+                            .catch((error) => {
+                                this.$message.error('出现错误')
+                            });
       },
       signout: function() {
           axios.get('http://127.0.0.1:3000/login', {withCredentials:true})
