@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-row type="flex" class="row-bg" justify="space-between" >
+    <el-row type="flex" justify="space-between" >
       <el-col :span=16 class="title" >{{ title }}</el-col>
       <el-col :span=8>
         <el-input v-model="input" placeholder="搜索商品" prefix-icon="el-icon-search"></el-input>

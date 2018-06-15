@@ -29,7 +29,7 @@
             <el-form-item label="图片">
                 <el-upload
                     class="avatar-uploader"
-                    action="http://127.0.0.1:3000/user"
+                    action="http://127.0.0.1:3000/goods"
                     :show-file-list="false"
                     :on-success="handleAvatarSuccess"
                     :before-upload="beforeAvatarUpload">
@@ -38,8 +38,10 @@
                 </el-upload>
             </el-form-item>
             <el-form-item label="状态">
-                <el-radio v-model="form.sell" label="1">在售</el-radio>
-                <el-radio v-model="form.sell" label="0">下架</el-radio>
+                <el-radio-group v-model="form.sell">
+                    <el-radio label=true>在售</el-radio>
+                    <el-radio label=false>下架</el-radio>
+                </el-radio-group>
             </el-form-item>
             <el-form-item label="库存">
                 <el-input-number v-model="form.number" controls-position="right" :min="0" :max="999"></el-input-number>
@@ -51,7 +53,7 @@
           </el-form>
           <div class="add-page-goods">
             <h4>预览</h4>
-            <goods :goodsData=form></goods>
+            <goods :goodsData=goods></goods>
           </div>
     </div>
   </el-card>
@@ -59,6 +61,7 @@
 
 <script>
 import Goods from "@/components/common/goods"
+import axios from 'axios'
 
 export default {
   data() {
@@ -69,9 +72,15 @@ export default {
           cost: 0,
           price: 0,
           number: 0,
-          sell: true
+          sell: true,
+          imgurl: ''
       },
-      imageUrl: ''
+      imageUrl: '',
+      goods: {
+          goodsImg: '',
+          goodsName: '',
+          price: ''
+      }
     }
   },
   components: {
@@ -80,12 +89,20 @@ export default {
   methods: {
       handleAvatarSuccess(res, file) {
         this.imageUrl = URL.createObjectURL(file.raw);
+        this.goods.goodsImg = this.imageUrl;
+        
       },
       beforeAvatarUpload: function() {
 
       },
       onSubmit: function() {
-
+        axios.post('http://127.0.0.1:3000/goods',this.form, {withCredentials:true})
+                    .then((res)=>{
+                        console.log(res);
+                    })
+                    .catch((e)=>{
+                        console.log(e);
+                    })
       }
   }
 

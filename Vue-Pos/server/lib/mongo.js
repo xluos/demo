@@ -43,11 +43,12 @@ exports.User = mongolass.model('User', {
 
 exports.Goods = mongolass.model('Goods', {
   name: {type: 'string', require: true}, //商品名
+  type: {type: 'string', require: true, enum:['zhushi', 'xiaoshi','yinpin', 'taocan'], default: 'zhushi'},
   imgurl: {type: 'string', require: false, default: ''},  //图片地址
   cost: {type: 'number', require: true, default: 0}, //成本
   price: {type: 'number', require: true, default: 0}, //售价
-  status: {type: 'boolean', require: false, default: true}, // 状态
-  count: {type: 'number', require: false, default: 0} // 数量
+  sell: {type: 'boolean', require: false, default: true}, // 状态
+  number: {type: 'number', require: false, default: 0} // 数量
 })
 
 exports.Order = mongolass.model('Order', {

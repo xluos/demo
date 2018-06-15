@@ -11,8 +11,14 @@ module.exports = {
           .addCreatedAt()
           .exec();
     },
-    update: function (user) {
-
+    update: function (id, user) {
+      return User.update({_id: id}, {$set:user}).exec()
+    },
+    getUserById: function (id) {
+      return User
+        .findOne({ _id: id })
+        .addCreatedAt()
+        .exec()
     },
     getUserByName: function (name) {
         return User
@@ -25,5 +31,11 @@ module.exports = {
           .findOne({ tel: tel })
           .addCreatedAt()
           .exec()
+    },
+    getUserByWx: function (wx) {
+      return User
+        .findOne({ wx: wx })
+        .addCreatedAt()
+        .exec()
     }
 }

@@ -44,7 +44,23 @@ router.post('/', checkLogin, function(req, res) {
 })
 // 修改用户请求
 router.put('/', checkLogin, function(req, res) {
-
+    user = {
+        name: req.fields.name,
+        tel: req.fields.tel,
+        wx: req.fields.wx,
+        integral: parseFloat(req.fields.integral),
+        sumintegral: parseFloat(req.fields.sumintegral),
+        grade: parseFloat(req.fields.grade),
+        balance: parseFloat(req.fields.balance),
+        lasttime: req.fields.lasttime
+    };
+    UserModel.update(req.fields._id, user).then((res)=>{
+        console.log(res);
+        
+    }).catch((e)=>{
+        console.log(e);
+        
+    })
 })
 
 module.exports = router

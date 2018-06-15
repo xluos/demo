@@ -108,7 +108,7 @@ import axios from 'axios'
 export default {
     data() {
         return {
-            ismenu: false,
+            ismenu: true,
             formVip: {
                 _id: '',
                 name: '',

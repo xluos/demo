@@ -71,7 +71,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .row-bg {
   padding-top: 100px;
 }

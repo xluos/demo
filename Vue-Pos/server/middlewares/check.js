@@ -1,8 +1,5 @@
 module.exports = {
     checkLogin: function checkLogin (req, res, next) {
-        console.log('check');
-        console.log(req.session.user);
-        
         if (!req.session.user) {
             return res.json({status: false, message: "尚未登录"})
         }
@@ -10,8 +7,6 @@ module.exports = {
     },
 
     checkNotLogin: function checkNotLogin (req, res, next) {
-        console.log('check');
-        console.log(req.session.user);
         if (req.session.user) {
             return res.json({status: false, message: "不要重复登录"})
         }

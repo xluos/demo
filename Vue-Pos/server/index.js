@@ -7,14 +7,18 @@ const route = require('./routes')
 const config = require('config-lite')(__dirname)
 
 app.use(express.static(path.join(__dirname, 'public')))
+// app.use(express.static(path.join(__dirname, '../dist')))
 
 app.use("*", function (req, res, next) {
     res.header('Access-Control-Allow-Origin', 'http://localhost:8080');
-    res.header("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With");
+    // res.header('Access-Control-Allow-Origin', '*');
+    res.header("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With, X-HTTP-Method-Override, Content-Type");
     res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
     res.header("Access-Control-Allow-Credentials", "true");
     if (req.method === 'OPTIONS') {
-      res.send(200)
+        console.log('aaa+++');
+        res.send(200)
+        // next()  
     } else {
       next()
     }
