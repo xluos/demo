@@ -4,53 +4,7 @@
       <span>添加商品-基本信息</span>
     </div>
     <div class="add-page-content">
-          <el-form ref="form" :model="form" label-width="80px">
-            <el-form-item label="商品名称">
-              <el-input v-model="form.name" placeholder="输入产品名称"></el-input>
-            </el-form-item>
-            <el-form-item label="商品分类">
-                <el-select  v-model="form.type" placeholder="请选择产品分类">
-                    <el-option label="主食" value="zhushi"></el-option>
-                    <el-option label="小食" value="xiaoshi"></el-option>
-                    <el-option label="饮品" value="yinpin"></el-option>
-                    <el-option label="套餐" value="taocan"></el-option>
-                </el-select >
-            </el-form-item>
-            <el-form-item label="成本">
-                <el-input placeholder="成本" v-model="form.cost">
-                    <template slot="append">￥</template>
-                </el-input>
-            </el-form-item>
-            <el-form-item label="售价">
-                <el-input placeholder="售价" v-model="form.price">
-                    <template slot="append">￥</template>
-                </el-input>
-            </el-form-item>
-            <el-form-item label="图片">
-                <el-upload
-                    class="avatar-uploader"
-                    action="/goods"
-                    :show-file-list="false"
-                    :on-success="handleAvatarSuccess"
-                    :before-upload="beforeAvatarUpload">
-                    <img v-if="imageUrl" :src="imageUrl" class="avatar">
-                    <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-                </el-upload>
-            </el-form-item>
-            <el-form-item label="状态">
-                <el-radio-group v-model="form.sell">
-                    <el-radio label=true>在售</el-radio>
-                    <el-radio label=false>下架</el-radio>
-                </el-radio-group>
-            </el-form-item>
-            <el-form-item label="库存">
-                <el-input-number v-model="form.number" controls-position="right" :min="0" :max="999"></el-input-number>
-            </el-form-item>
-            <el-form-item>
-                <el-button type="primary" @click="onSubmit">确定</el-button>
-                <el-button>取消</el-button>
-            </el-form-item>
-          </el-form>
+          <addform :form="form"></addform>
           <div class="add-page-goods">
             <h4>预览</h4>
             <goods :goodsData=goods></goods>
@@ -61,7 +15,8 @@
 
 <script>
 import Goods from "@/components/common/goods"
-import axios from 'axios'
+import addForm from "@/components/page/store/addForm"
+
 
 export default {
   data() {
@@ -72,37 +27,70 @@ export default {
           cost: 0,
           price: 0,
           number: 0,
-          sell: true,
+          sell: '',
           imgurl: ''
       },
-      imageUrl: '',
-      goods: {
-          goodsImg: '',
-          goodsName: '',
-          price: ''
-      }
+      imageUrl: ''
     }
   },
+  computed: {
+      goods: function() {
+            var form = this.form; 
+            return {
+                goodsImg: form.imgurl,
+                goodsName: form.name,
+                price: form.price
+            }
+      }
+  },
   components: {
-      "goods": Goods
+      "goods": Goods,
+      "addform": addForm
   },
   methods: {
+
       handleAvatarSuccess(res, file) {
-        this.imageUrl = URL.createObjectURL(file.raw);
-        this.goods.goodsImg = this.imageUrl;
+          console.log(res);
+          console.log(file);
+          this.form.imgurl = URL.createObjectURL(file.raw);
         
       },
-      beforeAvatarUpload: function() {
+      beforeAvatarUpload(file) {
+        const isJPG = file.type === 'image/jpeg';
+        const isLt2M = file.size / 1024 / 1024 < 2;
 
+        if (!isJPG) {
+          this.$message.error('上传头像图片只能是 JPG 格式!');
+        }
+        if (!isLt2M) {
+          this.$message.error('上传头像图片大小不能超过 2MB!');
+        }
+        return isJPG && isLt2M;
       },
-      onSubmit: function() {
-        axios.post('/goods',this.form)
-                    .then((res)=>{
-                        console.log(res);
+      onSubmit(formName) {
+          this.$refs[formName].validate((valid) => {
+          if (valid) {
+            axios.post('/goods', this.form).then((req)=>{
+                if(req.data.status) {
+                    this.$message({
+                        type: 'success',
+                        message: req.data.message
                     })
-                    .catch((e)=>{
-                        console.log(e);
-                    })
+                    this.$refs[formName].resetFields();
+                } else {
+                    this.$message.error(req.data.message)
+                }
+            }).catch((e)=>{
+                console.log(e);
+                this.$message.error("提交失败")
+            })
+          } else {
+            this.$message.error("验证失败,请检查表单重新输入")
+          }
+        });
+      },
+      resetForm(formName) {
+        this.$refs[formName].resetFields();
       }
   }
 

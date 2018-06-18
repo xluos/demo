@@ -1,7 +1,8 @@
 <template>
   <el-row type="flex" class="row-bg" justify="center">
     <el-col :span=8>
-      <h1 class='login'><i class="el-icon-warning"></i> 登录后操作{{ $route.params.toPage }}</h1>
+      <h1 class='login'><i class="el-icon-warning"></i> 登录后操作</h1>
+      <p>帐号密码都是admin</p>
       <el-form ref="form" :model="form" label-width="40px">
         <el-form-item label="帐号">
           <el-input v-model="form.accounts"></el-input>

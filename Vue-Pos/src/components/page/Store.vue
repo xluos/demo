@@ -69,6 +69,7 @@ export default {
 }
 .content {
   padding: 10px;
+  height: 100%;
 }
 </style>
 

@@ -23,7 +23,7 @@ export default {
       path: '/',
       name: 'storeAll',
       component: GoodsTable,
-      props: { title: "全部商品" }
+      props: { title: "全部商品", type: 'all' }
     },
     {
       path: 'add',
@@ -34,13 +34,13 @@ export default {
       path: 'out',
       name: 'storeOut',
       component: GoodsTable,
-      props: { title: "下架商品" }
+      props: { title: "下架商品", type: 'out' }
     },
     {
       path: 'sale',
       name: 'storeSale',
       component: GoodsTable,
-      props: { title: "在售商品" }
+      props: { title: "在售商品", type: 'sale' }
     }
   ]
 }

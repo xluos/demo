@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="tableBox" v-loading="loading">
     <el-row type="flex" justify="space-between" >
       <el-col :span=16 class="title" >{{ title }}</el-col>
       <el-col :span=8>
@@ -9,13 +9,12 @@
     </el-row>
     <el-table
     :data="table"
-    height="250"
     border
     style="width: 100%">
     <el-table-column
-      prop="date"
+      prop="_id"
       label="商品ID"
-      width="180">
+      width="210">
     </el-table-column>
     <el-table-column
       prop="name"
@@ -23,15 +22,15 @@
       width="180">
     </el-table-column>
     <el-table-column
-      prop="address"
+      prop="cost"
       label="成本">
     </el-table-column>
     <el-table-column
-      prop="address"
+      prop="price"
       label="售价">
     </el-table-column>
     <el-table-column
-      prop="address"
+      prop="number"
       label="库存">
     </el-table-column>
     <el-table-column label="操作">
@@ -50,18 +49,51 @@
 </template>
 
 <script>
-export default {
+import addForm from "@/components/page/store/addForm"
+import axios from "axios"
 
-    props: [
-        "title"
-    ],
-    data() {
-        return {
-        input: '',
-        table: []
-        }
+export default {
+  props: ["title", "type"],
+  data() {
+    return {
+      input: "",
+      table: [],
+      loading: true
+    };
+  },
+  watch: {
+    type() {
+      this.updata()
     }
-}
+  },
+  mounted() {
+    this.updata()
+  },
+  components: {
+    "addform": addForm
+  },
+  methods: {
+    updata() {
+      this.loading = true;
+      axios
+        .get(`/goods/${this.type}`)
+        .then(req => {
+          this.table = req.data.data;
+          this.loading = false;
+        })
+        .catch(() => {
+          this.$message.error("获取数据出错");
+          this.loading = false;
+        });
+    },
+    handleEdit(index, row) {
+      
+    },
+    handleDelete(index, row) {
+      this.table.splice(index,1);
+    }
+  }
+};
 </script>
 
 <style scoped>
@@ -73,5 +105,9 @@ export default {
   height: 50px;
   text-align: left;
   line-height: 50px;
+}
+.tableBox {
+  height: 100%;
+  overflow-y: auto;
 }
 </style>

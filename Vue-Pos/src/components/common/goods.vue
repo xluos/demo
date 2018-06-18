@@ -1,11 +1,18 @@
 <template>
-  <div class="goods">
+  <!-- <div class="goods">
     <img :src="goodsData.goodsImg" class="foodImg">
     <div class="text">
         <p class="foodName">{{goodsData.goodsName}}</p>
         <p class="foodPrice">￥{{goodsData.price}}元</p>
     </div>
-  </div>
+  </div> -->
+  <el-card :body-style="{ padding: '0px' }">
+      <img :src=goodsData.goodsImg class="image">
+      <div style="padding: 8px;">
+        <span>{{goodsData.goodsName}}</span>
+        <div class="bottom">￥{{goodsData.price}}元</div>
+      </div>
+  </el-card>
 </template>
 
 <script>
@@ -20,7 +27,19 @@ export default {
 </script>
 
 <style scoped>
-.goods {
+.el-card {
+  margin: 10px;
+}
+.bottom {
+    margin-top: 13px;
+    line-height: 12px;
+}
+.image {
+  width: 120px;
+  height: 120px;
+  display: block;
+}
+/* .goods {
   display: flex;
   justify-content: space-between;
   width: 150px;
@@ -45,6 +64,6 @@ export default {
 .foodPrice{
     font-size: 16px;
     margin: 10px 0;
-}
+} */
 </style>
 

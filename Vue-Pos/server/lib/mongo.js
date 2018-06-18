@@ -40,6 +40,7 @@ exports.User = mongolass.model('User', {
   balance: {type: 'number', require: false, default: 0},  //账户余额
   lasttime: {type: Mongolass.Types.Date}  //最后交易时间
 })
+exports.User.index({ name: 1 }, { unique: true }).exec()// 根据用户名找到用户，用户名全局唯一
 
 exports.Goods = mongolass.model('Goods', {
   name: {type: 'string', require: true}, //商品名

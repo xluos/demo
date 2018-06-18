@@ -1,12 +1,27 @@
 const Goods = require('../lib/mongo').Goods
 
 module.exports = {
-    // 注册一个用户
+    // 创建商品
     create: function (goods) {
-      return Admin.create(goods).exec()
+      return Goods.create(goods).exec()
     },
-    getUserByName: function (name) {
-        return Admin
+    getGoodsAll: function() {
+      return Goods
+              .find({})
+              .exec()
+    },
+    getGoodsSale: function() {
+      return Goods
+              .find({ sell: true})
+              .exec()
+    },
+    getGoodsOut: function() {
+      return Goods
+              .find({ sell: false})
+              .exec()
+    },
+    getGoodsByName: function (name) {
+        return Goods
           .findOne({ name: name })
           .addCreatedAt()
           .exec()
