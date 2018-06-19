@@ -10,6 +10,7 @@
     <el-table
     :data="table"
     border
+    height="90%"
     style="width: 100%">
     <el-table-column
       prop="_id"
@@ -213,6 +214,5 @@ export default {
 }
 .tableBox {
   height: 100%;
-  overflow-y: auto;
 }
 </style>

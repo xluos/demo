@@ -8,6 +8,7 @@
   },
   "devDependencies": {
     "cookie-parser": "^1.4.3",
+    "mockjs": "^1.0.1-beta3",
     "supervisor": "^0.12.0"
   },
   "dependencies": {

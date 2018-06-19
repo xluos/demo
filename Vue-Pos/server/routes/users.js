@@ -7,59 +7,50 @@ router.get('/', checkLogin, function(req, res) {
     UserModel.find().then((msg)=> {
         res.send(msg)
     }).catch((e)=>{
-        console.log(e);
+        res.send(e);
+    })
+})
+router.get('/query', checkLogin, function(req, res) {
+    var type = req.query.type;
+    var val = req.query.val;
+    UserModel.getUsersByTypeVal(type, val).then((msg)=> {
+        res.send(msg)
+    }).catch((e)=>{
         res.send(e);
     })
 })
 // 创建用户请求
 router.post('/', checkLogin, function(req, res) {
-    user = {
-        name: req.fields.name,
-        tel: req.fields.tel,
-        wx: req.fields.wx,
-        integral: parseFloat(req.fields.integral),
-        sumintegral: parseFloat(req.fields.sumintegral),
-
-        grade: parseFloat(req.fields.grade),
-        balance: parseFloat(req.fields.balance),
-        lasttime: req.fields.lasttime
-    };
+    user = req.fields;
     UserModel.create(user).then((users)=>{
-        console.log('-----------------------');
-        console.log('-----------------------');
-        console.log('-----------------------');
-        
         console.log(users);
-        res.send({status: true, message: 'true'});
+        
+        res.send({status: true, message: "创建用户成功"});
         
     }).catch((e)=>{
-        console.log('+++++++++++++++++++++++');
-        console.log('+++++++++++++++++++++++');
-        console.log('+++++++++++++++++++++++');
-        
         console.log(e);
-
-        res.send({status: false, message: 'false'});
+        
+        res.send({status: false, message: "插入失败,请检查数据"});
     })
 })
 // 修改用户请求
 router.put('/', checkLogin, function(req, res) {
-    user = {
-        name: req.fields.name,
-        tel: req.fields.tel,
-        wx: req.fields.wx,
-        integral: parseFloat(req.fields.integral),
-        sumintegral: parseFloat(req.fields.sumintegral),
-        grade: parseFloat(req.fields.grade),
-        balance: parseFloat(req.fields.balance),
-        lasttime: req.fields.lasttime
-    };
-    UserModel.update(req.fields._id, user).then((res)=>{
-        console.log(res);
-        
+    user = req.fields;
+
+    UserModel.update(req.fields._id, user).then((msg)=>{
+        res.json({status: true, message: '修改成功'});
     }).catch((e)=>{
-        console.log(e);
-        
+        res.json({status: false, message: '修改失败'});
+    })
+})
+// 删除用户请求
+router.delete('/:id', checkLogin, function(req, res) {
+    var id = req.params.id;
+    
+    UserModel.delete(id).then((msg)=>{
+        res.json({ status: true, message: "删除成功", data:msg});
+    }).catch((e)=>{
+        res.json({ status: false, message: "错误!"})
     })
 })
 

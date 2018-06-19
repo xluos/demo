@@ -8,34 +8,21 @@ module.exports = {
     find: function () {
       return User
           .find({})
-          .addCreatedAt()
           .exec();
     },
     update: function (id, user) {
       return User.update({_id: id}, {$set:user}).exec()
     },
-    getUserById: function (id) {
+    getUsersByTypeVal: function (type, val) {
+      var findVal = {};
+      findVal[type] = {$regex:val }
       return User
-        .findOne({ _id: id })
-        .addCreatedAt()
+        .find(findVal)
         .exec()
     },
-    getUserByName: function (name) {
-        return User
-          .findOne({ name: name })
-          .addCreatedAt()
-          .exec()
-    },
-    getUserByTel: function (tel) {
-        return User
-          .findOne({ tel: tel })
-          .addCreatedAt()
-          .exec()
-    },
-    getUserByWx: function (wx) {
+    delete: function(id) {
       return User
-        .findOne({ wx: wx })
-        .addCreatedAt()
-        .exec()
+              .deleteOne({ _id: id })
+              .exec()
     }
 }
