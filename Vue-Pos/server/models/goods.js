@@ -22,8 +22,18 @@ module.exports = {
     },
     getGoodsByName: function (name) {
         return Goods
-          .findOne({ name: name })
+          .find({ name: {$regex:name }})
           .addCreatedAt()
           .exec()
+    },
+    update: function(form) {
+      return Goods
+              .update({ _id: form._id }, { $set:form })
+              .exec()
+    },
+    delete: function(id) {
+      return Goods
+              .deleteOne({ _id: id })
+              .exec()
     }
 }

@@ -51,7 +51,7 @@
 <script>
 import axios from 'axios'
 export default {
-    props:["form"],
+    props:["form", "axiostype"],
     data() {
         return {
             rules: {
@@ -81,10 +81,7 @@ export default {
     methods: {
 
       handleAvatarSuccess(res, file) {
-          console.log(res);
-          console.log(file);
-          this.form.imgurl = URL.createObjectURL(file.raw);
-        
+          this.form.imgurl = "/img/"+res;
       },
       beforeAvatarUpload(file) {
         const isJPG = file.type === 'image/jpeg';
@@ -99,15 +96,19 @@ export default {
         return isJPG && isLt2M;
       },
       onSubmit(formName) {
+
+          
           this.$refs[formName].validate((valid) => {
           if (valid) {
-            axios.post('/goods', this.form).then((req)=>{
+            axios[this.axiostype]('/goods', this.form).then((req)=>{
                 if(req.data.status) {
                     this.$message({
                         type: 'success',
                         message: req.data.message
                     })
                     this.$refs[formName].resetFields();
+                    
+                    this.$emit('click',false);
                 } else {
                     this.$message.error(req.data.message)
                 }
@@ -129,6 +130,28 @@ export default {
 
 
 <style scoped>
-
+.avatar-uploader .avatar-uploader-icon{
+    border: 1px dashed #d9d9d9;
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+.avatar-uploader .avatar-uploader-icon:hover {
+    border-color: #409eff;
+}
+.avatar-uploader-icon {
+    font-size: 24px;
+    color: #8c939d;
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+}
+.avatar {
+    width: 100px;
+    height: 100px;
+    display: block;
+}
 </style>
 
