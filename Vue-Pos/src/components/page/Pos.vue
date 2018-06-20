@@ -1,11 +1,11 @@
 <template>
-  <div class="pos">
+  <div class="pos" v-loading="loadingPos">
     <el-row>
       <el-col :span='9' class="pos-order">
         <el-tabs type="card">
           <el-tab-pane label="点餐" >
             <el-table :data="tableData" size="small" max-height="400">
-              <el-table-column align="center" prop="goodsName" label="商品名称"></el-table-column>
+              <el-table-column align="center" prop="name" label="商品名称"></el-table-column>
               <el-table-column align="center" prop="oneprice" label="单价"></el-table-column>
               <el-table-column align="center" prop="count" label="数量" width="50"></el-table-column>
               <el-table-column align="center" prop="price" label="金额"></el-table-column>
@@ -45,7 +45,7 @@
           <ul class="often-goods-list">
             <li v-for="(goods,index) in oftenGoods" class="often-goods-item">
               <el-button size="small" @click="addOftenGoodsList(goods)" plain>
-                <span>{{ goods.goodsName }}</span>
+                <span>{{ goods.name }}</span>
                 <span class="o-price">￥{{ goods.price }}元</span>
               </el-button>
             </li>
@@ -54,30 +54,9 @@
 
         <div class="goods-type">
           <el-tabs type="card">
-            <el-tab-pane label="主食">
+            <el-tab-pane :label="typeText[index]" v-for="typeGoods,index in typeGoodsAll" :key="'type'+index">
               <ul class='cookList'>
-                <li v-for="goods in type0Goods" @click="addOftenGoodsList(goods)">
-                    <goods :goodsData=goods></goods>
-                </li>
-              </ul>
-            </el-tab-pane>
-            <el-tab-pane label="小食">
-              <ul class='cookList'>
-                <li v-for="goods in type1Goods" @click="addOftenGoodsList(goods)">
-                    <goods :goodsData=goods></goods>
-                </li>
-              </ul>
-            </el-tab-pane>
-            <el-tab-pane label="饮品">
-              <ul class='cookList'>
-                <li v-for="goods in type2Goods" @click="addOftenGoodsList(goods)">
-                    <goods :goodsData=goods></goods>
-                </li>
-              </ul>
-            </el-tab-pane>
-            <el-tab-pane label="套餐">
-              <ul class='cookList'>
-                <li v-for="goods in type3Goods" @click="addOftenGoodsList(goods)">
+                <li v-for="goods,index in typeGoods" @click="addOftenGoodsList(goods)" :key="'goods' + index">
                     <goods :goodsData=goods></goods>
                 </li>
               </ul>
@@ -98,18 +77,27 @@ export default {
     return {
       msg: 'POS',
       checkoutLoading: false,
+      loadingPos: true,
       tableData: [],
       oftenGoods:[],
-      type0Goods:[],
-      type1Goods:[],
-      type2Goods:[],
-      type3Goods:[],
+      typeText:["主食","小食","饮品","套餐"],
+      typeGoodsAll:[]
     }
   },
   // 动态获取后台数据
   created: function () {
-    Axios.get('http://jspang.com/DemoApi/oftenGoods.php').then(response=>{
-      this.oftenGoods=response.data;
+
+    Axios.all([
+      Axios.get('http://jspang.com/DemoApi/oftenGoods.php'),
+      Axios.get('/goods/type?type=zhushi'),
+      Axios.get('/goods/type?type=xiaoshi'),
+      Axios.get('/goods/type?type=yinpin'),
+      Axios.get('/goods/type?type=taocan')
+
+    ]).then(response=>{
+      this.oftenGoods=response.shift().data;
+      response.forEach(item => this.typeGoodsAll.push(item.data.data));
+      this.loadingPos = false;
     }).catch(error=>{
       this.$message({
             message: "数据获取失败，请检查网络",
@@ -117,20 +105,29 @@ export default {
             duration: 3000
           })
     });
-    Axios.get('http://jspang.com/DemoApi/typeGoods.php')
-      .then(response=>{
-         this.type0Goods=response.data[0];
-         this.type1Goods=response.data[1];
-         this.type2Goods=response.data[2];
-         this.type3Goods=response.data[3];
-      })
-      .catch(error=>{
-          this.$message({
-            message: "数据获取失败，请检查网络",
-            type: "error",
-            duration: 3000
-          })
-      })
+    // Axios.get('http://jspang.com/DemoApi/oftenGoods.php').then(response=>{
+    //   this.oftenGoods=response.data;
+    // }).catch(error=>{
+    //   this.$message({
+    //         message: "数据获取失败，请检查网络",
+    //         type: "error",
+    //         duration: 3000
+    //       })
+    // });
+    // Axios.get('http://jspang.com/DemoApi/typeGoods.php')
+    //   .then(response=>{
+    //      this.type0Goods=response.data[0];
+    //      this.type1Goods=response.data[1];
+    //      this.type2Goods=response.data[2];
+    //      this.type3Goods=response.data[3];
+    //   })
+    //   .catch(error=>{
+    //       this.$message({
+    //         message: "数据获取失败，请检查网络",
+    //         type: "error",
+    //         duration: 3000
+    //       })
+    //   })
 
   },
   mounted: function () {
@@ -162,9 +159,9 @@ export default {
   },
   methods: {
     // 根据传入的商品，返回索引。若不存在则返回 -1
-    getGoodsIndex(goodsId) {
+    getGoodsIndex(_id) {
       for(let i = 0; i < this.tableData.length; i++) {
-        if(goodsId === this.tableData[i].goodsId) {
+        if(_id === this.tableData[i]._id) {
           return i;
         }
       }
@@ -172,8 +169,12 @@ export default {
     },
     // 增加一个
     addOftenGoodsList(goods) {
+      console.log(goods.name);
+      
       // 查找列表中是否有这个商品
-      let goodsIndex = this.getGoodsIndex(goods.goodsId);
+      let goodsIndex = this.getGoodsIndex(goods._id);
+      console.log(goodsIndex);
+      
       // 存在商品，数量++
       if(goodsIndex >= 0) {
         this.tableData[goodsIndex].count ++;
@@ -181,8 +182,8 @@ export default {
       } else {
         // 否则添加这件商品
         this.tableData.push({
-          goodsId: goods.goodsId,
-          goodsName: goods.goodsName,
+          _id: goods._id,
+          name: goods.name,
           oneprice: goods.price,
           count: 1,
           price: goods.price
@@ -193,7 +194,7 @@ export default {
     },
     // 减少一个数量
     subOftenGoodsList(goods) {
-      let goodsIndex = this.getGoodsIndex(goods.goodsId);
+      let goodsIndex = this.getGoodsIndex(goods._id);
 
       this.tableData[goodsIndex].count --;
       // 重新计算价钱
@@ -206,7 +207,7 @@ export default {
     },
     // 根据传入的商品，删除单个数据
     removeOne(goods) {
-      let goodsIndex = this.getGoodsIndex(goods.goodsId);
+      let goodsIndex = this.getGoodsIndex(goods._id);
       this.del(goodsIndex);
     },
     // 根据索引删除一条数据
@@ -248,51 +249,63 @@ export default {
 </script>
 
 
-<style scoped>
-.pos-order {
+<style>
+.pos, .el-row, .el-col, .el-tabs {
+  height: 100%;
+}
+.pos .el-tabs__content {
+  height: 90%;
+  overflow-y: auto;
+}
+.pos .pos-order {
   border-right: 1px solid #c0ccda;
 }
-.icon-btn {
+.pos .icon-btn {
   cursor: pointer;
   margin: 5px;
   font-size: 18px;
 }
-.btn-row {
+.pos .btn-row {
   margin-top: 50px;
 }
-.often-goods {
-  height: 250px;
+.pos .often-goods {
+  height: 35%;
   overflow: hidden;
 }
-.often-goods .title {
+.pos .often-goods .title {
   height: 20px;
   border-bottom: 1px solid #d3dce6;
   background-color: #f9fafc;
   padding: 10px;
   text-align: left;
 }
-.often-goods-item {
+.pos .often-goods-item {
   list-style: none;
   float: left;
   margin: 10px;
 }
-.o-price {
+.pos .o-price {
   color: #409EFF;
   font-size: 12px;
 }
-.often-goods-list {
+.pos .often-goods-list {
+  height: 90%;
   overflow: auto;
 }
-.goods-type {
-  /* padding: 10px; */
+.pos .goods-type {
+  height: 65%;
 }
-.cookList li{
+.pos .cookList li{
     list-style: none;
     float:left;
     cursor: pointer;
+    margin: 10px;
 }
-.count-box {
+.pos .count-box {
   width: 90%;
   margin: 0 auto;
+}
+.pos li .el-card {
+  margin: 0;
 }
 </style>

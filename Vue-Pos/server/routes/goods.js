@@ -55,13 +55,27 @@ router.get('/out', checkLogin, function(req, res) {
         res.json({ status: false, message: "错误!"})
     })
 })
-router.get('/name/:name',function(req, res){
+// 名称查询
+router.get('/name/:name', checkLogin, function(req, res){
     GoodsModel.getGoodsByName(req.params.name).then((msg)=>{
         res.json({ status: true, message: "成功", data:msg});
     }).catch((e)=>{
-        res.json({ status: false, message: "错误!"})
+        res.json({ status: false, message: "错误!", data: e})
     })
 })
+
+// 根据类型获取
+router.get('/type', checkLogin, function(req, res){
+    var type = req.query.type
+    GoodsModel.getGoodsByType(type).then((msg)=>{
+        res.json({ status: true, message: "成功", data:msg});
+    }).catch((e)=>{
+        console.log(e);
+        
+        res.json({ status: false, message: "错误!", data: e})
+    })
+})
+
 
 // 删除商品
 

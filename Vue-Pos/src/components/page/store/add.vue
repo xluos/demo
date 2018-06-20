@@ -37,8 +37,8 @@ export default {
       goods: function() {
             var form = this.form; 
             return {
-                goodsImg: form.imgurl,
-                goodsName: form.name,
+                imgurl: form.imgurl,
+                name: form.name,
                 price: form.price
             }
       }

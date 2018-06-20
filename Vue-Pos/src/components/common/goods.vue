@@ -1,15 +1,15 @@
 <template>
   <!-- <div class="goods">
-    <img :src="goodsData.goodsImg" class="foodImg">
+    <img :src="goodsData.imgurl" class="foodImg">
     <div class="text">
-        <p class="foodName">{{goodsData.goodsName}}</p>
+        <p class="foodName">{{goodsData.name}}</p>
         <p class="foodPrice">￥{{goodsData.price}}元</p>
     </div>
   </div> -->
   <el-card :body-style="{ padding: '0px' }">
-      <img :src=goodsData.goodsImg class="image">
+      <img :src=goodsData.imgurl class="image">
       <div style="padding: 8px;">
-        <span>{{goodsData.goodsName}}</span>
+        <span>{{goodsData.name}}</span>
         <div class="bottom">￥{{goodsData.price}}元</div>
       </div>
   </el-card>

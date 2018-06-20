@@ -22,6 +22,33 @@ mongolass.plugin('addCreatedAt', {
   }
 })
 
+// 
+mongolass.plugin('map', {
+  afterFind: function (results, map) {
+    var mapkey = Object.keys(map)
+    var newresults = [];
+    results.forEach((item)=>{
+      var newresult = {};
+      mapkey.forEach((key)=>{
+        newresult[key] = item[key]
+      })
+      newresults.push(newresult);
+    })
+    
+    return newresults
+  },
+  afterFindOne: function (result, map) {
+    var mapkey = Object.keys(map)
+    var newresults = {};
+    if (result) {
+      mapkey.forEach((key)=>{
+        newresults[key] = item[key]
+      })
+    }
+    return newresults
+  }
+})
+
 mongolass.connect(config.mongodb)
 
 exports.Admin = mongolass.model('Admin', {
