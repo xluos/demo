@@ -82,5 +82,11 @@ exports.Goods = mongolass.model('Goods', {
 exports.Order = mongolass.model('Order', {
   time: {type: Mongolass.Types.Date, require: true},
   paytype: {type: 'string', require: false, enum:['cash', 'balance','online'], default: 'cash'},
-  goodsid:[{type: 'string', require: false }]
+  goodslist:[{
+              _id: {type: 'string', require: true },
+              type: {type: 'string', require: true },
+              name: {type: 'string', require: true },
+              count: {type: 'number', require: true }  
+          }],
+  userid: {type: 'string', require: false, default: '路人甲'},
 })

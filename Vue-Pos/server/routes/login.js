@@ -44,23 +44,12 @@ router.put('/', checkLogin, function(req, res) {
         if(result.password === req.fields.old) {
             AdminModel.update(req.session.user.name, req.fields.new)
                         .then((result) => {
-                            console.log('-------------------------');
-                            console.log('-------------------------');
-                            console.log('-------------------------');
-                            console.log('-------------------------');
-                            
-                            console.log(result);
-                            
+
                             req.session.user = null;
                             res.json({status: true, message: "修改成功"});
                         })
                         .catch((e) => {
-                            console.log('++++++++++++++++++++++++++');
-                            console.log('++++++++++++++++++++++++++');
-                            console.log('++++++++++++++++++++++++++');
-                            console.log('++++++++++++++++++++++++++');
                             
-                            console.log(e);
                             res.json({status: false, message: "修改失败"});
                         })
             

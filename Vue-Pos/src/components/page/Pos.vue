@@ -69,99 +69,73 @@
 </template>
 
 <script>
-import Axios from 'axios'
-import Goods from '@/components/common/goods'
+import Axios from "axios";
+import Goods from "@/components/common/goods";
 export default {
-  name: 'Pos',
-  data () {
+  name: "Pos",
+  data() {
     return {
-      msg: 'POS',
+      msg: "POS",
       checkoutLoading: false,
       loadingPos: true,
       tableData: [],
-      oftenGoods:[],
-      typeText:["主食","小食","饮品","套餐"],
-      typeGoodsAll:[]
-    }
+      oftenGoods: [],
+      typeText: ["主食", "小食", "饮品", "套餐"],
+      typeGoodsAll: []
+    };
   },
   // 动态获取后台数据
-  created: function () {
-
+  created: function() {
     Axios.all([
-      Axios.get('http://jspang.com/DemoApi/oftenGoods.php'),
-      Axios.get('/goods/type?type=zhushi'),
-      Axios.get('/goods/type?type=xiaoshi'),
-      Axios.get('/goods/type?type=yinpin'),
-      Axios.get('/goods/type?type=taocan')
-
-    ]).then(response=>{
-      this.oftenGoods=response.shift().data;
-      response.forEach(item => this.typeGoodsAll.push(item.data.data));
-      this.loadingPos = false;
-    }).catch(error=>{
-      this.$message({
-            message: "数据获取失败，请检查网络",
-            type: "error",
-            duration: 3000
-          })
-    });
-    // Axios.get('http://jspang.com/DemoApi/oftenGoods.php').then(response=>{
-    //   this.oftenGoods=response.data;
-    // }).catch(error=>{
-    //   this.$message({
-    //         message: "数据获取失败，请检查网络",
-    //         type: "error",
-    //         duration: 3000
-    //       })
-    // });
-    // Axios.get('http://jspang.com/DemoApi/typeGoods.php')
-    //   .then(response=>{
-    //      this.type0Goods=response.data[0];
-    //      this.type1Goods=response.data[1];
-    //      this.type2Goods=response.data[2];
-    //      this.type3Goods=response.data[3];
-    //   })
-    //   .catch(error=>{
-    //       this.$message({
-    //         message: "数据获取失败，请检查网络",
-    //         type: "error",
-    //         duration: 3000
-    //       })
-    //   })
-
+      Axios.get("http://jspang.com/DemoApi/oftenGoods.php"),
+      Axios.get("/goods/type?type=zhushi"),
+      // Axios.get("/goods/type?type=xiaoshi"),
+      // Axios.get("/goods/type?type=yinpin"),
+      // Axios.get("/goods/type?type=taocan")
+    ])
+      .then(response => {
+        this.oftenGoods = response.shift().data;
+        response.forEach(item => this.typeGoodsAll.push(item.data.data));
+        this.loadingPos = false;
+      })
+      .catch(error => {
+        this.$message({
+          message: "数据获取失败，请检查网络",
+          type: "error",
+          duration: 3000
+        });
+      });
   },
-  mounted: function () {
+  mounted: function() {
     let h = document.body.clientHeight;
-    document.getElementsByClassName("pos-order")[0].style.height = h + 'px';
-
+    document.getElementsByClassName("pos-order")[0].style.height = h + "px";
   },
   components: {
-    'goods': Goods
+    goods: Goods
   },
   computed: {
     // 计算总数
     totalCount: function() {
       let count = 0;
-      this.tableData.forEach(element=>{
+      this.tableData.forEach(element => {
         count += element.count;
-      })
+      });
       return count;
     },
     // 计算总价
     totalMoney: function() {
       let money = 0;
-      this.tableData.forEach(element=>{
+      this.tableData.forEach(element => {
         money += element.price;
-      })
+      });
       return money;
-    },
-
+    }
   },
   methods: {
     // 根据传入的商品，返回索引。若不存在则返回 -1
     getGoodsIndex(_id) {
-      for(let i = 0; i < this.tableData.length; i++) {
-        if(_id === this.tableData[i]._id) {
+      for (let i = 0; i < this.tableData.length; i++) {
+        if (_id === this.tableData[i]._id) {
           return i;
         }
       }
@@ -170,14 +144,14 @@ export default {
     // 增加一个
     addOftenGoodsList(goods) {
       console.log(goods.name);
-      
+
       // 查找列表中是否有这个商品
       let goodsIndex = this.getGoodsIndex(goods._id);
       console.log(goodsIndex);
-      
+
       // 存在商品，数量++
-      if(goodsIndex >= 0) {
-        this.tableData[goodsIndex].count ++;
+      if (goodsIndex >= 0) {
+        this.tableData[goodsIndex].count++;
         this.tableData[goodsIndex].price += this.tableData[goodsIndex].oneprice;
       } else {
         // 否则添加这件商品
@@ -186,22 +160,21 @@ export default {
           name: goods.name,
           oneprice: goods.price,
           count: 1,
-          price: goods.price
-        })
+          price: goods.price,
+          type: goods.type
+        });
       }
-
-
     },
     // 减少一个数量
     subOftenGoodsList(goods) {
       let goodsIndex = this.getGoodsIndex(goods._id);
 
-      this.tableData[goodsIndex].count --;
+      this.tableData[goodsIndex].count--;
       // 重新计算价钱
       this.tableData[goodsIndex].price -= this.tableData[goodsIndex].oneprice;
 
       // 数量为 0 时删除
-      if(this.tableData[goodsIndex].count == 0) {
+      if (this.tableData[goodsIndex].count == 0) {
         this.del(goodsIndex);
       }
     },
@@ -212,7 +185,7 @@ export default {
     },
     // 根据索引删除一条数据
     del(index) {
-      this.tableData.splice(index,1);
+      this.tableData.splice(index, 1);
     },
     // 清空点餐列表
     remove() {
@@ -222,35 +195,39 @@ export default {
     staging() {
       // 暂未实现
     },
-    // 结账功能（因为没有后台，所以模拟实现）
+    // 结账功能
     checkout() {
-      if(this.tableData.length == 0) {
+      if (this.tableData.length == 0) {
         this.$message({
-            message: "不能提交空数据！",
-            type: "error",
-            duration: 1000
-          })
+          message: "不能提交空数据！",
+          type: "error",
+          duration: 1000
+        });
       } else {
         this.checkoutLoading = true;
-        setTimeout(()=>{
+        Axios.post("/order", { goodslist: this.tableData}).then(msg => {
           this.remove();
           this.checkoutLoading = false;
           this.$message({
             message: "结账成功！",
             type: "success",
-            duration: 1000
-          })
-        }, Math.random()*1000)
+          });
+        }).catch((e)=>{
+          console.log(e);
+          this.$message.error("提交出错！")
+        })
       }
     }
-
   }
-}
+};
 </script>
 
 
 <style>
-.pos, .el-row, .el-col, .el-tabs {
+.pos,
+.el-row,
+.el-col,
+.el-tabs {
   height: 100%;
 }
 .pos .el-tabs__content {
@@ -285,7 +262,7 @@ export default {
   margin: 10px;
 }
 .pos .o-price {
-  color: #409EFF;
+  color: #409eff;
   font-size: 12px;
 }
 .pos .often-goods-list {
@@ -295,11 +272,11 @@ export default {
 .pos .goods-type {
   height: 65%;
 }
-.pos .cookList li{
-    list-style: none;
-    float:left;
-    cursor: pointer;
-    margin: 10px;
+.pos .cookList li {
+  list-style: none;
+  float: left;
+  cursor: pointer;
+  margin: 10px;
 }
 .pos .count-box {
   width: 90%;

@@ -71,7 +71,6 @@ router.get('/type', checkLogin, function(req, res){
         res.json({ status: true, message: "成功", data:msg});
     }).catch((e)=>{
         console.log(e);
-        
         res.json({ status: false, message: "错误!", data: e})
     })
 })
