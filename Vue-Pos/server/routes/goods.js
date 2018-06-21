@@ -3,6 +3,7 @@ const router = express.Router()
 const path = require('path')
 const checkLogin = require('../middlewares/check.js').checkLogin
 const GoodsModel = require('../models/goods')
+const StatisticalModel = require('../models/statistical')
 
 // 创建
 router.post('/', checkLogin, function(req, res) {
@@ -63,7 +64,18 @@ router.get('/name/:name', checkLogin, function(req, res){
         res.json({ status: false, message: "错误!", data: e})
     })
 })
-
+// 根据id列表返回goods列表
+router.get('/ten', checkLogin, async function(req, res) {
+    var data = await StatisticalModel.getGoodsTopTen();
+    var tenGoods = []
+    for(let i = 0; i < 10; i++) {
+        tenGoods[i] = await GoodsModel.getGoodsById(data[i]._id)
+        tenGoods[i] = tenGoods[i][0]
+    }
+    
+    res.send(tenGoods);
+    
+})
 // 根据类型获取
 router.get('/type', checkLogin, function(req, res){
     var type = req.query.type

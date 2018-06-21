@@ -4,6 +4,6 @@ module.exports = function (app) {
     app.use('/user', require('./users'));
     app.use('/goods', require('./goods'));
     app.use('/order', require('./order'));
-    app.use('/statistical', require('./statistical'));
+    app.use('/stats', require('./statistical'));
 
 }

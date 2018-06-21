@@ -9,7 +9,7 @@
   <el-card :body-style="{ padding: '0px' }">
       <img :src=goodsData.imgurl class="image">
       <div style="padding: 8px;">
-        <span>{{goodsData.name}}</span>
+        <span class="name">{{goodsData.name}}</span>
         <div class="bottom">￥{{goodsData.price}}元</div>
       </div>
   </el-card>
@@ -29,6 +29,10 @@ export default {
 <style scoped>
 .el-card {
   margin: 10px;
+  width: 120px;
+}
+.el-card .name {
+  font-size: 12px;
 }
 .bottom {
     margin-top: 13px;

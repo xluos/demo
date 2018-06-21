@@ -1,14 +1,14 @@
 <template>
   <div class="tableBox" v-loading="loading">
-    <el-row type="flex" justify="space-between" >
-      <el-col :span=16 class="title" >{{ title }}</el-col>
+    <el-row type="flex" justify="space-between" class="title">
+      <el-col :span=16 class="title-text" >{{ title }}</el-col>
       <el-col :span=8>
         <el-input v-model="input" placeholder="商品名称模糊搜索" prefix-icon="el-icon-search"></el-input>
         <el-button type="primary" @click="onSearch">确定</el-button>
       </el-col>
     </el-row>
     <el-table
-    :data="table"
+    :data="goodsTableData"
     border
     height="90%"
     style="width: 100%">
@@ -80,7 +80,7 @@ export default {
   data() {
     return {
       input: "",
-      table: [],
+      goodsTableData: [],
       loading: true,
       dialogVisible: false,
       form: {},
@@ -99,6 +99,8 @@ export default {
     }
   },
   mounted() {
+    console.log('商品初始化');
+    
     this.update();
   },
   components: {
@@ -144,10 +146,12 @@ export default {
       axios
         .get(`/goods/${this.type}`)
         .then(req => {
-          this.table = req.data.data;
+          console.log(req);
+          this.goodsTableData = req.data.data;
           this.loading = false;
         })
-        .catch(() => {
+        .catch((e) => {
+          console.log(e);
           this.$message.error("获取数据出错");
           this.loading = false;
         });
@@ -207,6 +211,9 @@ export default {
   width: auto;
 }
 .title {
+  height: 50px;
+}
+.title-text {
   padding-left: 10px;
   height: 50px;
   text-align: left;

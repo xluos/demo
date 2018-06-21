@@ -39,7 +39,7 @@
           </el-tab-pane>
         </el-tabs>
       </el-col>
-      <el-col :span='15'>
+      <el-col :span='15' class="posgoods">
         <div class="often-goods">
           <div class="title">热门商品</div>
           <ul class="often-goods-list">
@@ -87,13 +87,16 @@ export default {
   // 动态获取后台数据
   created: function() {
     Axios.all([
-      Axios.get("http://jspang.com/DemoApi/oftenGoods.php"),
+      // Axios.get("http://jspang.com/DemoApi/oftenGoods.php"),
+      Axios.get("/goods/ten"),
       Axios.get("/goods/type?type=zhushi"),
-      // Axios.get("/goods/type?type=xiaoshi"),
-      // Axios.get("/goods/type?type=yinpin"),
-      // Axios.get("/goods/type?type=taocan")
+      Axios.get("/goods/type?type=xiaoshi"),
+      Axios.get("/goods/type?type=yinpin"),
+      Axios.get("/goods/type?type=taocan")
     ])
       .then(response => {
+        console.log(response);
+        
         this.oftenGoods = response.shift().data;
         response.forEach(item => this.typeGoodsAll.push(item.data.data));
         this.loadingPos = false;
@@ -226,7 +229,7 @@ export default {
 <style>
 .pos,
 .el-row,
-.el-col,
+.posgoods,
 .el-tabs {
   height: 100%;
 }

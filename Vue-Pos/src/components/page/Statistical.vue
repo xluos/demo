@@ -6,7 +6,7 @@
                 <my-info :data="infoData"></my-info>
             </div>
             <div class="statistical-line">
-                <my-line :data="lineData"></my-line>
+                <my-line :linedata="lineData"></my-line>
             </div>
             <el-button-group class="statistical-button-group">
                 <el-button plain>今天</el-button>
@@ -46,38 +46,40 @@ import Info from "@/components/page/statistical/info"
 import Line from "@/components/page/statistical/line"
 import Pie from "@/components/page/statistical/pie"
 import Top from "@/components/page/statistical/top"
+import Axios from 'axios'
+
 export default {
     data() {
         return {
             infoData: [
                 {
                     label: '总流水',
-                    value: '0'
+                    value: '4515.5'
                 },
                 {
                     label: '移动支付流水',
-                    value: '0'
+                    value: '1254'
                 },
                 {
                     label: '会员余额流水',
-                    value: '0'
+                    value: '1421'
                 },
                 {
                     label: '现金流水',
-                    value: '0'
+                    value: '1840'
                 },
                 {
                     label: '净利润',
-                    value: '0'
+                    value: '888'
                 },
                 {
                     label: '新增会员数',
-                    value: '0'
+                    value: '45'
                 },
             ],
-            lineData: [
+            lineData: {
 
-            ],
+            },
             pieData: [
 
             ],
@@ -91,6 +93,25 @@ export default {
         "my-line": Line,
         "my-pie": Pie,
         "my-top": Top
+    },
+    created: function(){
+            Axios.all([
+            Axios.get("/stats/ten"),
+            Axios.get("/stats/timelist"),
+            ])
+            .then(response => {
+                this.topData = response[0].data.data;
+                this.pieData = response[0].data.data;
+                this.lineData = response[1].data.data;
+                
+            })
+            .catch(error => {
+                this.$message({
+                message: "数据获取失败，请检查网络",
+                type: "error",
+                duration: 3000
+                });
+            });
     }
 }
 </script>

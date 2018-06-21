@@ -34,17 +34,8 @@ import axios from 'axios'
 export default {
   data() {
     return {
-      fullscreenLoading: true
+      fullscreenLoading: false
     }
-  },
-  beforeCreate: function () {
-    axios.get('/login/status').then((res)=> {
-        if(res.data.status) {
-          this.fullscreenLoading = false;
-        } else {
-          this.$router.push('/login')
-        }
-    })
   }
 }
 </script>

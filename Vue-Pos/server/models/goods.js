@@ -28,7 +28,13 @@ module.exports = {
     },
     getGoodsByType: function (val) {
         return Goods
-            .find({ type: val })
+            .find({ type: val, sell: true})
+            .map({ _id: 1,name:1,type:1,imgurl:1,price:1 })
+            .exec()
+    },
+    getGoodsById: function (val) {
+        return Goods
+            .find({ _id: val})
             .map({ _id: 1,name:1,type:1,imgurl:1,price:1 })
             .exec()
     },

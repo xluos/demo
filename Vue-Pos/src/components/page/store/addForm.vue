@@ -1,5 +1,5 @@
 <template>
-    <el-form ref="formref" :model="form" :rules="rules" label-width="80px">
+    <el-form :ref="formref" :model="form" :rules="rules" label-width="80px" :key="formkey">
         <el-form-item label="商品名称" prop="name">
             <el-input v-model.trim="form.name" placeholder="输入产品名称"></el-input>
         </el-form-item>
@@ -57,7 +57,7 @@ export default {
             rules: {
                 name: [
                     { required: true, message: '请输入名称', trigger: 'blur' },
-                    { min: 3, max: 8, message: '长度在 3 到 8 个字符', trigger: 'blur' }
+                    { min: 2, max: 8, message: '长度在 2 到 8 个字符', trigger: 'blur' }
                 ],
                 type: [
                     { required: true, message: '请选择分类', trigger: 'blur' },
@@ -78,6 +78,11 @@ export default {
             }
         }
     },
+    computed: {
+        formkey() {
+            return this.form.name
+        }
+    },
     methods: {
 
       handleAvatarSuccess(res, file) {
@@ -96,8 +101,6 @@ export default {
         return isJPG && isLt2M;
       },
       onSubmit(formName) {
-
-          
           this.$refs[formName].validate((valid) => {
           if (valid) {
             axios[this.axiostype]('/goods', this.form).then((req)=>{
@@ -106,8 +109,8 @@ export default {
                         type: 'success',
                         message: req.data.message
                     })
-                    this.$refs[formName].resetFields();
-                    
+                    this.$refs["formref"].resetFields();
+                    this.form = [];
                     this.$emit('click',false);
                 } else {
                     this.$message.error(req.data.message)
