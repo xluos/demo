@@ -7,7 +7,7 @@ const route = require('./routes')
 const config = require('config-lite')(__dirname)
 
 app.use(express.static(path.join(__dirname, 'public')))
-// app.use(express.static(path.join(__dirname, '../dist')))
+app.use(express.static(path.join(__dirname, '../dist')))
 
 
 app.use(session({

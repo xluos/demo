@@ -1,5 +1,5 @@
 <template>
-    <div class="statistical-main">
+    <div class="statistical-main" v-loading="statsLoading">
         <div class="title">销售统计</div>
         <div class="statistical-content">
             <div class="statistical-info">
@@ -51,6 +51,7 @@ import Axios from 'axios'
 export default {
     data() {
         return {
+            statsLoading: true,
             infoData: [
                 {
                     label: '总流水',
@@ -94,24 +95,29 @@ export default {
         "my-pie": Pie,
         "my-top": Top
     },
-    created: function(){
-            Axios.all([
-            Axios.get("/stats/ten"),
-            Axios.get("/stats/timelist"),
-            ])
-            .then(response => {
-                this.topData = response[0].data.data;
-                this.pieData = response[0].data.data;
-                this.lineData = response[1].data.data;
+    created: async function(){
+        this.topData = await Axios.get("/stats/ten");
+        this.lineData = await Axios.get("/stats/timelist");
+        this.topData = this.pieData = this.topData.data.data;
+        this.lineData = this.lineData.data.data;
+        this.statsLoading = false;
+            // Axios.all([
+            // Axios.get("/stats/ten"),
+            // Axios.get("/stats/timelist"),
+            // ])
+            // .then(response => {
+            //     this.topData = response[0].data.data;
+            //     this.pieData = response[0].data.data;
+            //     this.lineData = response[1].data.data;
                 
-            })
-            .catch(error => {
-                this.$message({
-                message: "数据获取失败，请检查网络",
-                type: "error",
-                duration: 3000
-                });
-            });
+            // })
+            // .catch(error => {
+            //     this.$message({
+            //     message: "数据获取失败，请检查网络",
+            //     type: "error",
+            //     duration: 3000
+            //     });
+            // });
     }
 }
 </script>

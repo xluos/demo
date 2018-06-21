@@ -85,29 +85,41 @@ export default {
     };
   },
   // 动态获取后台数据
-  created: function() {
-    Axios.all([
-      // Axios.get("http://jspang.com/DemoApi/oftenGoods.php"),
-      Axios.get("/goods/ten"),
-      Axios.get("/goods/type?type=zhushi"),
-      Axios.get("/goods/type?type=xiaoshi"),
-      Axios.get("/goods/type?type=yinpin"),
-      Axios.get("/goods/type?type=taocan")
-    ])
-      .then(response => {
-        console.log(response);
-        
-        this.oftenGoods = response.shift().data;
-        response.forEach(item => this.typeGoodsAll.push(item.data.data));
-        this.loadingPos = false;
-      })
-      .catch(error => {
-        this.$message({
-          message: "数据获取失败，请检查网络",
-          type: "error",
-          duration: 3000
-        });
-      });
+  created: async function() {
+    this.oftenGoods = await Axios.get("/goods/ten");
+    this.typeGoodsAll[0] = await Axios.get("/goods/type?type=zhushi");
+    this.typeGoodsAll[1] = await Axios.get("/goods/type?type=xiaoshi");
+    this.typeGoodsAll[2] = await Axios.get("/goods/type?type=yinpin");
+    this.typeGoodsAll[3] = await Axios.get("/goods/type?type=taocan");
+    this.oftenGoods = this.oftenGoods.data;
+    this.typeGoodsAll[0] = this.typeGoodsAll[0].data.data;
+    this.typeGoodsAll[1] = this.typeGoodsAll[1].data.data;
+    this.typeGoodsAll[2] = this.typeGoodsAll[2].data.data;
+    this.typeGoodsAll[3] = this.typeGoodsAll[3].data.data;
+
+    this.loadingPos = false;
+    // Axios.all([
+    //   // Axios.get("http://jspang.com/DemoApi/oftenGoods.php"),
+    //   Axios.get("/goods/ten"),
+    //   Axios.get("/goods/type?type=zhushi"),
+    //   Axios.get("/goods/type?type=xiaoshi"),
+    //   Axios.get("/goods/type?type=yinpin"),
+    //   Axios.get("/goods/type?type=taocan")
+    // ])
+    //   .then(Axios.spread((...response) => {
+    //     console.log(response);
+
+    //     this.oftenGoods = response.shift().data;
+    //     response.forEach(item => this.typeGoodsAll.push(item.data.data));
+    //     this.loadingPos = false;
+    //   }))
+    //   .catch(error => {
+    //     this.$message({
+    //       message: "数据获取失败，请检查网络",
+    //       type: "error",
+    //       duration: 3000
+    //     });
+    //   });
   },
   mounted: function() {
     let h = document.body.clientHeight;
@@ -208,17 +220,19 @@ export default {
         });
       } else {
         this.checkoutLoading = true;
-        Axios.post("/order", { goodslist: this.tableData}).then(msg => {
-          this.remove();
-          this.checkoutLoading = false;
-          this.$message({
-            message: "结账成功！",
-            type: "success",
+        Axios.post("/order", { goodslist: this.tableData })
+          .then(msg => {
+            this.remove();
+            this.checkoutLoading = false;
+            this.$message({
+              message: "结账成功！",
+              type: "success"
+            });
+          })
+          .catch(e => {
+            console.log(e);
+            this.$message.error("提交出错！");
           });
-        }).catch((e)=>{
-          console.log(e);
-          this.$message.error("提交出错！")
-        })
       }
     }
   }
