@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./css/index.css">
+    <title>图像处理</title>
+</head>
+<body>
+    <div class="imglist">
+        <!-- <img src="" alt="" class="img" id="imgbox"> -->
+        <div class="imgbox">
+            <h3>处理前</h3>
+            <canvas class="img" id="canvas"></canvas>
+            <div class="bar" id="bar"></div>
+        </div>
+        <div class="imgbox">
+            <h3>处理后</h3> 
+            <canvas class="img" id="canvas2"></canvas>
+            <div class="bar" id="bar2"></div>
+        </div>
+        
+    </div>
+    
+    <input type="file" name="update" id="imgupdate">
+
+    <!-- <button id="draw">绘制</button> -->
+    <button id="gray">灰度处理</button>
+    <button id="reverse">反相</button>
+    <button onclick="addcolor(0)">红色增强</button>
+    <button onclick="addcolor(1)">绿色增强</button>
+    <button onclick="addcolor(2)">蓝色增强</button>
+    <button onclick="GrayImageHistogramEqualization()">直方图均衡化-灰度图</button>
+    <button onclick="ColorImageHistogramEqualization()">直方图均衡化-彩色图</button>
+    <button onclick="ColorImageGaussianBlur()">图像平滑-高斯模糊</button>
+    <button onclick="ColorImageLaplace(4)">图像锐化-4-邻域拉式算子</button>
+    <button onclick="ColorImageLaplace(8)">图像锐化-8-邻域拉式算子</button>
+    
+    <script src="./js/echarts.min.js"></script>
+    <script src="./js/barInit.js"></script>
+    <script src="./js/index.js"></script>
+    <script src="./js/HistogramEqualization.js"></script>
+    <script src="./js/GaussianBlur.js"></script>
+    <script src="./js/Laplace.js"></script>
+</body>
+</html>
