@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>WebSocket</title>
+</head>
+<body>
+    <h1>echo Text</h1>
+    <input type="text" id="sendText">
+    <button id="sendbtn">发送</button>
+    <div id="content"></div>
+    <script>
+        function $(id) {
+            return document.getElementById(id)
+        }
+        var ws = new WebSocket("ws:localhost:3000/");
+        ws.onopen = function() {
+            $("content").innerText = '连接打开';
+        }
+        ws.onclose = function() {
+            $("content").innerText = '连接关闭';
+        }
+        ws.onmessage = function(req) {
+            $("content").innerText = req.data;
+        }
+        $("sendbtn").addEventListener("click", function() {
+            ws.send($("sendText").value);
+        })
+    </script>
+</body>
+</html>
