@@ -1,0 +1,99 @@
+.todos-item {
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+    height: 50px;
+    border-top: #f1f1f1 solid 1px;
+    border-bottom: #f1f1f1 solid 1px;
+}
+.todos-item input[type="checkbox"] {
+    display: none;
+}
+.todos-item label {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    margin: 11px;
+    width: 24px;
+    height: 24px;
+    border: #aaa solid 1.5px;
+    border-radius: 50%;
+}
+
+.todos-item .nocomplete:hover::before {
+    position: absolute;
+    top: 1px;
+    left: 7px;
+    display: block;
+    cursor: pointer;
+    content: "";
+    width: 8px;
+    height: 16px;
+    border-radius: 3px;
+    border-right: 2px solid #aaa;
+    border-bottom: 2px solid #aaa;
+    transform: rotate(45deg);
+}
+
+.todos-item .complete {
+    border: #41B883 solid 1.5px;
+}
+.todos-item .complete::before {
+    position: absolute;
+    top: 1px;
+    left: 7px;
+    display: block;
+    cursor: pointer;
+    content: "";
+    width: 8px;
+    height: 16px;
+    border-radius: 3px;
+    border-right: 2px solid #41B883;
+    border-bottom: 2px solid #41B883;
+    transform: rotate(45deg);
+}
+
+.todos-item-text {
+    flex-grow: 1;
+}
+.todos-item-text .text, .todos-item-text input{
+    user-select: none;
+    margin: 0;
+    padding: 0 0 0 20px;
+    height: 100%;
+    line-height: 50px;
+    width: 100%;
+    border: none;
+    color: #555;
+    outline: none;
+    font-size: 30px;
+}
+.todos-item-text .strickout {
+    color: #aaa;
+    text-decoration:line-through;
+}
+
+.todos-item-text input{
+    color: #888;
+    text-decoration:underline;
+}
+.todos-item .shut {
+    display: block;
+    visibility: hidden;
+    cursor: pointer;
+    margin: 11px;
+    width: 26px;
+    height: 26px;
+    color: #c1c1c1;
+    border: #c1c1c1 solid 1.5px;
+    background: #fff;
+    border-radius: 50%;
+    outline: none;
+}
+.todos-item:hover .shut {
+    visibility: visible;
+}
+.shut:hover {
+    color: #FF6666;
+    border: #FF6666 solid 1.5px;
+}
