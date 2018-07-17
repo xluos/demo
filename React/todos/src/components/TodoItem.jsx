@@ -2,18 +2,46 @@ import React, { Component } from 'react';
 import './TodoItem.css';
 
 class TodoItem extends Component {
+  constructor(props) {
+    super(props)
+    this.handleChange = this.handleChange.bind(this);
+    this.completeItem = this.completeItem.bind(this);
+    this.removeItem = this.removeItem.bind(this);
+    this.state = {
+      edit: false
+    }
+  }
+  completeItem() {
+    this.props.onComplete(this.props.todo.id)
+  }
+  removeItem() {
+    this.props.onRemoveItem(this.props.todo.id)
+  }
+  handleChange(e) {
+    this.props.onEdit(this.props.todo.id,e.target.value)
+  }
   render() {
+    let todo = this.props.todo;
     return (
-      <li class="todos-item">
-        <div class="checkbox">
-            <input type="checkbox" id="'item-' + itemdata.id" />
-            <label for="'item-' + itemdata.id" className="{complete: itemdata.ok, nocomplete: !itemdata.ok}" onClick="reOk()"></label>
+      <li className="todos-item">
+        <div className="checkbox">
+            <input type="checkbox" id={'item-' + todo.id} />
+            <label htmlFor={'item-' + todo.id} className={todo.complete ? 'complete':'nocomplete'} onClick={this.completeItem}></label>
         </div>
-        <div class="todos-item-text">
-            <div class="text" onDblclick="itemdata.edit=!itemdata.edit" v-show="!itemdata.edit" className="strickout">aaa</div>
-            <input type="text" onBlur="itemBlur" />
+        <div className="todos-item-text">
+            <div 
+              style={this.state.edit ? {display:"none"}:{}}
+              onDoubleClick={()=>this.setState({edit:true})}
+              className={'text ' + (todo.complete && 'strickout')}>{todo.title}</div>
+            <input 
+              style={!this.state.edit ? {display:"none"}:{}}
+              value={todo.title}
+              type="text"
+              onBlur={()=>this.setState({edit:false})}
+              onChange={this.handleChange}
+              />
         </div >
-        <button class="shut" onClick="remove" >X</button >
+        <button className="shut" onClick={this.removeItem} >X</button >
       </li>
     );
   }
