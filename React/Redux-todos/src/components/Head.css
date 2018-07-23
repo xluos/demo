@@ -1,0 +1,40 @@
+.todos-head {
+    height: 50px;
+    background: #fff;
+}
+
+#all {
+    display: none;
+}
+.all {
+    position: relative;
+    display: block;
+    width: 50px;
+}
+.all::before {
+    position: absolute;
+    top: 13px;
+    left: 15px;
+    display: block;
+    cursor: pointer;
+    content: "";
+    width: 15px;
+    height: 15px;
+    border-radius: 3px;
+    border-right: 2px solid #888;
+    border-bottom: 2px solid #888;
+    transform: rotate(45deg);
+}
+.todos-head input {
+    padding-left: 40px;
+    margin-left: 30px;
+    font-size: 20px;
+    width: calc(100% - 70px);
+    height: 48px;
+    border: none;
+    outline: none;
+    color: #888;
+}
+.todos-head input::-webkit-input-placeholder{
+    color: #ddd;
+}
