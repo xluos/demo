@@ -1,0 +1,25 @@
+html,body {
+  margin: 0;
+  text-align: center;
+  user-select: none;
+  min-width: 780px;
+  color: sandybrown;
+}
+.box {
+  position: relative;
+  width: 760px;
+  margin: 0 auto;
+}
+.item {
+  float: left;
+  cursor: pointer;
+  font-size: 60px;
+  line-height: 118px;
+  background: #fff;
+  width: 180px;
+  height: 120px;
+  box-sizing: border-box;
+  margin: 0 5px 5px 0;
+  border: 1px solid sandybrown;
+  border-radius: 5px;
+}

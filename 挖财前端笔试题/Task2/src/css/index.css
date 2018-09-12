@@ -1,0 +1,55 @@
+main {
+  width: 1000px;
+  margin: 0 auto;
+}
+h4 {
+  margin-top: 0
+}
+.container,
+.result {
+  box-sizing: border-box;
+}
+.container,
+#imgview {
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 2px 38px 0 rgba(0,0,0,.4);
+}
+.container {
+  width: 500px;
+  height: 500px;
+  float: left;
+  border: 1px solid #aaa;
+}
+.result {
+  float: left;
+  width: 500px;
+  padding: 0 0 0 100px;
+}
+#imgview {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+}
+.btn {
+  display: block;
+  width: 120px;
+  user-select: none;
+  text-decoration:none;
+  color: #fff;
+  background-color: #409eff;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  border: 1px solid #409eff;
+  text-align: center;
+  box-sizing: border-box;
+  outline: none;
+  margin: 0;
+  font-weight: 500;
+  padding: 12px 20px;
+  font-size: 14px;
+  border-radius: 4px;
+  margin: 0 auto;
+  margin-top: 100px;
+}
