@@ -109,5 +109,7 @@
 学习React留下的记录，没什么好看的
 
 # 挖财前端笔试题 [点击进入](./%E6%8C%96%E8%B4%A2%E5%89%8D%E7%AB%AF%E7%AC%94%E8%AF%95%E9%A2%98)
-+ 十六宫格替换 [Demo]() [代码]()
-+ 照片 [Demo]() [代码]()
+要求都在相关目录下面README里面，虽然写的框架不限，由于第二个基本上是现成的组件，交过去之后要求我重写。但是挖财面试周期太长了，那时候已经收到好几个offer了很遗憾只能放弃挖财了。
++ 十六宫格换位 [Demo](https://xluos.github.io/demo/%E6%8C%96%E8%B4%A2%E5%89%8D%E7%AB%AF%E7%AC%94%E8%AF%95%E9%A2%98/Task1/dist) [代码](./%E6%8C%96%E8%B4%A2%E5%89%8D%E7%AB%AF%E7%AC%94%E8%AF%95%E9%A2%98/Task1)
++ 照片裁切 [Demo](https://xluos.github.io/demo/%E6%8C%96%E8%B4%A2%E5%89%8D%E7%AB%AF%E7%AC%94%E8%AF%95%E9%A2%98/Task1/dist) [代码](./%E6%8C%96%E8%B4%A2%E5%89%8D%E7%AB%AF%E7%AC%94%E8%AF%95%E9%A2%98/Task2)
+
