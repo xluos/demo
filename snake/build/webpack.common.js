@@ -25,7 +25,10 @@ module.exports = {
   },
   resolve: {
     // 配置可匹配后缀
-    extensions: ['.js', '.json','.css']
+    extensions: ['.js', '.json','.css'],
+    alias:{
+      "@": path.resolve(__dirname,'../src')
+    }
   },
   module: {
     /*

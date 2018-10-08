@@ -76,3 +76,5 @@ typings/
 yarn.lock
 
 dist
+
+package-lock.json

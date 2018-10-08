@@ -1,14 +1,18 @@
 {
-  "name": "webpack-template",
+  "name": "snake-ai",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "test": "karma start",
     "dev": "yarn run start",
     "start": "webpack-dev-server --open --config ./build/webpack.dev.js",
     "build": "webpack --config ./build/webpack.prod.js"
   },
-  "dependencies": {},
+  "dependencies": {
+    "spritejs": "^2.17.2",
+    "ticker-js": "^1.0.3"
+  },
   "devDependencies": {
     "autoprefixer": "^9.1.5",
     "babel-core": "^6.26.3",
@@ -21,12 +25,20 @@
     "file-loader": "^1.1.11",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
+    "istanbul-instrumenter-loader": "^3.0.1",
+    "jasmine-core": "^3.2.1",
+    "karma": "^3.0.0",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-coverage-istanbul-reporter": "^2.0.4",
+    "karma-jasmine": "^1.1.2",
+    "karma-sourcemap-loader": "^0.3.7",
+    "karma-webpack": "^3.0.5",
     "mini-css-extract-plugin": "^0.4.2",
     "postcss-loader": "^3.0.0",
     "style-loader": "^0.22.1",
     "uglifyjs-webpack-plugin": "^1.3.0",
     "url-loader": "^1.1.1",
-    "webpack": "^4.16.5",
+    "webpack": "^4.20.2",
     "webpack-bundle-analyzer": "^2.13.1",
     "webpack-cli": "^3.1.0",
     "webpack-dev-server": "^3.1.5",

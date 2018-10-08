@@ -5,3 +5,9 @@ html{
   background:rgb(238, 234, 199);
   user-select: none;
 }
+
+#app {
+  border: aquamarine solid 3px;
+  width: 500px;
+  height: 500px;
+}

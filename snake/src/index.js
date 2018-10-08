@@ -1,37 +1,30 @@
 import './index.css'
-import printMe from './print.js'
+import View from '../src/js/view'
+import Model from './js/model'
 
-function component() {
-  var element = document.createElement('div');
-  var btn = document.createElement('button');
+const view = new View({
+  width : 1000,
+  height : 1000,
+  row : 20,
+  col : 20,
+  el : '#app',
+  snakeColor : '#456',
+  foodColor : 'red'
+})
+const model = new Model()
 
-  element.innerHTML = 'Hello we'
-
-  btn.innerHTML = 'Click me and check the';
-  btn.onclick = printMe;
-
-  element.appendChild(btn);
-
-  return element;
-}
-
-let demoComponent = printMe();
-document.body.appendChild(demoComponent);
-
+model.init()
+view.init({
+  snake: model.snake.body,
+  food: model.food
+})
 
 if (module.hot) {
   
-  module.hot.accept('./print.js', function () {
-    console.log('Accepting the updated printMe module!');
-
-    const nextComponent = printMe();
-    console.log(nextComponent);
-    console.log(demoComponent
-    );
+  module.hot.accept(/\.\/js\/*\.js/, function () {
+    console.log('asdasd');
     
-    document.body.removeChild(demoComponent);
-    document.body.appendChild(nextComponent);
-    demoComponent = nextComponent;
+    new model()
   })
   
 }
