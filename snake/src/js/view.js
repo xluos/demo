@@ -8,7 +8,7 @@ export default class View {
       height = 1000,
       row = 20,
       col = 20,
-      el = 'body',
+      el = '#app',
       snakeColor = '#456',
       foodColor = 'red'
     } = option
@@ -59,6 +59,18 @@ export default class View {
 		}
   }
 
+   /**
+   * 销毁数据
+   *
+   * @memberof Control
+   */
+  destroy() {
+    for(let {data} of this.snakeQuery) {
+      console.log(data);
+      
+      this.layer.remove(data.sprite)
+		}
+  }
   /**
    * 更新数据
    *
@@ -67,8 +79,8 @@ export default class View {
    */
   updata(data) {
     let { snake, food } = data
-    snakeTail = snake.last().data
-    oldSnakeTail = this.snakeQuery.last().data
+      , snakeTail = snake.last().data
+      , oldSnakeTail = this.snakeQuery.last().data
     // 尾巴不相同说明蛇是再移动不是张长
     if(snakeTail.index !== oldSnakeTail.data.index) {
       // 重用最后一个节点

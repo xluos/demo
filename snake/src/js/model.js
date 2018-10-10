@@ -70,20 +70,36 @@ export default class Model {
     // 游戏结束标志
     this.GAMEOVER = undefined
     // 随机蛇的位置
-    let col = Math.floor(Math.random() * (this.width * 0.66))
-      , row = Math.floor(Math.random() * (this.width * 0.66))
+    let col = 5 || Math.floor(Math.random() * (this.width * 0.66))
+      , row = 5 || Math.floor(Math.random() * (this.width * 0.66))
     // 随机一个蛇
-    for(let i = col, len = col + 3; i < len; i++) {
-      this.snake.push({
+    for(let i = col, len = col + 1; i < len; i++) {
+      console.log(i);
+      
+      this.snake.unshift({
         x: i,
         y: row,
         index: this.width * row + i
       })
+      
+      console.log(this.snake.body);
     }
+    console.log(this.snake.body);
+    
+    
     // 随机投食物
     this.feed();
   }
   
+  /**
+   * 销毁数据
+   *
+   * @memberof Control
+   */
+  destroy() {
+
+  }
+
   /**
    * 清除脏检查标志
    *
@@ -112,10 +128,11 @@ export default class Model {
    * @memberof Model
    */
   move(direction) {
+    direction = direction.toLocaleUpperCase()
     let dir = this.dirMap[direction]
       , snakeHead = this.snake.body.first().data
-        nextNode = this.createNode(snakeHead.x + dir[0], snakeHead.y + dir[1])
-      , nextNodeType = getNodeType(nextNode)
+      , nextNode = this.createNode(snakeHead.x + dir[0], snakeHead.y + dir[1])
+      , nextNodeType = this.getNodeType(nextNode)
     switch (nextNodeType) {
       // 撞到自身或墙
       case 'snake':
