@@ -12,8 +12,25 @@ window.onload = function() {
 }
 
 document.addEventListener('keydown', event => {
-  console.log(event);
-  
+  console.log(event.keyCode);
+  switch(event.keyCode) {
+    // L
+    case 37:
+      snakeGame.turn('left')
+      break
+    // U 
+    case 38:
+      snakeGame.turn('up')
+      break
+    // R 
+    case 39:
+      snakeGame.turn('right')
+      break
+    // D 
+    case 40:
+      snakeGame.turn('down')
+      break 
+  }
 })
 
 $('.snake-switch').addEventListener('click', () => {
@@ -24,13 +41,12 @@ $('.snake-switch').addEventListener('click', () => {
 
 
 $('.snake-trigger').addEventListener("click", function() {
-  // if(this.checked) {
-  //   snakeGame.pause(); 
-  // }
-  // else {
-  //   snakeGame.resume(); 
-  // }
-  console.log(snakeGame.model.snake.body)
-  snakeGame.updata()
-  console.log(snakeGame.model.snake.body)
+  if(this.checked) {
+    snakeGame.pause(); 
+  }
+  else {
+    snakeGame.resume(); 
+  }
 })
+
+

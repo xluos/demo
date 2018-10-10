@@ -9,7 +9,7 @@ export default class Control{
     this.event = new Event()
 
     // 
-    this.ticker = new Ticker(1)
+    this.ticker = new Ticker(4)
     
 
     this.ticker.on('updata', data=> console.log(data))
@@ -60,7 +60,7 @@ export default class Control{
   init() {
     this.model.init()
     this.food = this.model.food
-
+// debugger
     this.view.init({
       snake: this.model.snake.body,
       food: this.model.food

@@ -28,7 +28,7 @@ export default class View {
     this.nodeHeight = height/row
 
     // 存放蛇节点的队列
-    this.snakeQuery = new Chain()
+    this.snakeQuery = []
 
     this.food = new Sprite({
       anchor: [0, 0],
@@ -47,12 +47,12 @@ export default class View {
    */
   init(data) {
     let { snake, food } = data
-    this.snakeQuery = new Chain()
+    this.snakeQuery = []
     this.food.attr({
       pos: [food.x * this.nodeWidth, food.y * this.nodeHeight]
     })
 
-    for(let {data} of snake) { 
+    for(let data of snake) { 
       let node = this.createSnakeNode(data)
       this.snakeQuery.push(node)
       this.layer.append(node.sprite)
