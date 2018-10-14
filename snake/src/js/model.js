@@ -1,5 +1,3 @@
-// 链表类
-import Chain from '@/lib/Chain'
 // 贪吃蛇Model类
 export default class Model {
   constructor ({width, height}={width:20, height: 20}) {
@@ -78,20 +76,13 @@ export default class Model {
     let col = 5 || Math.floor(Math.random() * (this.width * 0.66))
       , row = 5 || Math.floor(Math.random() * (this.width * 0.66))
     // 随机一个蛇
-    for(let i = col, len = col + 3; i < len; i++) {
-      console.log(i);
-      
-      this.snake.unshift({
+    for(let i = col, len = col + 1; i < len; i++) {
+      this.snake.push({
         x: i,
         y: row,
         index: this.width * row + i
-      })
-      
-      console.log(this.snake.body);
+      }) 
     }
-    console.log(this.snake.body);
-    
-    
     // 随机投食物
     this.feed();
   }
@@ -155,6 +146,8 @@ export default class Model {
         this.snake.pop() & this.snake.unshift(nextNode); 
         break;
     }
+    console.log('move')
+    
   }
   /**
    * 吃食
@@ -163,9 +156,13 @@ export default class Model {
    * @memberof Model
    */
   eat(food) {
+    console.log("eat",JSON.stringify(this.snake));
     this.snake.unshift(food)
+    console.log("eat",JSON.stringify(this.snake));
     // 重新投喂食物
+    console.log("food",JSON.stringify(this.food))
     this.feed()
+    console.log("food",JSON.stringify(this.food))
   }
   /**
    * 判断节点再当前地图上的类型
@@ -178,7 +175,7 @@ export default class Model {
     // 判断是否越界也就是撞墙
     if(node.x >=0 && node.x < this.width && node.y >=0 && node.y < this.height) {
       // 咬尾不会撞自身
-      if(type === 'snake' && this.snake.body.last().data.index === node.index) {
+      if(type === 'snake' && this.snake.last().index === node.index) {
         type = undefined;
       }
       return type

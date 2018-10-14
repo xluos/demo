@@ -1,5 +1,4 @@
 import { Scene, Sprite } from 'spritejs'
-import Chain from '@/lib/Chain'
 export default class View {
   constructor(option = {}) {
     // 配置项
@@ -19,7 +18,7 @@ export default class View {
       resolution: [width, height],
     })
     // 创建画布
-    this.layer = this.scene.layer();
+    this.layer = this.scene.layer('snakeMap');
     // 节点颜色
     this.snakeColor = snakeColor
 
@@ -37,7 +36,7 @@ export default class View {
       bgcolor: foodColor,
       borderRadius: this.nodeWidth/2,
     })
-    this.layer.append(this.food)
+    this.layer.appendChild(this.food)
   }
 
   /**
@@ -55,7 +54,7 @@ export default class View {
     for(let data of snake) { 
       let node = this.createSnakeNode(data)
       this.snakeQuery.push(node)
-      this.layer.append(node.sprite)
+      this.layer.appendChild(node.sprite)
 		}
   }
 
@@ -65,10 +64,9 @@ export default class View {
    * @memberof Control
    */
   destroy() {
-    for(let {data} of this.snakeQuery) {
+    for(let data of this.snakeQuery) {
       console.log(data);
-      
-      this.layer.remove(data.sprite)
+      this.layer.removeChild(data.sprite)
 		}
   }
   /**
@@ -79,25 +77,26 @@ export default class View {
    */
   updata(data) {
     let { snake, food } = data
-      , snakeTail = snake.last().data
-      , oldSnakeTail = this.snakeQuery.last().data
+      , snakeTail = snake[snake.length - 1]
+      , oldSnakeTail = this.snakeQuery[this.snakeQuery.length - 1]
     // 尾巴不相同说明蛇是再移动不是张长
     if(snakeTail.index !== oldSnakeTail.data.index) {
       // 重用最后一个节点
       this.snakeQuery.pop()
-      oldSnakeTail.data = snakeTail
+      oldSnakeTail.data = snake[0]
       oldSnakeTail.sprite.attr({
-        pos: [snakeTail.x * this.nodeWidth, snakeTail.y * this.nodeHeight]
+        pos: [snake[0].x * this.nodeWidth, snake[0].y * this.nodeHeight]
       })
       this.snakeQuery.unshift(oldSnakeTail)
     } else {
-      let newNode = this.createSnakeNode(snakeTail) 
+      let newNode = this.createSnakeNode(snake[0])
       this.snakeQuery.unshift(newNode)
-      this.layer.append(newNode.sprite)
+      this.layer.appendChild(newNode.sprite)
       this.food.attr({
         pos: [food.x * this.nodeWidth, food.y * this.nodeHeight]
       })
     }
+    console.log('view')
   }
 
   /**

@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "spritejs": "^2.17.2",
+    "sweetalert": "^2.1.0",
     "ticker-js": "^1.0.3"
   },
   "devDependencies": {

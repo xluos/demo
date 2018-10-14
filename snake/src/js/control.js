@@ -9,16 +9,14 @@ export default class Control{
     this.event = new Event()
 
     // 
-    this.ticker = new Ticker(4)
+    this.ticker = new Ticker(2)
     
 
     this.ticker.on('updata', data=> console.log(data))
 
     this.ticker.on('render', (data)=> {
-      console.log(this.model.snake.body)
       this.updata()
     })
-    this.ticker.start()
     // 四个方向的反方向
 		this.fourDirections = {
       "left": 'right',
@@ -44,7 +42,7 @@ export default class Control{
       },
       set: (speed) => {
         this._speed = speed
-        // this.ticker.setFps(speed)
+        this.ticker.setFps(speed)
       }
     })
 
@@ -60,7 +58,6 @@ export default class Control{
   init() {
     this.model.init()
     this.food = this.model.food
-// debugger
     this.view.init({
       snake: this.model.snake.body,
       food: this.model.food
@@ -167,7 +164,7 @@ export default class Control{
   updata() {
     this.direction = this.directionQuery.shift() || this.direction
     this.model.move(this.direction)
-
+    console.log(JSON.stringify(this.model.snake.body[0]));
     if(this.model.GAMEOVER) {
       this.gameover(this.model.GAMEOVER);
       return 
@@ -184,10 +181,27 @@ export default class Control{
         snake: this.model.snake.body,
         food: this.model.food
       })
-
+      // this.event.dispatch('render', this.render(this.model.map))
       hasEatEvent && this.event.dispatch('eat', ++this.eatCount)
 
       this.model.clearDirty()
     }
   }
+  render(map) {
+    let text = ''
+    for(let i=0;i<20;i++) {
+      for(let j = 0; j < 20; j++) {
+        if(map[i * 20 + j] === undefined) {
+          text += ' '
+        } else if(map[i * 20 + j] === 'snake') {
+          text += 'S'
+        } else if(map[i * 20 + j] === 'food') {
+          text += 'F'
+        }
+      }
+      text += '\n'
+    }
+    return text
+  }
+
 }
