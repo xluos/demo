@@ -1,30 +1,52 @@
 import './index.css'
-import View from '../src/js/view'
-import Model from './js/model'
 
-const view = new View({
-  width : 1000,
-  height : 1000,
-  row : 20,
-  col : 20,
-  el : '#app',
-  snakeColor : '#456',
-  foodColor : 'red'
-})
-const model = new Model()
+import Snake from './js/snake'
+import Ticker from 'ticker-js'
 
-model.init()
-view.init({
-  snake: model.snake.body,
-  food: model.food
-})
+const snakeGame = new Snake();
 
-if (module.hot) {
-  
-  module.hot.accept(/\.\/js\/*\.js/, function () {
-    console.log('asdasd');
-    
-    new model()
-  })
-  
+const $ = query => document.querySelector(query)
+
+window.onload = function() {
+  snakeGame.init()
 }
+
+document.addEventListener('keydown', event => {
+  console.log(event.keyCode);
+  switch(event.keyCode) {
+    // L
+    case 37:
+      snakeGame.turn('left')
+      break
+    // U 
+    case 38:
+      snakeGame.turn('up')
+      break
+    // R 
+    case 39:
+      snakeGame.turn('right')
+      break
+    // D 
+    case 40:
+      snakeGame.turn('down')
+      break 
+  }
+})
+
+$('.snake-switch').addEventListener('click', () => {
+  console.log('aa');
+  
+  snakeGame.restart()
+})
+
+
+$('.snake-trigger').addEventListener("click", function() {
+  if(this.checked) {
+    snakeGame.pause(); 
+  }
+  else {
+    snakeGame.resume(); 
+  }
+})
+
+

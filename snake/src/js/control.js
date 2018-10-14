@@ -1,9 +1,24 @@
-
-
+import Event from '../lib/events'
+import Ticker from 'ticker-js'
 export default class Control{
-  constructor(view,model){
+  constructor(view, model){
     this.view = view
     this.model = model
+
+    // 事件管理
+    this.event = new Event()
+
+    // 
+    this.ticker = new Ticker(4)
+    
+
+    this.ticker.on('updata', data=> console.log(data))
+
+    this.ticker.on('render', (data)=> {
+      console.log(this.model.snake.body)
+      this.updata()
+    })
+    this.ticker.start()
     // 四个方向的反方向
 		this.fourDirections = {
       "left": 'right',
@@ -11,6 +26,30 @@ export default class Control{
       "right": 'left', 
       "down": 'up'
     }
+
+    // 储存方向操作
+    this.directionQuery = []
+
+    // 当前方向
+    this.direction = 'right'
+
+    // 游戏结束标志位
+    this.GAMEOVER = false
+
+    // 设置速度与帧数绑定
+
+    Object.defineProperty(this, 'speed', {
+      get: () => {
+        return this._speed
+      },
+      set: (speed) => {
+        this._speed = speed
+        // this.ticker.setFps(speed)
+      }
+    })
+
+    this.eatCount = 0
+
   }
 
   /**
@@ -19,7 +58,23 @@ export default class Control{
    * @memberof Control
    */
   init() {
+    this.model.init()
+    this.food = this.model.food
+// debugger
+    this.view.init({
+      snake: this.model.snake.body,
+      food: this.model.food
+    })
 
+    this.directionQuery.length = 0
+    // 当前方向
+    this.direction = 'right'
+
+    this.ticker.stop()
+
+    this.GAMEOVER = false
+
+    this.eatCount = 0
   }
 
   /**
@@ -29,25 +84,20 @@ export default class Control{
    * @memberof Control
    */
   turn(direction) {
-
+    // 验证参数是否合法
+    if(!this.fourDirections[direction]) {
+      return ;
+    }
+    let preDirection = this.directionQuery[this.directionQuery.length - 1] || this.direction
+    // 最多储存后4步的操作,且当前方向不与其上一步方向相同或相反
+    if(  this.directionQuery.length < 4
+      && preDirection !== direction
+      && this.fourDirections[preDirection] !== direction) {
+      
+      this.directionQuery.push(direction)
+    }
   }
 
-  /**
-   * 判断方向是否相反
-   *
-   * @param {*} directionA
-   * @param {*} directionB
-   * @returns
-   * @memberof Control
-   */
-  isAdverse(directionA, directionB) {
-		let indexA = this.fourDirections.indexOf(directionA), 
-			indexB = this.fourDirections.indexOf(directionB); 
-		if(Math.abs(indexA - indexB) === 2) { 
-			return true; 
-		}
-		return false; 
-  }
   
   /**
    * 暂停
@@ -55,7 +105,7 @@ export default class Control{
    * @memberof Control
    */
   pause() {
-
+    this.ticker.stop()
   }
 
   /**
@@ -64,7 +114,7 @@ export default class Control{
    * @memberof Control
    */
   resume() {
-
+    this.ticker.start()
   }
 
   /**
@@ -73,7 +123,17 @@ export default class Control{
    * @memberof Control
    */
   start() {
+    this.ticker.start()
+  }
 
+   /**
+   * 销毁数据
+   *
+   * @memberof Control
+   */
+  destroy() {
+    this.model.destroy()
+    this.view.destroy()
   }
 
   /**
@@ -82,7 +142,8 @@ export default class Control{
    * @memberof Control
    */
   restart() {
-
+    this.destroy()
+    this.init()
   }
 
   /**
@@ -90,8 +151,12 @@ export default class Control{
    *
    * @memberof Control
    */
-  gameover() {
+  gameover(type) {
+    console.log('gm',type);
     
+    this.GAMEOVER = true;
+    this.pause()
+    this.event.dispatch('gameover', type)
   }
 
   /**
@@ -100,6 +165,29 @@ export default class Control{
    * @memberof Control
    */
   updata() {
+    this.direction = this.directionQuery.shift() || this.direction
+    this.model.move(this.direction)
 
+    if(this.model.GAMEOVER) {
+      this.gameover(this.model.GAMEOVER);
+      return 
+    }
+
+    if(this.model.dirty) {
+      let hasEatEvent = false;
+      if(this.food.index !== this.model.food.index) {
+        this.food = this.model.food
+        hasEatEvent = true
+        this.event.dispatch('before-eat')
+      }
+      this.view.updata({
+        snake: this.model.snake.body,
+        food: this.model.food
+      })
+
+      hasEatEvent && this.event.dispatch('eat', ++this.eatCount)
+
+      this.model.clearDirty()
+    }
   }
 }

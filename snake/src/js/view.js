@@ -8,7 +8,7 @@ export default class View {
       height = 1000,
       row = 20,
       col = 20,
-      el = 'body',
+      el = '#app',
       snakeColor = '#456',
       foodColor = 'red'
     } = option
@@ -28,7 +28,7 @@ export default class View {
     this.nodeHeight = height/row
 
     // 存放蛇节点的队列
-    this.snakeQuery = new Chain()
+    this.snakeQuery = []
 
     this.food = new Sprite({
       anchor: [0, 0],
@@ -47,18 +47,30 @@ export default class View {
    */
   init(data) {
     let { snake, food } = data
-    this.snakeQuery = new Chain()
+    this.snakeQuery = []
     this.food.attr({
       pos: [food.x * this.nodeWidth, food.y * this.nodeHeight]
     })
 
-    for(let {data} of snake) { 
+    for(let data of snake) { 
       let node = this.createSnakeNode(data)
       this.snakeQuery.push(node)
       this.layer.append(node.sprite)
 		}
   }
 
+   /**
+   * 销毁数据
+   *
+   * @memberof Control
+   */
+  destroy() {
+    for(let {data} of this.snakeQuery) {
+      console.log(data);
+      
+      this.layer.remove(data.sprite)
+		}
+  }
   /**
    * 更新数据
    *
@@ -67,8 +79,8 @@ export default class View {
    */
   updata(data) {
     let { snake, food } = data
-    snakeTail = snake.last().data
-    oldSnakeTail = this.snakeQuery.last().data
+      , snakeTail = snake.last().data
+      , oldSnakeTail = this.snakeQuery.last().data
     // 尾巴不相同说明蛇是再移动不是张长
     if(snakeTail.index !== oldSnakeTail.data.index) {
       // 重用最后一个节点

@@ -18,6 +18,15 @@
       <input type="text" class="form-control" v-model="motto" placeholder="v-model" />
       <input type="text" class="form-control" v-model.lazy="motto" placeholder="v-model.lazy" />
     </form>
+    <i-card full title="卡片标题" extra="额外内容" thumb="https://i.loli.net/2017/08/21/599a521472424.jpg">
+      <view slot="content">内容不错</view>
+      <view slot="footer">尾部内容</view>
+    </i-card>
+    <i-tabs :current="current" bindchange="handleChange">
+      <i-tab key="tab1" title="选项1"></i-tab>
+      <i-tab key="tab2" title="选项2"></i-tab>
+      <i-tab key="tab3" title="选项3"></i-tab>
+    </i-tabs>
   </div>
 </template>
 
@@ -28,7 +37,8 @@ export default {
   data () {
     return {
       motto: 'Hello World',
-      userInfo: {}
+      userInfo: {},
+      current: 'tab1'
     }
   },
 
