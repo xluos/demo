@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="Zh_cn">
+<html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -9,7 +9,8 @@
 </head>
 <body>
   <div id="app">
-    <span>分数：<span id="number">0</span></span>
+    <span class="num">分数：<span id="number">0</span></span>
+    <span class="level">等级：<span id="level-number">0</span></span>
   </div>
 	<div class="snake-controller">
 		<div class="snake-direction">
@@ -18,9 +19,9 @@
 			<div class="snake-down"></div>
 			<div class="snake-left"></div>
 		</div>
-		<input type="checkbox" class="snake-trigger" checked="checked"> 
+		<input type="checkbox" class="snake-trigger" checked> 
     <input type="button" class="snake-switch">
-    <input class="snake-speed" type="range" max="10" min="3" value="4" step="1">
+    <input class="snake-speed" type="range" max="10" min="2" value="2" step="1">
 	</div>
 </body>
 </html>

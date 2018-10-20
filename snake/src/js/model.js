@@ -146,7 +146,7 @@ export default class Model {
         this.snake.pop() & this.snake.unshift(nextNode); 
         break;
     }
-    console.log('move')
+    // console.log('move')
     
   }
   /**
@@ -156,13 +156,9 @@ export default class Model {
    * @memberof Model
    */
   eat(food) {
-    console.log("eat",JSON.stringify(this.snake));
     this.snake.unshift(food)
-    console.log("eat",JSON.stringify(this.snake));
     // 重新投喂食物
-    console.log("food",JSON.stringify(this.food))
     this.feed()
-    console.log("food",JSON.stringify(this.food))
   }
   /**
    * 判断节点再当前地图上的类型

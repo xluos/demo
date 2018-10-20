@@ -48,6 +48,7 @@ export default class Control{
 
     this.eatCount = 0
 
+    this.status = false
   }
 
   /**
@@ -80,7 +81,8 @@ export default class Control{
    * @param {*} direction 方向
    * @memberof Control
    */
-  turn(direction) {
+  turn(direction) { 
+    if(!this.status) return ;
     // 验证参数是否合法
     if(!this.fourDirections[direction]) {
       return ;
@@ -102,6 +104,7 @@ export default class Control{
    * @memberof Control
    */
   pause() {
+    this.status = false
     this.ticker.stop()
   }
 
@@ -111,6 +114,7 @@ export default class Control{
    * @memberof Control
    */
   resume() {
+    this.status = true
     this.ticker.start()
   }
 
@@ -164,7 +168,7 @@ export default class Control{
   updata() {
     this.direction = this.directionQuery.shift() || this.direction
     this.model.move(this.direction)
-    console.log(JSON.stringify(this.model.snake.body[0]));
+    // console.log(JSON.stringify(this.model.snake.body[0]));
     if(this.model.GAMEOVER) {
       this.gameover(this.model.GAMEOVER);
       return 

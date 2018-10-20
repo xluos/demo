@@ -10,6 +10,7 @@
     "build": "webpack --config ./build/webpack.prod.js"
   },
   "dependencies": {
+    "animate.css": "^3.7.0",
     "spritejs": "^2.17.2",
     "sweetalert": "^2.1.0",
     "ticker-js": "^1.0.3"

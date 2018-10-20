@@ -19,10 +19,14 @@ html,body {
 	height: 80vw; 
 }
 
-#app > span {
+.num {
   position: absolute;
-  top: 3px;
-  left: 3px;
+  top: -27px;
+}
+.level {
+	position: absolute;
+	top: -27px;
+	right: 0;
 }
 .snake-controller {
 	position: relative;

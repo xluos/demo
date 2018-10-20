@@ -1,0 +1,18 @@
+#notice {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+}
+#notice-text {
+  min-width: 30px;
+  padding: 0 15px;
+  line-height: 30px;
+  border-radius: 5px;
+  border: 1px solid #ece060;
+  /* background: rgba(0, 0, 0, 0.5); */
+  background: #fff8;
+  transform: translate(-50%, -50%);
+}
+.none {
+  display: none;
+}

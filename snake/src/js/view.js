@@ -65,7 +65,7 @@ export default class View {
    */
   destroy() {
     for(let data of this.snakeQuery) {
-      console.log(data);
+      // console.log(data);
       this.layer.removeChild(data.sprite)
 		}
   }
@@ -96,7 +96,7 @@ export default class View {
         pos: [food.x * this.nodeWidth, food.y * this.nodeHeight]
       })
     }
-    console.log('view')
+    // console.log('view')
   }
 
   /**
