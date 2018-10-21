@@ -8,13 +8,19 @@ html,body {
 	background-color: #ece060;
 	overflow: hidden;
 }
+main {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 100%;
+}
 #app {
   position: relative;
   box-sizing: border-box;
   border: #414042 solid 3px;
   background: #fff;
   margin: 0 auto;
-  margin-top: 50px;
+  margin-top: 30px;
 	width: 80vw;
 	height: 80vw; 
 }
@@ -29,19 +35,19 @@ html,body {
 	right: 0;
 }
 .snake-controller {
+	display: flex;
+	justify-content: space-around;
+	align-items: flex-end;
 	position: relative;
-	top: 20vw;
 	width: 100%;
+	padding-bottom: 10px;
 }
 
 .snake-switch {
-	position: absolute; 
 	width: 50px; 
 	height: 53px; 
-	background: url(./images/switch@2x.png) 0 0 no-repeat; 
-	background-size: 100% 100%; 
-	top: 160px;
-	right: 30px; 
+	background: url(../../images/switch@2x.png) 0 0 no-repeat; 
+	background-size: 100% 100%;
 	border: 0 none; 
 	appearance: none; 
 	-webkit-appearance: none; 
@@ -49,29 +55,28 @@ html,body {
 }
 
 .snake-trigger {
-	position: absolute; 
 	width: 50px; 
 	height: 50px; 
-	background: url(./images/pause@2x.png) 0 0 no-repeat; 
+	background: url(../../images/pause@2x.png) 0 0 no-repeat; 
 	background-size: 100% 100%; 
-	top: 160px;
-	left: 30px; 
 	border: 0 none; 
 	appearance: none; 
 	-webkit-appearance: none; 
 	outline: 0; 
 }
 .snake-trigger:checked {
-	background-image: url(./images/play@2x.png);
+	background-image: url(../../images/play@2x.png);
 }
-
+.snake-direction-box {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
 .snake-direction {
-	position: absolute; 
-	left: 50%; 
-	top: 0;
+	display: flex;
+	flex-wrap: wrap;
 	width: 160px; 
-	height: 160px; 
-	margin-left: -80px; 
+	height: 160px;
 	border: 2px solid #414042; 
 	background-color: #414042; 
 	border-radius: 100%; 
@@ -81,10 +86,11 @@ html,body {
 }
 
 .snake-up, .snake-right, .snake-down, .snake-left {
-	position: absolute; 
+	position: relative; 
+	box-sizing: border-box;
 	width: 80px; 
 	height: 80px; 
-	background-color: #ddd; 
+	background-color: #ddd;
 }
 
 .snake-up::after, 
@@ -100,42 +106,16 @@ html,body {
 	border-width: 2px 0 0 2px; 
 	border-color: #414042; 
 	border-style: solid; 
-	transform-origin: left top; 
-	-webkit-transform-origin: left top; 
-}
-
-.snake-up {
-	top: -1px; 
-	left: -1px; 
-}
-
-.snake-right {
-	top: -1px; 
-	right: -1px; 
+	transform-origin: left top;
 }
 .snake-right::after {
-	transform: rotate(90deg); 
-	-webkit-transform: rotate(90deg); 
+	transform: rotate(90deg);
 }
-
-.snake-down {
-	bottom: -1px; 
-	right: -1px; 
-}
-
 .snake-down::after {
-	transform: rotate(180deg); 
-	-webkit-transform: rotate(180deg); 
+	transform: rotate(180deg);
 }
-
-.snake-left {
-	bottom: -1px; 
-	left: -1px; 
-}
-
 .snake-left::after {
-	transform: rotate(270deg); 
-	-webkit-transform: rotate(270deg); 
+	transform: rotate(270deg);
 }
 
 .snake-direction.up .snake-up, 
@@ -146,26 +126,10 @@ html,body {
 	background-color: rgba(188, 188, 188, .7); 
 }
 
-.snake-timer {
-	position: absolute; 
-	top: 172px; 
-	right: 0; 
-	left: 0; 
-	margin: 0 auto; 
-	width: 200px; 
-	text-align: center; 
-	font-size: 16px; 
-	font-weight: bold; 
-}
-
 .snake-speed {
-  position: absolute; 
-	top: 206px; 
-	right: 0; 
-	left: 0; 
-	margin: 0 auto; 
 	width: 120px; 
-	height: 4px; 
+	height: 4px;
+	margin: 20px 0;
 	border-radius: 2px; 
   background-color: #fee;
   appearance: none;

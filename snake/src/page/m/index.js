@@ -1,11 +1,15 @@
 import './index.css'
 
-import Snake from './js/snake'
-import Notice from './lib/notice'
+import Snake from '../../js/snake'
+import Notice from '../../lib/notice'
 import swal from 'sweetalert'
+import Hammer from 'hammerjs'
 
+const hammer = new Hammer.Manager(document.querySelector('main'));
+hammer.add(new Hammer.Swipe({ direction: Hammer.DIRECTION_ALL }))
 const snakeGame = new Snake();
 const notice = new Notice();
+
 
 let isAuto = true
 let isFocus = false
@@ -22,6 +26,20 @@ window.notice = notice
 window.onload = function() {
   snakeGame.init()
   notice.init()
+  // 显示游戏提示
+  if(!localStorage.getItem('snake-info')) {
+    localStorage.setItem('snake-info', 'true')
+    swal({
+      title: '游戏提示', 
+      text: `可以点击按钮或快捷键操控
+      PC端-使用W/A/S/D或↑/↓/←/→
+      手机端-滑动转向
+      左下方按钮-暂停/恢复
+      右下方按钮-重置
+      中间滑块-调节移动速度`,
+      allowOutsideClick: false
+    })
+  }
 }
 
 // 按键事件用于pc
@@ -59,7 +77,7 @@ $('.snake-switch').addEventListener('click', () => {
   snakeTrigger.checked = true;
   snakeGame.restart()
   Number.innerText = 0
-  isAuto && (snakeSpeed.value = 2,levelNumber.innerText = 2)
+  isAuto && (snakeSpeed.value = levelNumber.innerText = snakeGame.speed = 2)
 })
 
 // 控制四个方向的按键事件
@@ -67,6 +85,11 @@ $('.snake-up').addEventListener('click', () => snakeGame.turn('up'))
 $('.snake-right').addEventListener('click', () => snakeGame.turn('right'))
 $('.snake-down').addEventListener('click', () => snakeGame.turn('down'))
 $('.snake-left').addEventListener('click', () => snakeGame.turn('left'))
+// 滑动控制方向
+hammer.on('swipeup', () => snakeGame.turn('up'))
+hammer.on('swiperight', () => snakeGame.turn('right'))
+hammer.on('swipedown', () => snakeGame.turn('down'))
+hammer.on('swipeleft', () => snakeGame.turn('left'))
 
 // 控制速度
 snakeSpeed.addEventListener('change', function (e) {
@@ -91,8 +114,8 @@ snakeTrigger.addEventListener('blur', e => isFocus = false)
 function setLvNumber(n) {
   levelNumber.innerText = 
   snakeSpeed.value = 
-  snakeGame.speed = 10
-  notice.show(`速度提升为Lv.${10}`)
+  snakeGame.speed = n
+  notice.show(`速度提升为Lv.${n}`)
 }
 
 // 吃食事件
@@ -145,8 +168,8 @@ snakeGame.event.on('gameover', function(type) {
   }
   swal({ 
     title: "Game Over", 
-    text: `${text}  分数：${Number.innerText}`, 
-    showConfirmButton: true 
+    text: `${text}  分数：${Number.innerText}`,
+    allowOutsideClick: false
   })
   $('.snake-switch').click()
 })

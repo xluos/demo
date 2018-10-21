@@ -5,7 +5,9 @@ const config = require('config-lite')(__dirname);
 
 module.exports = {
   entry: {
-    app: './src/index.js'
+    index: './src/page/index',
+    m: './src/page/m',
+    desk: './src/page/desk'
   },
   plugins: [
     new CleanWebpackPlugin(['dist'], {
@@ -15,8 +17,22 @@ module.exports = {
     }
     ),
     new HtmlWebpackPlugin({
-      template: 'src/index.html',
+      template: 'src/page/index/index.html',
       title: config.title,
+      filename: 'index.html',
+      chunks: ['index']
+    }),
+    new HtmlWebpackPlugin({
+      template: 'src/page/m/index.html',
+      title: config.title,
+      filename: 'm.html',
+      chunks: ['m']
+    }),
+    new HtmlWebpackPlugin({
+      template: 'src/page/desk/index.html',
+      title: config.title,
+      filename: 'desk.html',
+      chunks: ['desk']
     })
   ],
   output: {
@@ -30,6 +46,9 @@ module.exports = {
     alias:{
       "@": path.resolve(__dirname,'../src')
     }
+  },
+  devServer: {
+    disableHostCheck: true,
   },
   module: {
     /*

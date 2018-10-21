@@ -1,0 +1,44 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #eee;
+}
+.iphone {
+  position: relative;
+  margin: 0 auto;
+  margin-top: 20px;
+  width: 375px;
+  height: 667px;
+  background: url('~@/images/iphone.png') no-repeat;
+  background-size: 100% 100%;
+  border-radius: 6px;
+  box-shadow: 0 1px 6px rgba(0,0,0,.2), 0 1px 4px rgba(0,0,0,.2);
+}
+.url {
+  position: absolute;
+  left: 50px;
+  top: 32px;
+  right: 50px;
+  height: 20px;
+  text-align: center;
+  font-size: 14px;
+  color: #333;
+}
+.reload {
+  position: absolute;
+  right: 17px;
+  top: 32px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+iframe {
+  position: absolute;
+  left: 0;
+  top: 70px;
+  width: 375px;
+  height: 554px;
+}

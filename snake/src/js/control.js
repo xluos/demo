@@ -82,7 +82,7 @@ export default class Control{
    * @memberof Control
    */
   turn(direction) { 
-    if(!this.status) return ;
+    if(!this.status)  return ;
     // 验证参数是否合法
     if(!this.fourDirections[direction]) {
       return ;
@@ -154,7 +154,6 @@ export default class Control{
    */
   gameover(type) {
     console.log('gm',type);
-    
     this.GAMEOVER = true;
     this.pause()
     this.event.dispatch('gameover', type)
