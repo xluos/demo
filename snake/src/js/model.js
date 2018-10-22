@@ -127,7 +127,7 @@ export default class Model {
     direction = direction.toLocaleUpperCase()
     let dir = this.dirMap[direction]
       , snakeHead = this.snake.first()
-      , nextNode = this.createNode(snakeHead.x + dir[0], snakeHead.y + dir[1])
+      , nextNode = this.getNextNode(snakeHead, dir)
       , nextNodeType = this.getNodeType(nextNode)
     switch (nextNodeType) {
       // 撞到自身或墙
@@ -149,6 +149,11 @@ export default class Model {
     // console.log('move')
     
   }
+
+  getNextNode(snakeHead, dir) {
+    return this.createNode(snakeHead.x + dir[0], snakeHead.y + dir[1])
+  }
+
   /**
    * 吃食
    *
