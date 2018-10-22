@@ -261,7 +261,7 @@ export default class Model {
         p.x = q.x + dir[i][0]    
         p.y = q.y + dir[i][1]
         p.index = p.y * 20 + p.x
-        if(p.index === food.index) {
+        if(p.index === food.index && p.x === food.x) {
           pre[p.index] = {...q}
           flag_break = true
         }
