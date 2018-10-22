@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "test": "karma start",
-    "dev": "yarn run start",
+    "dev": "npm run start",
     "start": "webpack-dev-server --open --config ./build/webpack.dev.js",
     "build": "webpack --config ./build/webpack.prod.js"
   },

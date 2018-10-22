@@ -4,6 +4,8 @@ export default class Model {
     // 蛇
     this.snake = {}
     this.snake.body = []
+    this.nextQueue = []
+    this.isAuto = true
     // 重新封装一下链表方法, 修改蛇的同时自动修改映射
     this.snake.push = (node) => {
       Array.prototype.push.call(this.snake.body, node)
@@ -68,6 +70,9 @@ export default class Model {
   init() {
     this.snake.body = []
     this.map = []
+    this.nextQueue = []
+    // 自动模式
+    this.isAuto = true
     // 脏检查标志（数据有更新）
     this.dirty = false;
     // 游戏结束标志
@@ -151,7 +156,17 @@ export default class Model {
   }
 
   getNextNode(snakeHead, dir) {
-    return this.createNode(snakeHead.x + dir[0], snakeHead.y + dir[1])
+    if(this.isAuto) {
+      if(this.nextQueue.length) {
+        return this.nextQueue.pop()
+      } else {
+        this.nextQueue = this.bfs(this.map, snakeHead, this.food)
+        this.nextQueue.pop()
+        return this.nextQueue.pop()
+      }
+    } else {
+      return this.createNode(snakeHead.x + dir[0], snakeHead.y + dir[1])
+    }
   }
 
   /**
@@ -224,5 +239,47 @@ export default class Model {
       y: Math.floor(index/this.height),
       index
     }
+  }
+
+  bfs(map, head, food) {
+    let queue = []
+    let vis = []
+    let pre = []
+    let dir = [
+      [0, 1],
+      [0, -1],
+      [1, 0],
+      [-1, 0]
+    ]
+    let q, p = {}, flag_break = false
+    queue.push({...head})
+    pre[head.index] = {index:-1}
+    debugger
+    while(queue.length) {
+      q = queue.shift()
+      for (let i = 0; i < 4; i++) {
+        p.x = q.x + dir[i][0]    
+        p.y = q.y + dir[i][1]
+        p.index = p.y * 20 + p.x
+        if(p.index === food.index) {
+          pre[p.index] = {...q}
+          flag_break = true
+        }
+        if(!(map[p.index] || vis[p.index]) && p.x >= 0 && p.x < 20 && p.y >= 0 && p.y < 20) {
+          vis[p.index] = true
+          queue.push({...p})
+          pre[p.index] = {...q}
+        }
+      }
+      if(flag_break) break;
+    }
+    let index = food.index, next = []
+    next.push({...food})
+    while(pre[index].index !== -1) {
+      next.push(pre[index])
+      index = pre[index].index
+    }
+    console.log(JSON.parse(JSON.stringify(next)));
+    return next
   }
 }
