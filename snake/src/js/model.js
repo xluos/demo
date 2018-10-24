@@ -162,11 +162,10 @@ export default class Model {
       } else {
         this.nextQueue = this.bfs(this.map, snakeHead, this.food)
         this.nextQueue.pop()
-        return this.nextQueue.pop()
+        if(this.nextQueue.length) return this.nextQueue.pop()
       }
-    } else {
-      return this.createNode(snakeHead.x + dir[0], snakeHead.y + dir[1])
     }
+    return this.createNode(snakeHead.x + dir[0], snakeHead.y + dir[1])
   }
 
   /**
@@ -254,7 +253,6 @@ export default class Model {
     let q, p = {}, flag_break = false
     queue.push({...head})
     pre[head.index] = {index:-1}
-    debugger
     while(queue.length) {
       q = queue.shift()
       for (let i = 0; i < 4; i++) {
@@ -275,11 +273,10 @@ export default class Model {
     }
     let index = food.index, next = []
     next.push({...food})
-    while(pre[index].index !== -1) {
+    while(pre[index] && pre[index].index !== -1) {
       next.push(pre[index])
       index = pre[index].index
     }
-    console.log(JSON.parse(JSON.stringify(next)));
-    return next
+    return next.slice(-2)
   }
 }
