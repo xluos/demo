@@ -7,7 +7,7 @@ import Hammer from 'hammerjs'
 
 const hammer = new Hammer.Manager(document.querySelector('main'));
 hammer.add(new Hammer.Swipe({ direction: Hammer.DIRECTION_ALL }))
-const snakeGame = new Snake();
+const snakeGame = new Snake({width: 10, height: 10});
 const notice = new Notice();
 
 
@@ -171,5 +171,5 @@ snakeGame.event.on('gameover', function(type) {
     text: `${text}  分数：${Number.innerText}`,
     allowOutsideClick: false
   })
-  $('.snake-switch').click()
+  // $('.snake-switch').click()
 })

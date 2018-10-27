@@ -1,6 +1,13 @@
 // 贪吃蛇Model类
+
+import FindPath from './findpath'
 export default class Model {
-  constructor ({width, height}={width:20, height: 20}) {
+  constructor (option) {
+    let {
+      width = 20,
+      height = 20
+    } = option
+    
     // 蛇
     this.snake = {}
     this.snake.body = []
@@ -59,6 +66,8 @@ export default class Model {
     this.dirty = false;
     // 游戏结束标志
     this.GAMEOVER = undefined
+    this.findPath = new FindPath(option)
+    this.getNode = this.findPath.getNextNode.bind(this.findPath)
   }
 
   
@@ -134,6 +143,7 @@ export default class Model {
       , snakeHead = this.snake.first()
       , nextNode = this.getNextNode(snakeHead, dir)
       , nextNodeType = this.getNodeType(nextNode)
+
     switch (nextNodeType) {
       // 撞到自身或墙
       case 'snake':
@@ -157,12 +167,9 @@ export default class Model {
 
   getNextNode(snakeHead, dir) {
     if(this.isAuto) {
-      if(this.nextQueue.length) {
-        return this.nextQueue.pop()
-      } else {
-        this.nextQueue = this.bfs(this.map, snakeHead, this.food)
-        this.nextQueue.pop()
-        if(this.nextQueue.length) return this.nextQueue.pop()
+      let next = this.getNode(this.snake.body, this.food)
+      if(next.flag) {
+        return next.node
       }
     }
     return this.createNode(snakeHead.x + dir[0], snakeHead.y + dir[1])
