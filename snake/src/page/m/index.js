@@ -24,7 +24,6 @@ window.snakeGame = snakeGame
 window.notice = notice
 
 window.onload = function() {
-  alert(document.referrer)
   history.replaceState(null, '贪吃蛇', '/')
   snakeGame.init()
   notice.init()

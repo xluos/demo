@@ -12,10 +12,13 @@ export default class Control{
     this.ticker = new Ticker(2)
     
 
-    this.ticker.on('updata', data=> console.log(data))
+    // this.ticker.on('updata', data=> console.log(data))
 
     this.ticker.on('render', (data)=> {
+      let time = new Date().getTime()
       this.updata()
+      time = new Date().getTime() - time
+      if(time > 16) console.warn('update-time',time)
     })
     // 四个方向的反方向
 		this.fourDirections = {

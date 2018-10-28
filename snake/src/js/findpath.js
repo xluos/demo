@@ -23,12 +23,12 @@ export default class FindPath {
     this.snake = snake
     this.build(snake, food)
     
-    console.log('找食物food', food);  
+    //console.log('找食物food', food);  
     let next = this.Astar(this.cmpMin)
     // let next = this.bfs()
     // 判断直奔食物找到的路是否安全
     if (this.isSecurity(next)) {
-      console.log('追食物')
+      //console.log('追食物')
       return {
         flag: true,
         node: next.pop()
@@ -45,13 +45,13 @@ export default class FindPath {
       // 还是没有找到路
       if (next.length === 0) {
         // 随便走一步
-        console.log('随便走', this.randomStep(snake));
+        //console.log('随便走', this.randomStep(snake));
         return {
           flag: true,
           node: this.randomStep(snake).pop()
         }
       } else {
-        console.log('追尾巴')
+        //console.log('追尾巴')
         
         return {
           flag: true,
@@ -213,13 +213,13 @@ export default class FindPath {
     } else {
       newSnakeBody = path.concat(this.snake.slice(0, this.snake.length - (path.length-1)))
     }
-    console.log('path', JSON.parse(JSON.stringify(path)));
-    console.log('snake', JSON.parse(JSON.stringify(this.snake)));
-    console.log('new', JSON.parse(JSON.stringify(newSnakeBody)));
+    //console.log('path', JSON.parse(JSON.stringify(path)));
+    //console.log('snake', JSON.parse(JSON.stringify(this.snake)));
+    //console.log('new', JSON.parse(JSON.stringify(newSnakeBody)));
     // return true
     this.build(newSnakeBody, newSnakeBody[newSnakeBody.length - 1])
     let pat = this.Astar(this.cmpMax)
-    if(pat.length === 0) console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+    // if(pat.length === 0) //console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
     return  pat.length > 0
   }
   /**

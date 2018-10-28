@@ -87,10 +87,10 @@ export default class Model {
     // 游戏结束标志
     this.GAMEOVER = undefined
     // 随机蛇的位置
-    let col = 5 || Math.floor(Math.random() * (this.width * 0.66))
-      , row = 5 || Math.floor(Math.random() * (this.width * 0.66))
+    let col = Math.floor(Math.random() * (this.width * 0.66))
+      , row = Math.floor(Math.random() * (this.width * 0.66))
     // 随机一个蛇
-    for(let i = col, len = col + 1; i < len; i++) {
+    for(let i = col, len = col + 3; i < len; i++) {
       this.snake.push({
         x: i,
         y: row,
@@ -166,12 +166,15 @@ export default class Model {
   }
 
   getNextNode(snakeHead, dir) {
+    // console.time(`head ${snakeHead}`)
     if(this.isAuto) {
       let next = this.getNode(this.snake.body, this.food)
       if(next.flag) {
+        // console.timeEnd(`head ${snakeHead}`)
         return next.node
       }
     }
+    // console.timeEnd(`head ${snakeHead}`)
     return this.createNode(snakeHead.x + dir[0], snakeHead.y + dir[1])
   }
 
@@ -245,45 +248,5 @@ export default class Model {
       y: Math.floor(index/this.height),
       index
     }
-  }
-
-  bfs(map, head, food) {
-    let queue = []
-    let vis = []
-    let pre = []
-    let dir = [
-      [0, 1],
-      [0, -1],
-      [1, 0],
-      [-1, 0]
-    ]
-    let q, p = {}, flag_break = false
-    queue.push({...head})
-    pre[head.index] = {index:-1}
-    while(queue.length) {
-      q = queue.shift()
-      for (let i = 0; i < 4; i++) {
-        p.x = q.x + dir[i][0]    
-        p.y = q.y + dir[i][1]
-        p.index = p.y * 20 + p.x
-        if(p.index === food.index && p.x === food.x) {
-          pre[p.index] = {...q}
-          flag_break = true
-        }
-        if(!(map[p.index] || vis[p.index]) && p.x >= 0 && p.x < 20 && p.y >= 0 && p.y < 20) {
-          vis[p.index] = true
-          queue.push({...p})
-          pre[p.index] = {...q}
-        }
-      }
-      if(flag_break) break;
-    }
-    let index = food.index, next = []
-    next.push({...food})
-    while(pre[index] && pre[index].index !== -1) {
-      next.push(pre[index])
-      index = pre[index].index
-    }
-    return next.slice(-2)
   }
 }
