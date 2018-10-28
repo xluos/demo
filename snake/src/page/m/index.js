@@ -24,7 +24,8 @@ window.snakeGame = snakeGame
 window.notice = notice
 
 window.onload = function() {
-  history.replaceState(null, '贪吃蛇', '/')
+  
+  history.replaceState(null, '贪吃蛇', location.pathname.split('/').slice(0,-1).join('/'))
   snakeGame.init()
   notice.init()
   // 显示游戏提示

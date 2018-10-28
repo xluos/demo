@@ -12,7 +12,7 @@ html, body {
   margin-top: 20px;
   width: 375px;
   height: 667px;
-  background: url(db4118e83acf2cced49751874032e17f.png) no-repeat;
+  background: url(../images/iphone.png) no-repeat;
   background-size: 100% 100%;
   border-radius: 6px;
   -webkit-box-shadow: 0 1px 6px rgba(0,0,0,.2), 0 1px 4px rgba(0,0,0,.2);
@@ -44,4 +44,4 @@ iframe {
   height: 554px;
 }
 
-/*# sourceMappingURL=desk.29e5c84d00dd31c2df4a.css.map*/
+/*# sourceMappingURL=desk.5e51b261a0e6ac24f328.css.map*/

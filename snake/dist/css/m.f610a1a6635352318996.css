@@ -196,6 +196,8 @@ main {
           appearance: none;
 	-webkit-box-shadow: inset 1px 1px 3px -1px rgba(0, 0, 0, .3);
 	        box-shadow: inset 1px 1px 3px -1px rgba(0, 0, 0, .3); 
+	position: relative;
+  z-index: 1;
 }
 .snake-speed:focus {
   outline: none;
@@ -3861,4 +3863,4 @@ main {
   display: none;
 }
 
-/*# sourceMappingURL=m.a95237ab59da15ff920b.css.map*/
+/*# sourceMappingURL=m.f610a1a6635352318996.css.map*/

@@ -43,7 +43,21 @@ module.exports = merge(common, {
         // 匹配 css 文件
         test: /\.css$/,
         // 打包时分离css文件
-        use: [MiniCssExtractPlugin.loader, 'css-loader','postcss-loader']
+        use: [{
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: '../' 
+            }
+          }, 
+          {
+            loader: 'css-loader',
+            options: {}
+          },
+          {
+            loader: 'postcss-loader',
+            options: {}
+          }
+        ]
       },
     ]
   }
