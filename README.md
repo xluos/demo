@@ -113,6 +113,6 @@
 + 十六宫格换位 [Demo](https://xluos.github.io/demo/%E6%8C%96%E8%B4%A2%E5%89%8D%E7%AB%AF%E7%AC%94%E8%AF%95%E9%A2%98/Task1/dist) [代码](./%E6%8C%96%E8%B4%A2%E5%89%8D%E7%AB%AF%E7%AC%94%E8%AF%95%E9%A2%98/Task1)
 + 照片裁切 [Demo](https://xluos.github.io/demo/%E6%8C%96%E8%B4%A2%E5%89%8D%E7%AB%AF%E7%AC%94%E8%AF%95%E9%A2%98/Task1/dist) [代码](./%E6%8C%96%E8%B4%A2%E5%89%8D%E7%AB%AF%E7%AC%94%E8%AF%95%E9%A2%98/Task2)
 
-# AI贪吃蛇 [查看项目]](./snake)  [Demo](./snake/dist)
+# AI贪吃蛇 [查看项目](./snake)  [Demo](https://xluos.github.io/demo/snake/dist)
 说是AI其实就是各种搜索策略，用来自动跑贪吃蛇，大部分代码都是贪吃蛇的游戏代码。寻路部分的代码在findpath.js文件
 策略还不是很完美，目前只能吃95%的方块
