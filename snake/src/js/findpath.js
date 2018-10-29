@@ -23,8 +23,13 @@ export default class FindPath {
     this.snake = snake
     this.build(snake, food)
     
-    //console.log('找食物food', food);  
-    let next = this.Astar(this.cmpMin)
+    //console.log('找食物food', food);
+    let next
+    if(snake.length < this.width * this.height)
+      // next = this.Astar(this.cmpMin)
+      next = this.bfs()
+    else 
+      next = this.Astar(this.cmpMax)
     // let next = this.bfs()
     // 判断直奔食物找到的路是否安全
     if (this.isSecurity(next)) {
