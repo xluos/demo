@@ -7,7 +7,10 @@ import Hammer from 'hammerjs'
 
 const hammer = new Hammer.Manager(document.querySelector('main'));
 hammer.add(new Hammer.Swipe({ direction: Hammer.DIRECTION_ALL }))
-const snakeGame = new Snake({width: 10, height: 10});
+
+const size = parseInt(getQueryVariable('size')) || 10
+
+const snakeGame = new Snake({width: size, height: size});
 const notice = new Notice();
 
 
@@ -42,6 +45,16 @@ window.onload = function() {
       allowOutsideClick: false
     })
   }
+}
+
+function getQueryVariable(variable) {
+  let query = window.location.search.substring(1);
+  let vars = query.split("&");
+  for (let i=0;i<vars.length;i++) {
+    let pair = vars[i].split("=");
+    if(pair[0] == variable){return pair[1];}
+  }
+  return(false);
 }
 
 // 按键事件用于pc

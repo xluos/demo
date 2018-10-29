@@ -12,10 +12,11 @@ export default class FindPath {
     this.vis = []
     this.pre = []
     this.g = []
+    // 上/左/下/右 顺时针
     this.dir = [
-      [0, 1],
       [0, -1],
       [1, 0],
+      [0, 1],
       [-1, 0]
     ]
   }
@@ -25,11 +26,11 @@ export default class FindPath {
     
     //console.log('找食物food', food);
     let next
-    if(snake.length < this.width * this.height)
-      // next = this.Astar(this.cmpMin)
-      next = this.bfs()
-    else 
-      next = this.Astar(this.cmpMax)
+    // if(snake.length < this.width * this.height)
+    next = this.Astar(this.cmpMin)
+    //   // next = this.bfs()
+    // else 
+    //   next = this.Astar(this.cmpMax)
     // let next = this.bfs()
     // 判断直奔食物找到的路是否安全
     if (this.isSecurity(next)) {
@@ -91,9 +92,11 @@ export default class FindPath {
    */
   build (snake, food) {
     this.init()
+
     // 设置起点和重点
     this.start = Object.assign({}, snake[0])
     this.end = Object.assign({}, food)
+    this.oldNode = [Object.assign({}, snake[0]), Object.assign({}, snake[1])]
     // 记录蛇节点为不可走节点
     let len = snake.length
     for (let i = 0; i < len; i++) {
@@ -116,6 +119,8 @@ export default class FindPath {
       next.push(this.pre[index])
       index = this.pre[index].index
     }
+    // console.log('next',JSON.parse(JSON.stringify(next)));
+    // console.log('-------------------------------------------------------')
     return next
   }
   /**
@@ -154,13 +159,15 @@ export default class FindPath {
     q.g = 0
     q.h = this.getEndH(q)
     q.f = q.h
+    q.c = 0
     this.queue.push(q)
     while (this.queue.length) {
       q = this.queue.shift()
+      // console.log('q',JSON.parse(JSON.stringify(q)));
       // 找到终点,放到外面以防死循环
-      if (q.index === this.end.index) {
-        return this.reconstructPath(q)
-      }
+      // if (q.index === this.end.index) {
+      //   return this.reconstructPath(q)
+      // }
       for (let i = 0; i < 4; i++) {
         p.x = q.x + this.dir[i][0]
         p.y = q.y + this.dir[i][1]
@@ -168,17 +175,24 @@ export default class FindPath {
         if (this.judge(p)) {
           // 指定父节点
           this.pre[p.index] = { ...q }
+          
+          if (p.index === this.end.index) {
+            return this.reconstructPath(p)
+          }
           // 标记为不可走
           this.vis[p.index] = true
           // 计算g、h、f
           p.g = q.g + 1
           p.h = this.getEndH(p)
           p.f = p.g + p.h
+          // 计算当前节点拐弯的代价
+          p.c = this.getC(p, q) + q.c
           this.queue.push({ ...p })
         }
       }
       // 原本应该用优先队列实现，然而不太好写由于没有性能要求先用Hack写法  TODO: 后续优化写法
-      this.queue.sort((a, b) => cmp(a.f, b.f))
+      this.queue.sort((a, b) => cmp(a, b))
+      // console.log('queue',JSON.parse(JSON.stringify(this.queue)));
     }
     // 如果走到这儿了说明没有找到可走的路
     return []
@@ -236,7 +250,10 @@ export default class FindPath {
    * @memberof FindPath
    */
   cmpMin (a, b) {
-    return a - b
+    if(a.f === b.f) {
+      return a.c - b.c
+    }
+    return a.f - b.f
   }
   /**
    * 降序比较函数
@@ -247,7 +264,43 @@ export default class FindPath {
    * @memberof FindPath
    */
   cmpMax (a, b) {
-    return b - a
+    if(a.f === b.f) {
+      return a.c - b.c
+    }
+    return b.f - a.f
+  }
+
+  /**
+   * 判断两个节点是否在同一条线上
+   *
+   * @param {*} a 节点a
+   * @param {*} b 节点b
+   * @memberof FindPath
+   */
+  isLine (a, b) {
+    return (a.x === b.x || a.y === b.y)
+  }
+
+  /**
+   * 计算当前节点的拐弯权
+   *
+   * @param {*} p 
+   * @memberof FindPath
+   */
+  getC (p,q) {
+    let c = 0
+    switch (p.g) {
+      case 1:
+        c = this.isLine(p, this.oldNode[1]) ? 0 : 1
+        break;
+      case 2:
+        c = this.isLine(p, this.oldNode[0]) ? 0 : 1
+        break;
+      default:
+        c = this.isLine(p, this.pre[q.index]) ? 0 : 1
+        break;
+    }
+    return c
   }
   /**
    * 数组乱序
@@ -271,9 +324,12 @@ export default class FindPath {
   bfs () {
     let q = this.start
     let p = {}
+    q.g = 0
     this.queue.push(q)
     while (this.queue.length) {
       q = this.queue.shift()
+      // console.log(JSON.parse(JSON.stringify(q)));
+      
       for (let i = 0; i < 4; i++) {
         p.x = q.x + this.dir[i][0]
         p.y = q.y + this.dir[i][1]
@@ -287,9 +343,14 @@ export default class FindPath {
           }
           // 标记为不可走
           this.vis[p.index] = true
+          // 计算拐弯代价
+          p.g = q.g + 1
+          p.c = this.getC(p, q) + q.c
           this.queue.push({ ...p })
         }
       }
+      this.queue.sort((a,b) => a.c - b.c)
+      // console.log(JSON.parse(JSON.stringify(this.queue)));
     }
     // 如果走到这儿了说明没有找到可走的路
     return []
