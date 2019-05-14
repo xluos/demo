@@ -1,0 +1,133 @@
+# 用户
+type User {
+  id: ID! @unique 
+  createdAt: DateTime! 
+  updatedAt: DateTime!
+  userId: Int! @unique
+  password: String!
+  level: Int! @default(value: "0")
+  name: String! 
+  email: String
+  privilegeGroup: [PrivilegeGroup!]!
+  UserDiscuss: [Discuss!]! @relation(name: "DiscussByUser")
+  UserDiscussChilder: [DiscussChilder!]! @relation(name: "DiscussChilderByUser")
+  userGroup: [UserGroup!]! @relation(name: "UserGroupByUser")
+  createUserGroup: [UserGroup!]! @relation(name: "CreateUserGroupByUser") 
+  privilegeUserGroup: [UserGroup!]! @relation(name: "CrivilegeUserGroupByUser") 
+  problems: [Json!]!
+  submit: Int! @default(value: "0")
+  solved: Int! @default(value: "0")
+  accepted: Int! @default(value: "0")
+}
+
+# 权限组
+type PrivilegeGroup {
+  id: ID! @unique 
+  createdAt: DateTime! 
+  updatedAt: DateTime!
+  name: String!
+  privilege: Int!
+  users: [User!]!
+}
+
+# 用户组
+type UserGroup {
+  id: ID! @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  name: String!
+  createUser: User! @relation(name: "CreateUserGroupByUser")
+  privilege: [User!]! @relation(name: "PrivilegeUserGroupByUser")
+  users: [User!]! @relation(name: "UserGroupByUser")
+}
+
+# 题目
+type Problem {
+  id: ID! @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  status: Int! @default(value: "0")
+  type: Int! @default(value: "0"),
+  tags: Json!
+  title: String!
+  describe: String!
+  inDescribe: String!
+  outDescribe: String!
+  inExample: String!
+  outExample: String!
+  hint: String
+  source: String
+  example: String
+  discuss: [Discuss!]! @relation(name: "DiscussByProblem" onDelete: CASCADE)
+}
+
+# 讨论
+type Discuss {
+  id: ID! @unique 
+  createdAt: DateTime! 
+  updatedAt: DateTime!
+  contentRaw: String!
+  content: String!
+  user: User @relation(name: "DiscussByUser")
+  userId: Int!
+  userName: String!
+  # 评论回复 楼中楼形式
+  children: [DiscussChilder!]! @relation(name: "DiscussByChildren" onDelete: CASCADE)
+}
+
+type DiscussChilder {
+  id: ID! @unique 
+  createdAt: DateTime! 
+  updatedAt: DateTime!
+  contentRaw: String!
+  content: String!
+  user: User @relation(name: "DiscussChilderByUser")
+  userId: Int!
+  userName: String!
+  replyUserId: Int!
+  replyUserName: String!
+}
+
+type Submit {
+  id: ID! @unique 
+  createdAt: DateTime! 
+  updatedAt: DateTime!
+  user: User
+  userId: Int!
+  userName: String!
+  problem: Problem
+  problemId: String!
+  problemTitle: String!
+  language: Int!
+  code: String!
+  result: String!
+  errorInfo: String
+  contest: Contest 
+  limitTime: Int!
+  limitMemory: Int!
+}
+
+type Contest {
+  id: ID! @unique 
+  createdAt: DateTime! 
+  updatedAt: DateTime!
+  name: String!
+  type: Int
+  createUserName: String!
+  createUserId: Int!
+  startTime: DateTime!
+  endTime: DateTime!
+  userGroup: UserGroup!
+  contestProblem: ContestProblem! @relation(name: "ContsetByProblem" onDelete: CASCADE)
+}
+
+type ContestProblem {
+  id: ID! @unique 
+  createdAt: DateTime! 
+  updatedAt: DateTime!
+  problem: Problem
+  problemId: String!
+  problemTitle: String!
+  ac: Int! @default(value: "0")
+  wa: Int! @default(value: "0")
+}

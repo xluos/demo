@@ -1,0 +1,9 @@
+endpoint: http://vm.vm:4466/pdsuoj
+datamodel: datamodel.prisma
+
+generate:
+  - generator: typescript-client
+    output: ./generated/prisma-client/
+hooks:
+  post-deploy:
+    - prisma generate
