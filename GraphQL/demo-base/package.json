@@ -1,0 +1,16 @@
+{
+  "name": "demo-base",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "graphql": "^14.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node  --experimental-modules index.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

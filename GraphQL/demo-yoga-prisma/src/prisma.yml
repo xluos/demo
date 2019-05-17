@@ -1,0 +1,9 @@
+endpoint: http://acmer.club:4466/demo
+datamodel: datamodel.prisma
+
+generate:
+  - generator: javascript-client
+    output: ./generated/prisma-client/
+hooks:
+  post-deploy:
+    - prisma generate
