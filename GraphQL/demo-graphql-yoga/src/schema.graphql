@@ -1,19 +1,19 @@
 type Query {
   user(id: Int!): User!
   users: [User!]!
-  article(id: Int!): Articles!
-  articles: [Articles!]!
+  article(id: Int!): Article!
+  articles: [Article!]!
 }
 
 type User {
   id: Int!
   name: String!
-  article: [Article!]!
+  articles: [Article!]!
 }
 
 type Article {
   id: Int
-  author: User!
+  author: User
   title: String!
   content: String!
 }
@@ -26,9 +26,7 @@ type Mutation {
 input createArticleInput {
   title: String!
   content: String
-  author: {
-    id: Int!
-  }
+  author: createArticleToAuthorInput
 }
 
 input createArticleToAuthorInput {

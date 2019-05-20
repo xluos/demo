@@ -41,19 +41,23 @@ var root = {
   hw: (arg, ctx) => {
     return {hello: arg.helloText || 'hello', world: 'world'}
   },
-  doctors: (arg, ctx) => {
-    return ctx.db.getDockerList(arg.count || 5)
+  doctors: (arg, ctx, info) => {
+    console.log(ctx.request.headers)    
+    return DB.getDockerList(arg.count || 5)
   }
 };
 
 var app = express();
-app.use('/graphql', graphqlHTTP({
-  schema: schema,
-  rootValue: root,
-  context: {
-    db: DB
-  },
-  graphiql: true,
+app.use('/graphql', graphqlHTTP(request => {
+  return {
+    schema: schema,
+    rootValue: root,
+    context: {
+      db: DB,
+      request
+    },
+    graphiql: true,
+  };
 }));
 
 app.listen(4000, () => console.log('Now browse to http://localhost:4000/graphql'));
