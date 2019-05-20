@@ -11,18 +11,22 @@ const ctx = canvas.getContext("2d");
 const canvas2 = document.getElementById('canvas2')
 const ctx2 = canvas2.getContext("2d");
 var reader = new FileReader();
-
+const $ = function (query) {
+    return document.querySelector(query)
+}
 // 上传文件事件
 Update.addEventListener('change', function (e) {
     var file = e.target.files[0];
     var type = file.type.split('/')[0];
+    window.imgType = file.type
     if (type != 'image') {
         alert('请上传图片');
         return;
     }
     var size = Math.floor(file.size / 1024 / 1024);
-    if (size > 3) {
-        alert('图片大小不得超过3M');
+    var maxSize = 10
+    if (size > maxSize) {
+        alert(`图片大小不得超过${maxSize}M`);
         return;
     };
     reader.readAsDataURL(file);
@@ -39,8 +43,30 @@ Update.addEventListener('change', function (e) {
             updateBar(barChart, ctx.getImageData(0, 0, canvas.width, canvas.height))
         }
         img.src = reader.result;
+        this.readAsArrayBuffer(file)
+        this.onloadend = function () {
+            console.log(this.result);
+            window.buffer = this.result
+        }
     }
 })
+
+// 利用canvas压缩
+function compressCanvas (quality = 0.9) {
+    quality = parseInt($('#compressValue').value)/100 || quality
+    canvas.toBlob(function (blob) {
+        console.log(blob);
+        window.blob = blob
+        let href = window.URL.createObjectURL(blob)
+        console.log(href);
+        
+        $('#compressImg').src = href
+        let down = document.createElement('a')
+        down.download = 'compressImg'
+        down.href = href
+        down.click()
+    }, window.imgType, quality)
+}
 
 // 转换成灰度图像
 gray.addEventListener('click', grayfun)
