@@ -1,0 +1,19 @@
+type User {
+  id: ID! @id
+  name: String!
+  article: [Article!]!
+}
+type Article {
+  id: ID! @id
+  author: User!
+  title: String!
+  content: String
+  tags: [Tag!]!
+  pv: Int! @default(value: 0)
+  uv: Int! @default(value: 0)
+}
+
+type Tag {
+  id: ID! @id
+  name: String
+}
