@@ -1,0 +1,23 @@
+{
+  "name": "demo-graphql-nexus",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node-dev --no-notify --respawn --transpileOnly ./src"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "graphql": "^14.3.0",
+    "graphql-yoga": "^1.17.4",
+    "nexus": "^0.11.7",
+    "nexus-prisma": "^0.3.7",
+    "prisma-client-lib": "^1.33.0"
+  },
+  "devDependencies": {
+    "ts-node-dev": "^1.0.0-pre.39",
+    "typescript": "^3.4.5"
+  }
+}

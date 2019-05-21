@@ -1,0 +1,10 @@
+endpoint: http://acmer.club:4466/nexus
+datamodel: datamodel.prisma
+
+generate:
+  - generator: typescript-client
+    output: ./generated/prisma-client/
+hooks:
+  post-deploy:
+    - prisma generate
+    - npx nexus-prisma-generate --client ./src/generated/prisma-client --output ./src/generated/nexus-prisma

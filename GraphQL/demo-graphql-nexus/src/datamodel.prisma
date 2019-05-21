@@ -1,0 +1,12 @@
+type User {
+  id: ID! @id
+  name: String!
+  password: String!
+  article: [Article!]!
+}
+type Article {
+  id: ID! @id
+  author: User!
+  title: String!
+  content: String
+}
