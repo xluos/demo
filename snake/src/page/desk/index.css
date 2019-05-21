@@ -27,6 +27,46 @@ html, body {
   font-size: 14px;
   color: #333;
 }
+.url1 {
+  position: absolute;
+  left: 50px;
+  top: 32px;
+  right: 50px;
+  height: 20px;
+  text-align: center;
+  font-size: 14px;
+  color: #333;
+}
+.url2 {
+  position: absolute;
+  left: 50px;
+  top: 32px;
+  right: 50px;
+  height: 20px;
+  text-align: center;
+  font-size: 14px;
+  color: #333;
+}
+.url3 {
+  position: absolute;
+  left: 50px;
+  top: 32px;
+  right: 50px;
+  height: 20px;
+  text-align: center;
+  font-size: 14px;
+  color: #333;
+}
+.url4 {
+  position: absolute;
+  left: 50px;
+  top: 32px;
+  right: 50px;
+  height: 20px;
+  text-align: center;
+  font-size: 14px;
+  color: #333;
+}
 .reload {
   position: absolute;
   right: 17px;

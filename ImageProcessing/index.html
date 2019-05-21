@@ -36,7 +36,12 @@
     <button onclick="ColorImageGaussianBlur()">图像平滑-高斯模糊</button>
     <button onclick="ColorImageLaplace(4)">图像锐化-4-邻域拉式算子</button>
     <button onclick="ColorImageLaplace(8)">图像锐化-8-邻域拉式算子</button>
-    
+    <input type="text" id="compressValue" />
+    <button onclick="compressCanvas()">Canvas压缩</button>
+    <button onclick="buffer()">二进制数据</button>
+    <div>
+        <img src="" alt="" id='compressImg'>
+    </div>
     <script src="./js/echarts.min.js"></script>
     <script src="./js/barInit.js"></script>
     <script src="./js/index.js"></script>

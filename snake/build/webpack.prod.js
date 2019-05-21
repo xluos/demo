@@ -4,6 +4,15 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const common = require('./webpack.common.js');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const path = require('path');
+const glob = require('glob-all');
+const PurifyCSS = require('purifycss-webpack');
+let pathhhhh = [
+  path.join(__dirname,  'src/page/**/*.html'),
+  path.join(__dirname,  'src/page/**/*.js'),
+  path.join(__dirname,  'src/lib/*.js')
+]
+console.log(pathhhhh)
 
 module.exports = merge(common, {
   mode: 'production',
@@ -24,13 +33,16 @@ module.exports = merge(common, {
         logLevel: 'info'
       }
     ),
+    // 提取css为独立文件
+    new MiniCssExtractPlugin({
+      filename: 'css/[name].[hash].css'
+    }),
+    new PurifyCSS({
+      paths: glob.sync(pathhhhh)//src下所有的html
+    }),
     // js代码精简压缩
     new UglifyJSPlugin({
       sourceMap: true
-    }),
-    // 提取css为独立文件
-    new MiniCssExtractPlugin({
-      filename: 'css/[name].[contenthash].css'
     }),
     // 设置环境变量
     new webpack.DefinePlugin({
