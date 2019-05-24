@@ -8,7 +8,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "node  --experimental-modules index.mjs"
+    "start": "node  --experimental-modules index.mjs",
+    "start2": "node  --experimental-modules index2.mjs"
   },
   "keywords": [],
   "author": "",

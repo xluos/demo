@@ -82,10 +82,6 @@ export interface NexusGenInputs {
     content?: string | null; // String
     title?: string | null; // String
   }
-  ArticleUpdateManyMutationInput: { // input type
-    content?: string | null; // String
-    title?: string | null; // String
-  }
   ArticleUpdateManyWithWhereNestedInput: { // input type
     data: NexusGenInputs['ArticleUpdateManyDataInput']; // ArticleUpdateManyDataInput!
     where: NexusGenInputs['ArticleScalarWhereInput']; // ArticleScalarWhereInput!
@@ -185,10 +181,6 @@ export interface NexusGenInputs {
     name?: string | null; // String
     password?: string | null; // String
   }
-  UserUpdateManyMutationInput: { // input type
-    name?: string | null; // String
-    password?: string | null; // String
-  }
   UserUpdateOneRequiredWithoutArticleInput: { // input type
     connect?: NexusGenInputs['UserWhereUniqueInput'] | null; // UserWhereUniqueInput
     create?: NexusGenInputs['UserCreateWithoutArticleInput'] | null; // UserCreateWithoutArticleInput
@@ -283,9 +275,6 @@ export interface NexusGenRootTypes {
     cursor: string; // String!
     node: NexusGenRootTypes['Article']; // Article!
   }
-  BatchPayload: { // root type
-    count: any; // Long!
-  }
   Mutation: {};
   PageInfo: { // root type
     endCursor?: string | null; // String
@@ -297,7 +286,6 @@ export interface NexusGenRootTypes {
   User: { // root type
     id: string; // ID!
     name: string; // String!
-    password: string; // String!
   }
   UserConnection: { // root type
     edges: NexusGenRootTypes['UserEdge'][]; // [UserEdge!]!
@@ -312,7 +300,6 @@ export interface NexusGenRootTypes {
   Float: number;
   Boolean: boolean;
   ID: string;
-  Long: any;
 }
 
 export interface NexusGenAllTypes extends NexusGenRootTypes {
@@ -322,7 +309,6 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
   ArticleScalarWhereInput: NexusGenInputs['ArticleScalarWhereInput'];
   ArticleUpdateInput: NexusGenInputs['ArticleUpdateInput'];
   ArticleUpdateManyDataInput: NexusGenInputs['ArticleUpdateManyDataInput'];
-  ArticleUpdateManyMutationInput: NexusGenInputs['ArticleUpdateManyMutationInput'];
   ArticleUpdateManyWithWhereNestedInput: NexusGenInputs['ArticleUpdateManyWithWhereNestedInput'];
   ArticleUpdateManyWithoutAuthorInput: NexusGenInputs['ArticleUpdateManyWithoutAuthorInput'];
   ArticleUpdateWithWhereUniqueWithoutAuthorInput: NexusGenInputs['ArticleUpdateWithWhereUniqueWithoutAuthorInput'];
@@ -334,7 +320,6 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
   UserCreateOneWithoutArticleInput: NexusGenInputs['UserCreateOneWithoutArticleInput'];
   UserCreateWithoutArticleInput: NexusGenInputs['UserCreateWithoutArticleInput'];
   UserUpdateInput: NexusGenInputs['UserUpdateInput'];
-  UserUpdateManyMutationInput: NexusGenInputs['UserUpdateManyMutationInput'];
   UserUpdateOneRequiredWithoutArticleInput: NexusGenInputs['UserUpdateOneRequiredWithoutArticleInput'];
   UserUpdateWithoutArticleDataInput: NexusGenInputs['UserUpdateWithoutArticleDataInput'];
   UserUpsertWithoutArticleInput: NexusGenInputs['UserUpsertWithoutArticleInput'];
@@ -355,6 +340,7 @@ export interface NexusGenFieldTypes {
     author: NexusGenRootTypes['User']; // User!
     content: string | null; // String
     id: string; // ID!
+    pv: number | null; // Int
     title: string; // String!
   }
   ArticleConnection: { // field return type
@@ -366,22 +352,11 @@ export interface NexusGenFieldTypes {
     cursor: string; // String!
     node: NexusGenRootTypes['Article']; // Article!
   }
-  BatchPayload: { // field return type
-    count: any; // Long!
-  }
   Mutation: { // field return type
     createArticle: NexusGenRootTypes['Article']; // Article!
     createUser: NexusGenRootTypes['User']; // User!
-    deleteArticle: NexusGenRootTypes['Article'] | null; // Article
-    deleteManyArticles: NexusGenRootTypes['BatchPayload']; // BatchPayload!
-    deleteManyUsers: NexusGenRootTypes['BatchPayload']; // BatchPayload!
-    deleteUser: NexusGenRootTypes['User'] | null; // User
     updateArticle: NexusGenRootTypes['Article'] | null; // Article
-    updateManyArticles: NexusGenRootTypes['BatchPayload']; // BatchPayload!
-    updateManyUsers: NexusGenRootTypes['BatchPayload']; // BatchPayload!
     updateUser: NexusGenRootTypes['User'] | null; // User
-    upsertArticle: NexusGenRootTypes['Article']; // Article!
-    upsertUser: NexusGenRootTypes['User']; // User!
   }
   PageInfo: { // field return type
     endCursor: string | null; // String
@@ -401,7 +376,6 @@ export interface NexusGenFieldTypes {
     article: NexusGenRootTypes['Article'][] | null; // [Article!]
     id: string; // ID!
     name: string; // String!
-    password: string; // String!
   }
   UserConnection: { // field return type
     aggregate: NexusGenRootTypes['AggregateUser']; // AggregateUser!
@@ -422,42 +396,12 @@ export interface NexusGenArgTypes {
     createUser: { // args
       data: NexusGenInputs['UserCreateInput']; // UserCreateInput!
     }
-    deleteArticle: { // args
-      where: NexusGenInputs['ArticleWhereUniqueInput']; // ArticleWhereUniqueInput!
-    }
-    deleteManyArticles: { // args
-      where?: NexusGenInputs['ArticleWhereInput'] | null; // ArticleWhereInput
-    }
-    deleteManyUsers: { // args
-      where?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    }
-    deleteUser: { // args
-      where: NexusGenInputs['UserWhereUniqueInput']; // UserWhereUniqueInput!
-    }
     updateArticle: { // args
       data: NexusGenInputs['ArticleUpdateInput']; // ArticleUpdateInput!
       where: NexusGenInputs['ArticleWhereUniqueInput']; // ArticleWhereUniqueInput!
     }
-    updateManyArticles: { // args
-      data: NexusGenInputs['ArticleUpdateManyMutationInput']; // ArticleUpdateManyMutationInput!
-      where?: NexusGenInputs['ArticleWhereInput'] | null; // ArticleWhereInput
-    }
-    updateManyUsers: { // args
-      data: NexusGenInputs['UserUpdateManyMutationInput']; // UserUpdateManyMutationInput!
-      where?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    }
     updateUser: { // args
       data: NexusGenInputs['UserUpdateInput']; // UserUpdateInput!
-      where: NexusGenInputs['UserWhereUniqueInput']; // UserWhereUniqueInput!
-    }
-    upsertArticle: { // args
-      create: NexusGenInputs['ArticleCreateInput']; // ArticleCreateInput!
-      update: NexusGenInputs['ArticleUpdateInput']; // ArticleUpdateInput!
-      where: NexusGenInputs['ArticleWhereUniqueInput']; // ArticleWhereUniqueInput!
-    }
-    upsertUser: { // args
-      create: NexusGenInputs['UserCreateInput']; // UserCreateInput!
-      update: NexusGenInputs['UserUpdateInput']; // UserUpdateInput!
       where: NexusGenInputs['UserWhereUniqueInput']; // UserWhereUniqueInput!
     }
   }
@@ -523,15 +467,15 @@ export interface NexusGenAbstractResolveReturnTypes {
 
 export interface NexusGenInheritedFields {}
 
-export type NexusGenObjectNames = "AggregateArticle" | "AggregateUser" | "Article" | "ArticleConnection" | "ArticleEdge" | "BatchPayload" | "Mutation" | "PageInfo" | "Query" | "User" | "UserConnection" | "UserEdge";
+export type NexusGenObjectNames = "AggregateArticle" | "AggregateUser" | "Article" | "ArticleConnection" | "ArticleEdge" | "Mutation" | "PageInfo" | "Query" | "User" | "UserConnection" | "UserEdge";
 
-export type NexusGenInputNames = "ArticleCreateInput" | "ArticleCreateManyWithoutAuthorInput" | "ArticleCreateWithoutAuthorInput" | "ArticleScalarWhereInput" | "ArticleUpdateInput" | "ArticleUpdateManyDataInput" | "ArticleUpdateManyMutationInput" | "ArticleUpdateManyWithWhereNestedInput" | "ArticleUpdateManyWithoutAuthorInput" | "ArticleUpdateWithWhereUniqueWithoutAuthorInput" | "ArticleUpdateWithoutAuthorDataInput" | "ArticleUpsertWithWhereUniqueWithoutAuthorInput" | "ArticleWhereInput" | "ArticleWhereUniqueInput" | "UserCreateInput" | "UserCreateOneWithoutArticleInput" | "UserCreateWithoutArticleInput" | "UserUpdateInput" | "UserUpdateManyMutationInput" | "UserUpdateOneRequiredWithoutArticleInput" | "UserUpdateWithoutArticleDataInput" | "UserUpsertWithoutArticleInput" | "UserWhereInput" | "UserWhereUniqueInput";
+export type NexusGenInputNames = "ArticleCreateInput" | "ArticleCreateManyWithoutAuthorInput" | "ArticleCreateWithoutAuthorInput" | "ArticleScalarWhereInput" | "ArticleUpdateInput" | "ArticleUpdateManyDataInput" | "ArticleUpdateManyWithWhereNestedInput" | "ArticleUpdateManyWithoutAuthorInput" | "ArticleUpdateWithWhereUniqueWithoutAuthorInput" | "ArticleUpdateWithoutAuthorDataInput" | "ArticleUpsertWithWhereUniqueWithoutAuthorInput" | "ArticleWhereInput" | "ArticleWhereUniqueInput" | "UserCreateInput" | "UserCreateOneWithoutArticleInput" | "UserCreateWithoutArticleInput" | "UserUpdateInput" | "UserUpdateOneRequiredWithoutArticleInput" | "UserUpdateWithoutArticleDataInput" | "UserUpsertWithoutArticleInput" | "UserWhereInput" | "UserWhereUniqueInput";
 
 export type NexusGenEnumNames = "ArticleOrderByInput" | "UserOrderByInput";
 
 export type NexusGenInterfaceNames = never;
 
-export type NexusGenScalarNames = "Boolean" | "Float" | "ID" | "Int" | "Long" | "String";
+export type NexusGenScalarNames = "Boolean" | "Float" | "ID" | "Int" | "String";
 
 export type NexusGenUnionNames = never;
 

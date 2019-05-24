@@ -8,12 +8,12 @@ let Data = {
   users: [
     { id: '100001', name: '江湖路人', article: [] }
   ],
-  articles: [
+  userToArticle: [
     ['100001', '101001'],
     ['100001', '101002'],
     ['100001', '101003']
   ],
-  userToArticle: [
+  articles: [
     { id: '101001', title: '测试Title1', content: '这里是内容aaaaa' },
     { id: '101002', title: '测试Title2', content: '这里是内容aaaaa' },
     { id: '101003', title: '测试Title3', content: '这里是内容aaaaa' }
@@ -52,12 +52,14 @@ const resolvers = {
         content,
         author,
       }} = args;
+      
       const id = getId()
       const article = {
         id,
         title,
         content
       }
+      
       ctx.Data.articles.push(article)
       ctx.Data.userToArticle.push([
         author.id, id
@@ -68,6 +70,7 @@ const resolvers = {
   User: {
     articles (parent, args, ctx, info) {
       const articlesId = ctx.Data.userToArticle.filter(it => it[0] == parent.id)
+      
       return articlesId.map(it => ctx.Data.articles.find(_it => _it.id == it[1]))
     }
   },

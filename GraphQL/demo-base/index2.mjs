@@ -7,7 +7,7 @@ import {
  
 var schema = new GraphQLSchema({
   query: new GraphQLObjectType({
-    name: 'RootQueryType',
+    name: 'query',
     fields: {
       hello: {
         type: GraphQLString,

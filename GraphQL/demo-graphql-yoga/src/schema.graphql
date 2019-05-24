@@ -15,7 +15,7 @@ type Article {
   id: Int
   author: User
   title: String!
-  content: String!
+  content: String
 }
 
 type Mutation {

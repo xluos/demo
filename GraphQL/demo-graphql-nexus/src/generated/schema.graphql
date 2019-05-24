@@ -14,6 +14,7 @@ type Article {
   author: User!
   content: String
   id: ID!
+  pv: Int
   title: String!
 }
 
@@ -118,11 +119,6 @@ input ArticleUpdateManyDataInput {
   title: String
 }
 
-input ArticleUpdateManyMutationInput {
-  content: String
-  title: String
-}
-
 input ArticleUpdateManyWithoutAuthorInput {
   connect: [ArticleWhereUniqueInput!]
   create: [ArticleCreateWithoutAuthorInput!]
@@ -209,25 +205,11 @@ input ArticleWhereUniqueInput {
   id: ID
 }
 
-type BatchPayload {
-  count: Long!
-}
-
-scalar Long
-
 type Mutation {
   createArticle(data: ArticleCreateInput!): Article!
   createUser(data: UserCreateInput!): User!
-  deleteArticle(where: ArticleWhereUniqueInput!): Article
-  deleteManyArticles(where: ArticleWhereInput): BatchPayload!
-  deleteManyUsers(where: UserWhereInput): BatchPayload!
-  deleteUser(where: UserWhereUniqueInput!): User
   updateArticle(data: ArticleUpdateInput!, where: ArticleWhereUniqueInput!): Article
-  updateManyArticles(data: ArticleUpdateManyMutationInput!, where: ArticleWhereInput): BatchPayload!
-  updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
-  upsertArticle(create: ArticleCreateInput!, update: ArticleUpdateInput!, where: ArticleWhereUniqueInput!): Article!
-  upsertUser(create: UserCreateInput!, update: UserUpdateInput!, where: UserWhereUniqueInput!): User!
 }
 
 type PageInfo {
@@ -250,7 +232,6 @@ type User {
   article(after: String, before: String, first: Int, last: Int, orderBy: ArticleOrderByInput, skip: Int, where: ArticleWhereInput): [Article!]
   id: ID!
   name: String!
-  password: String!
 }
 
 type UserConnection {
@@ -297,11 +278,6 @@ enum UserOrderByInput {
 
 input UserUpdateInput {
   article: ArticleUpdateManyWithoutAuthorInput
-  name: String
-  password: String
-}
-
-input UserUpdateManyMutationInput {
   name: String
   password: String
 }
