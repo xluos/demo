@@ -1,4 +1,5 @@
 import { prismaObjectType, makePrismaSchema } from 'nexus-prisma'
+import { stringArg, mutationType } from 'nexus'
 import { objectType } from "nexus";
 import { GraphQLServer } from 'graphql-yoga'
 import { prisma } from './generated/prisma-client'
@@ -14,57 +15,6 @@ const Query = prismaObjectType({
   definition: t => t.prismaFields(['*'])
 })
 
-// 过滤生成的方法
-const Mutation = prismaObjectType({ 
-  name: 'Mutation',
-  definition(t) {
-    t.prismaFields(["createUser", "updateUser", "createArticle", "updateArticle"])
-    
-    t.field('signup', {
-      type: 'AuthPayload',
-      args: {
-        name: stringArg({ nullable: true }),
-        email: stringArg(),
-        password: stringArg(),
-      },
-      resolve: async (parent, { name, email, password }, ctx) => {
-        const hashedPassword = await hash(password, 10)
-        const user = await ctx.prisma.createUser({
-          name,
-          email,
-          password: hashedPassword,
-        })
-        return {
-          token: sign({ userId: user.id }, APP_SECRET),
-          user,
-        }
-      },
-    })
-
-    t.field('login', {
-      type: 'AuthPayload',
-      args: {
-        email: stringArg(),
-        password: stringArg(),
-      },
-      resolve: async (parent, { email, password }, context) => {
-        const user = await context.prisma.user({ email })
-        if (!user) {
-          throw new Error(`No user found for email: ${email}`)
-        }
-        const passwordValid = await compare(password, user.password)
-        if (!passwordValid) {
-          throw new Error('Invalid password')
-        }
-        return {
-          token: sign({ userId: user.id }, APP_SECRET),
-          user,
-        }
-      },
-    })
-  }
-})
-
 const AuthPayload = objectType({
   name: 'AuthPayload',
   definition(t) {
@@ -72,6 +22,50 @@ const AuthPayload = objectType({
     t.field('user', { type: 'User' })
   },
 })
+
+const TestObj = objectType({
+  name: 'TestObj',
+  definition(t) {
+    t.string('tets')
+  },
+})
+
+const TestObj2 = objectType({
+  name: 'TestObj2',
+  definition(t) {
+    t.string('tets2')
+  },
+})
+
+const Mutation = prismaObjectType({ 
+  name: 'Mutation',
+  definition(t) {
+    t.prismaFields(["createUser", "updateUser", "createArticle", "updateArticle"])
+    t.field("login", {
+      type: "AuthPayload",
+      resolve: async () => {
+        return {
+          token: "",
+          user: ""
+        }
+      }
+    })
+    t.field("test", {
+      type: "TestObj",
+      resolve: () => {
+
+      }
+    })
+    t.field("test2", {
+      type: 't',
+      resolve: () => {
+
+      }
+    })
+  }
+})
+
+
 
 // 定制字段
 const User = prismaObjectType({
@@ -100,7 +94,7 @@ const Article = prismaObjectType({
 
 
 const schema = makePrismaSchema({
-  types: [Query, Mutation, User, Article, AuthPayload],
+  types: [Query, Mutation, User, Article, AuthPayload, TestObj, TestObj2],
 
   prisma: {
     client: prisma,
@@ -110,7 +104,16 @@ const schema = makePrismaSchema({
   outputs: {
     schema: path.join(__dirname, './generated/schema.graphql'),
     typegen: path.join(__dirname, './generated/nexus.ts'),
-  }
+  },
+
+  typegenAutoConfig: {
+    sources: [
+      {
+        source: path.join(__dirname, './generated/prisma-client/index.ts'),
+        alias: 'prisma',
+      },
+    ],
+  },
 })
 
 const server = new GraphQLServer({
