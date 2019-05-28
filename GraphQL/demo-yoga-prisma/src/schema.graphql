@@ -1,0 +1,34 @@
+type Query {
+  user(id: String!): User!
+  users: [User!]!
+  article(id: String!): Article!
+  articles: [Article!]!
+}
+
+type User {
+  id: String!
+  name: String!
+  article: [Article!]!
+}
+
+type Article {
+  id: String!
+  author: User
+  title: String!
+  content: String!
+}
+
+type Mutation {
+  createUser (name: String!): User!
+  createArticle (data: createArticleInput! ): Article!
+}
+
+input createArticleInput {
+  title: String!
+  content: String
+  author: createArticleToAuthorInput
+}
+
+input createArticleToAuthorInput {
+  id: String!
+}
