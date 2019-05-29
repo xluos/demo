@@ -1,0 +1,21 @@
+{
+  "name": "demo-graphql-nexus",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node-dev src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "graphql-yoga": "^1.17.4",
+    "nexus": "^0.11.7"
+  },
+  "devDependencies": {
+    "ts-node-dev": "^1.0.0-pre.39",
+    "typescript": "^3.5.1"
+  }
+}
