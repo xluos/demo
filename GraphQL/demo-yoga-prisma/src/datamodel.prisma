@@ -8,12 +8,4 @@ type Article {
   author: User!
   title: String!
   content: String
-  tags: [Tag!]!
-  pv: Int! @default(value: 0)
-  uv: Int! @default(value: 0)
-}
-
-type Tag {
-  id: ID! @id
-  name: String
 }
