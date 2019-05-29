@@ -1,8 +1,7 @@
 import { prismaObjectType, makePrismaSchema } from 'nexus-prisma'
-import { stringArg, mutationType } from 'nexus'
-import { objectType } from "nexus";
+import { objectType, stringArg } from "nexus";
 import { GraphQLServer } from 'graphql-yoga'
-import { prisma } from './generated/prisma-client'
+import { prisma, User } from './generated/prisma-client'
 import datamodelInfo from './generated/nexus-prisma'
 import { permissions } from './permissions'
 import path = require('path')
@@ -19,21 +18,6 @@ const AuthPayload = objectType({
   name: 'AuthPayload',
   definition(t) {
     t.string('token')
-    t.field('user', { type: 'User' })
-  },
-})
-
-const TestObj = objectType({
-  name: 'TestObj',
-  definition(t) {
-    t.string('tets')
-  },
-})
-
-const TestObj2 = objectType({
-  name: 'TestObj2',
-  definition(t) {
-    t.string('tets2')
   },
 })
 
@@ -43,23 +27,28 @@ const Mutation = prismaObjectType({
     t.prismaFields(["createUser", "updateUser", "createArticle", "updateArticle"])
     t.field("login", {
       type: "AuthPayload",
-      resolve: async () => {
-        return {
-          token: "",
-          user: ""
+      args: {
+        id: stringArg(),
+        password: stringArg()
+      },
+      resolve: async (root, args) => {
+        const user = await prisma.user({
+          id: args.id
+        })
+        if (!user) return {
+          token: ''
         }
-      }
-    })
-    t.field("test", {
-      type: "TestObj",
-      resolve: () => {
-
-      }
-    })
-    t.field("test2", {
-      type: 't',
-      resolve: () => {
-
+        if (args.password === user.password) {
+          return {
+            token: sign({
+              userId: args.id
+            }, APP_SECRET)
+          }
+        } else {
+          return {
+            token: ""
+          }
+        }
       }
     })
   }
@@ -94,7 +83,7 @@ const Article = prismaObjectType({
 
 
 const schema = makePrismaSchema({
-  types: [Query, Mutation, User, Article, AuthPayload, TestObj, TestObj2],
+  types: [Query, Mutation, User, Article, AuthPayload ],
 
   prisma: {
     client: prisma,

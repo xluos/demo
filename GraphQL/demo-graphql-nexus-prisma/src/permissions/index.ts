@@ -3,7 +3,7 @@ import { getUserId } from '../utils'
 
 
 const rules = {
-  isAuthenticatedUser: rule()((parent, args, context) => {
+  isAuthUser: rule()((parent, args, context) => {
     const userId = getUserId(context)
     return Boolean(userId)
   }),
@@ -14,23 +14,24 @@ const rules = {
   }),
   isRoot: rule()((parent, args, context) => {
     const userId = getUserId(context)
+    console.log(userId);
     return userId === '10001'
   })
 }
 
 export const permissions = shield({
   Query: {
-    article: rules.isAuthenticatedUser,
-    articles: rules.isAuthenticatedUser,
-    articlesConnection: rules.isAuthenticatedUser,
-    users: rules.isAuthenticatedUser,
-    usersConnection: rules.isAuthenticatedUser,
-    user: rules.isAuthenticatedUser,
+    article: rules.isAuthUser,
+    articles: rules.isAuthUser,
+    articlesConnection: rules.isAuthUser,
+    users: rules.isAuthUser,
+    usersConnection: rules.isAuthUser,
+    user: rules.isAuthUser,
   },
   Mutation: {
     createUser: rules.isRoot,
     updateUser: rules.isRoot,
     updateArticle: rules.isArticleOwner,
-    createArticle: rules.isArticleOwner,
+    createArticle: rules.isAuthUser,
   },
 })
